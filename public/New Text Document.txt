@@ -1,0 +1,91 @@
+CREATE TABLE stores (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    slug VARCHAR(180) NOT NULL UNIQUE,
+    logo_url VARCHAR(255),
+    website_url VARCHAR(255),
+    affiliate_url VARCHAR(500),
+    description TEXT,
+
+    -- SEO Meta
+    meta_title VARCHAR(255),
+    meta_description TEXT,
+    meta_keywords TEXT,
+    canonical_url VARCHAR(255),
+    og_image_url VARCHAR(255),
+
+    status TEXT CHECK (status IN ('active', 'inactive')) DEFAULT 'active',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.updated_at = NOW();
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+CREATE TRIGGER update_stores_updated_at
+BEFORE UPDATE ON stores
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+
+
+CREATE TABLE coupons (
+    id BIGSERIAL PRIMARY KEY,
+
+    user_id BIGINT,
+    store_id BIGINT NOT NULL,
+
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+
+    coupon_type TEXT CHECK (coupon_type IN ('code', 'deal', 'sale', 'free_shipping')) DEFAULT 'code',
+
+    code VARCHAR(100),
+    discount_value VARCHAR(100),
+    minimum_order_amount NUMERIC(10,2),
+
+    start_date TIMESTAMP,
+    expiry_date TIMESTAMP,
+
+    landing_url VARCHAR(500),
+    affiliate_url VARCHAR(500),
+
+    -- Media
+    image_url VARCHAR(255),   -- banner / thumbnail
+    og_image_url VARCHAR(255), -- social share
+
+    -- SEO
+    meta_title VARCHAR(255),
+    meta_description TEXT,
+    meta_keywords TEXT,
+    canonical_url VARCHAR(255),
+
+    status TEXT CHECK (status IN ('pending', 'approved', 'rejected', 'expired')) DEFAULT 'pending',
+    visibility TEXT CHECK (visibility IN ('public', 'hidden')) DEFAULT 'public',
+
+    verified_by BIGINT,
+    verified_at TIMESTAMP,
+
+    success_rate NUMERIC(5,2) DEFAULT 0,
+    uses_count INTEGER DEFAULT 0,
+    clicks_count INTEGER DEFAULT 0,
+    comments_count INTEGER DEFAULT 0,
+    votes_score INTEGER DEFAULT 0,
+
+    is_featured BOOLEAN DEFAULT FALSE,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- Foreign Keys
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+    CONSTRAINT fk_store FOREIGN KEY (store_id) REFERENCES stores(id) ON DELETE CASCADE,
+    CONSTRAINT fk_verified_by FOREIGN KEY (verified_by) REFERENCES users(id) ON DELETE SET NULL
+);

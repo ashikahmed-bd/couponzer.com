@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --color-primary: #ff8904;
+  --color-primary-hover: #ff6900;
+
+  --color-accent: #00d3f3;
+  --color-accent-hover: #00b8db;
+
+  --color-background: #eff7ff;
+  --color-surface: #ecfdf5;
+
+  --color-border: #e5e7eb;
+
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+
+  --color-title: #0f172a;
+  --color-body: #334155;
+  --color-muted: #64748b;
+
+  --color-black: #000000;
+  --color-dark: #0f172b;
+  --color-white: #ffffff;
+
+  --font-sans: "Noto Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(
+      --font-sans,
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif
+    );
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--color-body, #1f2937);
+    background-color: var(--color-background, #f9fafb);
+  }
+
+  blockquote {
+    @apply border-l-4 border-emerald-300 pl-4 italic text-slate-600 mb-4;
+  }
+
+  code {
+    @apply font-mono bg-slate-100 text-slate-800 px-1 rounded;
+  }
+
+  pre {
+    @apply bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto mb-4;
+  }
+
+  ol {
+    @apply list-decimal pl-6 mb-4 text-slate-700 space-y-2;
+  }
+
+  table {
+    @apply w-full overflow-x-auto;
+  }
+
+  thead {
+    @apply bg-slate-100/70 backdrop-blur;
+  }
+
+  th {
+    @apply px-5 py-3 font-semibold text-slate-800 border-b border-slate-200;
+  }
+
+  td {
+    @apply px-5 py-3 border-b border-slate-100;
+  }
+
+  tbody tr {
+    @apply transition duration-200 hover:bg-slate-50/70;
+  }
+
+  tbody tr:nth-child(even) {
+    @apply bg-emerald-50;
+  }
+}
