@@ -82,27 +82,6 @@
                 Sign up
               </NuxtLink>
             </div>
-
-            <!-- Mobile Search -->
-            <div class="block sm:hidden">
-              <form class="w-full">
-                <div
-                  class="flex items-center rounded-full border border-slate-200 p-2"
-                >
-                  <input
-                    type="text"
-                    placeholder="Search here..."
-                    class="w-full bg-transparent px-3 text-sm outline-none"
-                  />
-                  <button
-                    type="submit"
-                    class="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white"
-                  >
-                    <UIcon name="i-lucide-search" class="size-5" />
-                  </button>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
       </div>
