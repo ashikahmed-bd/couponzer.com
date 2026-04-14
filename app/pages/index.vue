@@ -395,53 +395,66 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="py-8">
-      <div class="mb-5 flex items-center justify-between">
-        <h2 class="text-3xl font-bold text-accent">
-          Popular <span class="text-primary">Offers</span>
-        </h2>
-        <div class="flex gap-4 text-sm text-body">
-          <a class="font-semibold text-accent" href="#">All Offer</a>
-          <a href="#">Today’s Best Offer</a>
-          <a href="#">Upcoming Offer</a>
-          <a href="#">Currently Using</a>
+    <section class="py-8 sm:py-10 lg:py-12">
+      <div
+        class="mb-6 flex flex-col gap-4 lg:mb-8 lg:flex-row lg:items-end lg:justify-between"
+      >
+        <!-- Heading -->
+        <div>
+          <span
+            class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+          >
+            Best Deals
+          </span>
+          <h2
+            class="mt-3 text-2xl font-bold text-accent sm:text-3xl lg:text-4xl"
+          >
+            Popular <span class="text-primary">Offers</span>
+          </h2>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-body sm:text-base">
+            Explore trending coupons, exclusive promo codes, and the best daily
+            discounts from top brands.
+          </p>
+        </div>
+
+        <div class="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:px-0">
+          <div
+            class="flex min-w-max items-center gap-2 rounded-full bg-slate-100 p-1"
+          >
+            <a
+              href="#"
+              class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-accent transition hover:text-primary"
+            >
+              All Offers
+            </a>
+            <a
+              href="#"
+              class="rounded-full px-4 py-2 text-sm font-medium text-body transition hover:bg-white hover:text-accent"
+            >
+              Today’s Best
+            </a>
+            <a
+              href="#"
+              class="rounded-full px-4 py-2 text-sm font-medium text-body transition hover:bg-white hover:text-accent"
+            >
+              Upcoming
+            </a>
+            <a
+              href="#"
+              class="rounded-full px-4 py-2 text-sm font-medium text-body transition hover:bg-white hover:text-accent"
+            >
+              Currently Using
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        <article
-          v-for="offer in offers"
-          :key="offer.name"
-          class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm"
-        >
-          <div
-            :class="offer.brandClass"
-            class="grid h-28 place-items-center rounded-2xl text-4xl font-black text-white"
-          >
-            {{ offer.name }}
-          </div>
-          <h3 class="mt-4 text-lg font-bold text-slate-800">
-            {{ offer.title }}
-          </h3>
-          <div class="mt-4 flex items-center justify-between gap-3">
-            <div
-              class="rounded-full bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-500"
-            >
-              Upto 58% Voucher Rewards
-            </div>
-          </div>
-          <button
-            :class="offer.buttonClass"
-            class="mt-4 w-full rounded-full px-4 py-3 text-sm font-semibold"
-          >
-            {{ offer.button }}
-          </button>
-        </article>
+      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <BaseStoreCard v-for="offer in 4" />
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="rounded-2xl bg-slate-100 p-6 md:p-8">
+    <section class="rounded-2xl bg-slate-100 p-6">
       <div class="grid gap-5 lg:grid-cols-3">
         <article
           v-for="review in testimonials"
@@ -465,8 +478,7 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Partners -->
-    <section class="py-10">
+    <section class="py-6">
       <div class="mx-auto max-w-3xl text-center">
         <span
           class="inline-flex rounded-full border border-primary/20 bg-primary/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
@@ -484,7 +496,7 @@ const testimonials = [
         </p>
       </div>
 
-      <div class="py-6">
+      <div class="mt-6">
         <UMarquee
           pause-on-hover
           :overlay="false"
