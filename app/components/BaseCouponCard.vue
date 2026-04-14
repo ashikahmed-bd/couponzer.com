@@ -75,15 +75,12 @@ const handleClick = () => {
     </div>
 
     <div class="grid gap-4 p-3">
-      <NuxtLink :to="storeLink" class="block">
-        <h4
-          class="text-xl font-bold leading-snug text-gray-900 transition duration-300 group-hover:text-orange-600"
-        >
-          {{ title }}
-        </h4>
-      </NuxtLink>
+      <h4
+        class="block text-xl font-bold leading-snug text-accent transition duration-300 group-hover:text-orange-600"
+      >
+        {{ title }}
+      </h4>
 
-      <!-- Meta area -->
       <div
         class="flex w-full items-center justify-between border-y border-gray-200 py-3 text-sm text-gray-500"
       >
@@ -124,7 +121,7 @@ const handleClick = () => {
       >
         <button
           @click="handleClick"
-          class="relative w-full flex items-center justify-between rounded-full border border-dashed border-orange-400 py-3.5"
+          class="relative w-full flex items-center justify-between rounded-full border border-dashed border-orange-400 py-2.5"
         >
           <span
             class="absolute cursor-pointer flex items-center justify-center w-[85%] group-hover:w-[80%] h-full rounded-full bg-orange-500 text-white transition-all duration-500 ease-out z-20"

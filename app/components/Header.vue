@@ -3,7 +3,7 @@
 <template>
   <header class="sticky top-0 z-30 bg-white">
     <div class="border-b border-border">
-      <div class="container mx-auto px-4 py-3">
+      <div class="max-w-7xl mx-auto px-4 py-3">
         <div class="flex items-center justify-between gap-3 lg:hidden">
           <NuxtLink to="/" class="shrink-0">
             <NuxtImg
@@ -78,9 +78,8 @@
       </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="border-b border-slate-100 bg-white">
-      <div class="mx-auto max-w-7xl px-4">
+    <nav class="border-b border-border bg-white">
+      <div class="max-w-7xl mx-auto">
         <div class="flex overflow-x-auto whitespace-nowrap py-3 scrollbar-hide">
           <NuxtLink
             to="/"
@@ -89,7 +88,13 @@
             Home
           </NuxtLink>
           <NuxtLink
-            to="/coupon"
+            to="/categories"
+            class="px-4 text-sm font-medium text-slate-700 transition hover:text-primary"
+          >
+            Categories
+          </NuxtLink>
+          <NuxtLink
+            to="/coupons"
             class="px-4 text-sm font-medium text-slate-700 transition hover:text-primary"
           >
             Browse Coupons
@@ -99,12 +104,6 @@
             class="px-4 text-sm font-medium text-slate-700 transition hover:text-primary"
           >
             Stores
-          </NuxtLink>
-          <NuxtLink
-            to="/categories"
-            class="px-4 text-sm font-medium text-slate-700 transition hover:text-primary"
-          >
-            Categories
           </NuxtLink>
         </div>
       </div>

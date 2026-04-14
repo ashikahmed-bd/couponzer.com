@@ -1,36 +1,23 @@
 <script setup></script>
 
 <template>
-  <main class="max-w-7xl mx-auto px-4 py-6">
-    <section
-      class="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50 to-slate-100 px-4 py-12"
-    >
-      <div class="max-w-2xl">
-        <div
-          class="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-3 py-2 backdrop-blur"
-        >
-          <span class="h-2 w-2 rounded-full bg-primary"></span>
-          <span
-            class="text-xs font-semibold uppercase tracking-[0.2em] text-primary"
-          >
-            Coupons Directory
-          </span>
+  <main>
+    <section class="relative bg-white/60 overflow-hidden py-6">
+      <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="max-w-2xl">
+          <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-accent">
+            Coupon Style
+          </h1>
+
+          <p class="mt-3 max-w-xl text-sm leading-6 text-body sm:text-base">
+            Discover exclusive coupon codes, trending offers, and handpicked
+            deals from top categories and stores.
+          </p>
         </div>
-
-        <h1
-          class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
-        >
-          Coupon Style 01
-        </h1>
-
-        <p class="mt-3 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">
-          Discover exclusive coupon codes, trending offers, and handpicked deals
-          from top categories and stores.
-        </p>
       </div>
     </section>
 
-    <section class="py-12">
+    <section class="max-w-7xl mx-auto px-4 py-8">
       <div class="grid grid-cols-4 gap-6">
         <aside class="md:sticky md:top-32 md:h-fit">
           <div class="rounded-3xl border border-slate-200 bg-white p-5">

@@ -20,7 +20,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxt/image',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    '@pinia/nuxt',
   ],
 
   supabase: {

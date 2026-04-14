@@ -1,5 +1,5 @@
 <script setup>
-const isOpen = ref(true);
+const collapse = ref(null);
 
 const details = [
   "Get upto 50-90% off on men's & women's fashion.",
@@ -244,144 +244,144 @@ const details = [
             ]"
           >
             <template #all>
-              <div
-                class="rounded-2xl border border-border hover:border-primary bg-white p-3 sm:p-4"
-              >
-                <div
-                  class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between"
+              <div class="space-y-4">
+                <UCollapsible
+                  v-for="(_, index) in 5"
+                  :key="index"
+                  class="rounded-2xl border border-border bg-white p-3 hover:border-primary sm:p-4"
                 >
-                  <div class="flex-1 md:pr-6">
-                    <div class="flex flex-wrap items-center gap-2">
-                      <span
-                        class="inline-flex items-center gap-2 rounded-lg border border-border bg-sky-50 px-3 py-1.5 text-sm font-medium text-sky-600"
-                      >
-                        <UIcon name="i-lucide-badge-check" class="size-4" />
-                        Verified
-                      </span>
-
-                      <span
-                        class="inline-flex items-center gap-2 rounded-lg border border-orange-300 bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-500"
-                      >
-                        <UIcon name="i-lucide-calendar-days" class="size-4" />
-                        25 Nov, 24
-                      </span>
-                    </div>
-
-                    <!-- Title -->
-                    <h3
-                      class="mt-4 text-[22px] font-bold leading-tight text-slate-800"
-                    >
-                      Exclusive Coupon: $15 Off Orders Over $100!
-                    </h3>
-
-                    <!-- Meta -->
+                  <template #default="{ open }">
                     <div
-                      class="mt-5 flex items-center justify-between border-y border-slate-200 py-4 text-slate-500"
+                      class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between"
                     >
-                      <div class="flex items-center gap-2 text-[15px]">
-                        <UIcon name="i-lucide-lock" class="size-4" />
-                        <span>5462</span>
-                      </div>
+                      <div class="flex-1 md:pr-6">
+                        <div class="flex flex-wrap items-center gap-2">
+                          <span
+                            class="inline-flex items-center gap-2 rounded-lg border border-border bg-sky-50 px-3 py-1.5 text-sm font-medium text-sky-600"
+                          >
+                            <UIcon name="i-lucide-badge-check" class="size-4" />
+                            Verified
+                          </span>
 
-                      <div class="flex items-center gap-4 text-[15px]">
-                        <a
-                          href="#"
-                          class="inline-flex items-center gap-1 hover:text-primary transition"
+                          <span
+                            class="inline-flex items-center gap-2 rounded-lg border border-orange-300 bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-500"
+                          >
+                            <UIcon
+                              name="i-lucide-calendar-days"
+                              class="size-4"
+                            />
+                            25 Nov, 24
+                          </span>
+                        </div>
+
+                        <h3
+                          class="mt-4 text-2xl font-bold leading-tight text-accent"
                         >
-                          <UIcon
-                            name="i-lucide-message-square-text"
-                            class="size-4"
-                          />
-                          <span>25</span>
-                        </a>
-                        <a
-                          href="#"
-                          class="inline-flex items-center gap-1 hover:text-primary transition"
+                          Exclusive Coupon: $15 Off Orders Over $100!
+                        </h3>
+
+                        <div
+                          class="flex items-center justify-between py-4 text-body"
                         >
-                          <UIcon name="i-lucide-share-2" class="size-4" />
-                          <span>15</span>
-                        </a>
+                          <div class="flex items-center gap-2">
+                            <UIcon name="i-lucide-lock" class="size-4" />
+                            <span>5462</span>
+                          </div>
+
+                          <div class="flex items-center gap-4">
+                            <a
+                              href="#"
+                              class="inline-flex items-center gap-1 transition hover:text-primary"
+                            >
+                              <UIcon
+                                name="i-lucide-message-square-text"
+                                class="size-4"
+                              />
+                              <span>25</span>
+                            </a>
+
+                            <a
+                              href="#"
+                              class="inline-flex items-center gap-1 transition hover:text-primary"
+                            >
+                              <UIcon name="i-lucide-share-2" class="size-4" />
+                              <span>15</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="border-border border-t md:border-l md:border-t-0 md:pl-6 py-4"
+                      >
+                        <div class="flex flex-col items-center text-center">
+                          <a
+                            href="#"
+                            class="inline-flex items-center gap-2 text-base font-semibold text-sky-600"
+                          >
+                            <UIcon name="i-lucide-share-2" class="size-4" />
+                            Share & Earn
+                          </a>
+
+                          <p class="mt-3 text-sm text-slate-500">
+                            Save up to 25% on all Coupons
+                          </p>
+
+                          <button
+                            class="mt-5 py-2.5 inline-flex min-w-full items-center justify-center rounded-full bg-primary px-8 text-base font-semibold text-white transition hover:bg-primary-hover"
+                          >
+                            Get Deal
+                          </button>
+
+                          <UCollapsibleButton
+                            class="mt-5 inline-flex items-center gap-2 font-medium text-slate-500 transition hover:text-primary"
+                          >
+                            <span>{{
+                              open ? "Hide Details" : "Show Details"
+                            }}</span>
+                            <UIcon
+                              name="i-lucide-chevron-down"
+                              class="size-4 transition duration-300"
+                              :class="{ 'rotate-180': open }"
+                            />
+                          </UCollapsibleButton>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </template>
 
-                  <!-- Right Action Area -->
-                  <div
-                    class="w-full border-t border-slate-200 pt-4 md:w-[210px] md:border-l md:border-t-0 md:pl-6 md:pt-0"
-                  >
-                    <div class="flex flex-col items-center text-center">
-                      <a
-                        href="#"
-                        class="inline-flex items-center gap-2 text-base font-semibold text-sky-600"
+                  <template #content>
+                    <div class="overflow-hidden py-4">
+                      <div
+                        class="rounded-xl border border-border bg-surface p-5"
                       >
-                        <UIcon name="i-lucide-share-2" class="size-4" />
-                        Share & Earn
-                      </a>
+                        <ul
+                          class="list-disc space-y-2 pl-5 text-sm leading-7 text-body"
+                        >
+                          <li
+                            v-for="(item, detailIndex) in details"
+                            :key="detailIndex"
+                          >
+                            {{ item }}
+                          </li>
+                        </ul>
+                      </div>
 
-                      <p class="mt-3 text-sm text-slate-500">
-                        Save up to 25% on all Coupons
-                      </p>
+                      <div class="mt-4 flex items-center gap-5 px-1 text-body">
+                        <span class="text-sm">75% Success</span>
 
-                      <button
-                        class="mt-5 inline-flex h-11 min-w-full items-center justify-center rounded-full bg-sky-500 px-8 text-base font-semibold text-white transition hover:bg-sky-600"
-                      >
-                        Get Deal
-                      </button>
-
-                      <button
-                        type="button"
-                        @click="isOpen = !isOpen"
-                        class="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-slate-500 transition hover:text-primary"
-                      >
-                        <span>Show Details</span>
-                        <UIcon
-                          name="i-lucide-chevron-down"
-                          class="size-4 transition duration-300"
-                          :class="{ 'rotate-180': isOpen }"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Expandable Details -->
-                <Transition
-                  enter-active-class="transition-all duration-300 ease-out"
-                  enter-from-class="opacity-0 max-h-0"
-                  enter-to-class="opacity-100 max-h-[500px]"
-                  leave-active-class="transition-all duration-200 ease-in"
-                  leave-from-class="opacity-100 max-h-[500px]"
-                  leave-to-class="opacity-0 max-h-0"
-                >
-                  <div v-if="isOpen" class="overflow-hidden">
-                    <div
-                      class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5"
-                    >
-                      <ul
-                        class="list-disc space-y-2 pl-5 text-[15px] leading-7 text-slate-600"
-                      >
-                        <li v-for="(item, index) in details" :key="index">
-                          {{ item }}
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div
-                      class="mt-4 flex items-center gap-5 px-1 text-slate-500"
-                    >
-                      <span class="text-[15px]">75% Success</span>
-
-                      <div class="flex items-center gap-3">
-                        <button class="transition hover:text-primary">
-                          <UIcon name="i-lucide-thumbs-up" class="size-5" />
-                        </button>
-                        <button class="transition hover:text-primary">
-                          <UIcon name="i-lucide-thumbs-down" class="size-5" />
-                        </button>
+                        <div class="flex items-center gap-3">
+                          <button class="transition hover:text-primary">
+                            <UIcon name="i-lucide-thumbs-up" class="size-5" />
+                          </button>
+                          <button class="transition hover:text-primary">
+                            <UIcon name="i-lucide-thumbs-down" class="size-5" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Transition>
+                  </template>
+                </UCollapsible>
               </div>
             </template>
             <template #details> </template>

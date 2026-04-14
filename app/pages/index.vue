@@ -93,25 +93,14 @@ const testimonials = [
 </script>
 
 <template>
-  <main class="mx-auto max-w-7xl px-4 py-6">
-    <section class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <div class="group relative overflow-hidden rounded">
-        <NuxtImg
-          src="/images/index-2-banner-1.png"
-          alt="Banner image 1"
-          class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-        />
-        <div
-          class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-        ></div>
-      </div>
-
-      <div class="grid gap-4">
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <main class="">
+    <section class="bg-white/50">
+      <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <div class="group relative overflow-hidden rounded">
             <NuxtImg
-              src="/images/index-2-banner-2.png"
-              alt="Banner image 2"
+              src="/images/index-2-banner-1.png"
+              alt="Banner image 1"
               class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
             />
             <div
@@ -120,33 +109,48 @@ const testimonials = [
           </div>
 
           <div class="grid gap-4">
-            <div class="group relative overflow-hidden rounded">
-              <NuxtImg
-                src="/images/index-2-banner-3.png"
-                alt="Banner image 3"
-                class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-              />
-              <div
-                class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-              ></div>
-            </div>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div class="group relative overflow-hidden rounded">
+                <NuxtImg
+                  src="/images/index-2-banner-2.png"
+                  alt="Banner image 2"
+                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
+                />
+                <div
+                  class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
+                ></div>
+              </div>
 
-            <div class="group relative overflow-hidden rounded">
-              <NuxtImg
-                src="/images/index-2-banner-4.png"
-                alt="Banner image 4"
-                class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-              />
-              <div
-                class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-              ></div>
+              <div class="grid gap-4">
+                <div class="group relative overflow-hidden rounded">
+                  <NuxtImg
+                    src="/images/index-2-banner-3.png"
+                    alt="Banner image 3"
+                    class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
+                  ></div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded">
+                  <NuxtImg
+                    src="/images/index-2-banner-4.png"
+                    alt="Banner image 4"
+                    class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
+                  ></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-8">
+    <section class="max-w-7xl mx-auto px-4 py-8">
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         <div
           class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl md:p-7"
@@ -258,7 +262,7 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="py-8">
+    <section class="max-w-7xl mx-auto px-4 py-8">
       <div class="mb-6 flex items-center justify-between">
         <div>
           <h2 class="text-3xl font-bold text-accent">
@@ -275,7 +279,7 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="py-8">
+    <section class="max-w-7xl mx-auto px-4 py-8">
       <div class="mb-5 flex items-center justify-between">
         <h2 class="text-3xl font-bold text-accent">
           Top <span class="text-primary">Stores</span>
@@ -288,7 +292,7 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="px-4 py-8 bg-orange-100 rounded-2xl">
+    <section class="max-w-7xl mx-auto px-4 py-8 bg-orange-100 rounded-2xl">
       <div class="mb-5 flex items-center justify-between">
         <div>
           <h2 class="text-3xl font-bold text-slate-900">
@@ -320,7 +324,7 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="py-8">
+    <section class="max-w-7xl mx-auto px-4 py-8">
       <h2 class="mb-5 text-3xl font-bold text-accent">
         Cashback <span class="text-primary">Increased</span>
       </h2>
@@ -395,7 +399,7 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="py-8 sm:py-10 lg:py-12">
+    <section class="max-w-7xl mx-auto px-4 py-8">
       <div
         class="mb-6 flex flex-col gap-4 lg:mb-8 lg:flex-row lg:items-end lg:justify-between"
       >
@@ -478,7 +482,7 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="py-6">
+    <section class="max-w-7xl mx-auto px-4 py-6">
       <div class="mx-auto max-w-3xl text-center">
         <span
           class="inline-flex rounded-full border border-primary/20 bg-primary/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
