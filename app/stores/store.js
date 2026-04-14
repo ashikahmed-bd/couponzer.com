@@ -148,7 +148,7 @@ export const useMerchantStore = defineStore("merchant", {
       try {
         const { data, error } = await supabase
           .from("stores")
-          .select("*")
+          .select(`*,coupons(*)`)
           .eq("slug", slug)
           .single();
 

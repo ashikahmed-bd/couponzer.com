@@ -14,15 +14,11 @@ const { data: featured } = await useAsyncData("featured", async () => {
   return await merchantStore.getFeatured();
 });
 
-const details = [
-  "Get upto 50-90% off on men's & women's fashion.",
-  "Sale starts early on 25th Sep for HostingerInsider.",
-  "Also, avail extra 10% off on Kotak, Axis & ICICI bank cards.",
-  "Shop from an endless selection of brands like Nike, Adidas, Tommy Hilfiger, Flying Machine, AND, Forever 21 and a lot more.",
-  "Shop for watches, t-shirts, jeans, shirts, shoes, jewellery & more.",
-  "Avail Hostinger discounts on all categories.",
-  "No Hostinger coupon code is required.",
-];
+const handleClick = (url) => {
+  setTimeout(() => {
+    window.open(url, "_blank");
+  }, 300);
+};
 </script>
 
 <template>
@@ -148,8 +144,8 @@ const details = [
 
             <div class="space-y-4">
               <UCollapsible
-                v-for="(_, index) in 5"
-                :key="index"
+                v-for="(coupon, index) in store.coupons"
+                :key="coupon.id"
                 class="rounded-2xl border border-border bg-white p-3 hover:border-primary sm:p-4"
               >
                 <template #default="{ open }">
@@ -159,6 +155,7 @@ const details = [
                     <div class="flex-1 md:pr-6">
                       <div class="flex flex-wrap items-center gap-2">
                         <span
+                          v-if="coupon.is_verified"
                           class="inline-flex items-center gap-2 rounded-lg border border-border bg-sky-50 px-3 py-1.5 text-sm font-medium text-sky-600"
                         >
                           <UIcon name="i-lucide-badge-check" class="size-4" />
@@ -166,71 +163,210 @@ const details = [
                         </span>
 
                         <span
+                          v-if="coupon.is_featured"
+                          class="inline-flex items-center gap-2 rounded-lg border border-yellow-300 bg-yellow-50 px-3 py-1.5 text-sm font-medium text-yellow-600"
+                        >
+                          <UIcon name="i-lucide-star" class="size-4" />
+                          Featured
+                        </span>
+
+                        <span
+                          v-if="coupon.expires_at"
                           class="inline-flex items-center gap-2 rounded-lg border border-orange-300 bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-500"
                         >
                           <UIcon name="i-lucide-calendar-days" class="size-4" />
-                          25 Nov, 24
+                          Expires: {{ $date(coupon.expires_at) ?? "N/A" }}
                         </span>
                       </div>
 
                       <h3
                         class="mt-4 text-2xl font-bold leading-tight text-accent"
                       >
-                        Exclusive Coupon: $15 Off Orders Over $100!
+                        {{ coupon.title }}
                       </h3>
 
-                      <div
-                        class="flex items-center justify-between py-4 text-body"
+                      <p
+                        v-if="coupon.summary"
+                        class="mt-2 text-sm leading-6 text-body"
                       >
+                        {{ coupon.summary }}
+                      </p>
+
+                      <div class="mt-4 flex flex-wrap items-center gap-3">
+                        <span
+                          class="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-600"
+                        >
+                          {{ coupon.discount_text || "Special Offer" }}
+                        </span>
+
+                        <span
+                          v-if="coupon.code"
+                          class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700"
+                        >
+                          Code: {{ coupon.code }}
+                        </span>
+
+                        <span
+                          v-if="coupon.is_exclusive"
+                          class="inline-flex items-center rounded-full bg-purple-50 px-3 py-1 text-sm font-medium text-purple-600"
+                        >
+                          Exclusive
+                        </span>
+                      </div>
+
+                      <div class="flex items-center gap-4 py-4 text-body">
                         <div class="flex items-center gap-2">
-                          <UIcon name="i-lucide-lock" class="size-4" />
-                          <span>5462</span>
-                        </div>
-
-                        <div class="flex items-center gap-4">
-                          <a
-                            href="#"
-                            class="inline-flex items-center gap-1 transition hover:text-primary"
-                          >
-                            <UIcon
-                              name="i-lucide-message-square-text"
-                              class="size-4"
-                            />
-                            <span>25</span>
-                          </a>
-
-                          <a
-                            href="#"
-                            class="inline-flex items-center gap-1 transition hover:text-primary"
-                          >
-                            <UIcon name="i-lucide-share-2" class="size-4" />
-                            <span>15</span>
-                          </a>
+                          <UIcon
+                            name="i-lucide-mouse-pointer-click"
+                            class="size-4"
+                          />
+                          <span>{{ coupon.click_count }} Clicks</span>
                         </div>
                       </div>
                     </div>
 
                     <div
-                      class="border-border border-t md:border-l md:border-t-0 md:pl-6 py-4"
+                      class="border-border border-t py-4 md:border-l md:border-t-0 md:pl-6"
                     >
                       <div class="flex flex-col items-center text-center">
                         <a
-                          href="#"
-                          class="inline-flex items-center gap-2 text-base font-semibold text-sky-600"
+                          :href="coupon.affiliate_url ?? coupon.deal_url"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-2 text-base font-semibold text-success"
                         >
                           <UIcon name="i-lucide-share-2" class="size-4" />
                           Share & Earn
                         </a>
 
-                        <p class="mt-3 text-sm text-slate-500">
-                          Save up to 25% on all Coupons
+                        <p class="mt-3 text-sm text-body mb-3">
+                          Grab this latest offer now
                         </p>
 
-                        <button
-                          class="mt-5 py-2.5 inline-flex min-w-full items-center justify-center rounded-full bg-primary px-8 text-base font-semibold text-white transition hover:bg-primary-hover"
+                        <UModal
+                          :title="coupon.title"
+                          :ui="{
+                            content: 'w-full max-w-2xl',
+                          }"
+                          :close="{
+                            color: 'primary',
+                            variant: 'outline',
+                            class: 'rounded-full',
+                          }"
                         >
-                          Get Deal
-                        </button>
+                          <button
+                            @click="
+                              handleClick(
+                                coupon.affiliate_url ?? coupon.deal_url,
+                              )
+                            "
+                            class="relative w-full flex items-center justify-between rounded-full border border-dashed border-primary py-2"
+                          >
+                            <span
+                              class="absolute cursor-pointer flex items-center justify-center w-[85%] group-hover:w-[80%] h-full rounded-full bg-primary text-white transition-all duration-500 ease-out z-20"
+                            >
+                              {{ coupon.code ? "Show Code" : "Get Deal" }}
+                            </span>
+                            <span
+                              class="w-full flex items-center justify-end font-semibold text-orange-600 px-4"
+                            >
+                              {{ coupon.code ?? "Get Deal" }}
+                            </span>
+                          </button>
+                          <template #body>
+                            <div class="flex flex-col items-center gap-3">
+                              <div
+                                class="w-full px-2 md:px-0 flex justify-center"
+                              >
+                                <div class="w-full max-w-xs">
+                                  <div
+                                    class="flex w-full overflow-hidden rounded-full border border-dashed border-orange-300 bg-orange-50"
+                                  >
+                                    <input
+                                      type="text"
+                                      :value="coupon.code"
+                                      readonly
+                                      class="w-full bg-transparent px-6 py-2 text-sm font-bold tracking-wider text-primary outline-none"
+                                    />
+
+                                    <button
+                                      class="shrink-0 rounded-full bg-primary px-10 py-2 text-sm font-bold text-white transition hover:bg-primary-hover"
+                                    >
+                                      Copy
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <p
+                                class="text-center text-sm font-medium text-body py-2"
+                              >
+                                Continue to
+                                <a
+                                  :href="
+                                    coupon.affiliate_url ?? coupon.deal_url
+                                  "
+                                  target="_blank"
+                                  rel="nofollow sponsored noopener"
+                                  class="font-semibold text-primary hover:text-primary-hover"
+                                >
+                                  {{ store?.name ?? "Visit Store" }}
+                                </a>
+                                •
+
+                                <a
+                                  v-if="coupon.slug"
+                                  :href="coupon.affiliate_url"
+                                  class="font-semibold text-body hover:text-primary-hover"
+                                >
+                                  View Terms & Conditions
+                                </a>
+                              </p>
+                            </div>
+
+                            <div class="grid gap-2 border-y border-border p-4">
+                              <div class="block">
+                                <p class="text-sm font-semibold text-body">
+                                  Terms:
+                                </p>
+                                <div
+                                  v-html="coupon.terms"
+                                  class="text-sm [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2"
+                                ></div>
+                              </div>
+                            </div>
+
+                            <div
+                              class="flex flex-wrap items-center justify-center gap-2 mt-4"
+                            >
+                              <span
+                                class="mr-2 text-sm font-semibold text-dark"
+                              >
+                                Did it work?
+                              </span>
+
+                              <button
+                                class="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 font-bold text-green-600 transition hover:bg-green-200"
+                              >
+                                <UIcon
+                                  name="i-lucide-thumbs-up"
+                                  class="size-5"
+                                />
+                                <span>Yes</span>
+                              </button>
+
+                              <button
+                                class="flex items-center gap-2 rounded-lg bg-red-100 px-3 py-2 font-bold text-red-600 transition hover:bg-red-200"
+                              >
+                                <UIcon
+                                  name="i-lucide-thumbs-down"
+                                  class="size-5"
+                                />
+                                <span>No</span>
+                              </button>
+                            </div>
+                          </template>
+                        </UModal>
 
                         <UCollapsibleButton
                           class="mt-5 inline-flex items-center gap-2 font-medium text-slate-500 transition hover:text-primary"
@@ -251,21 +387,30 @@ const details = [
 
                 <template #content>
                   <div class="overflow-hidden py-4">
-                    <div class="rounded-xl border border-border bg-surface p-5">
-                      <ul
-                        class="list-disc space-y-2 pl-5 text-sm leading-7 text-body"
-                      >
-                        <li
-                          v-for="(item, detailIndex) in details"
-                          :key="detailIndex"
-                        >
-                          {{ item }}
-                        </li>
-                      </ul>
+                    <div
+                      v-html="coupon.description"
+                      class="=text-sm text-body mb-3"
+                    ></div>
+
+                    <div
+                      class="rounded-xl border border-border bg-surface p-4 text-sm text-body"
+                    >
+                      <h4 class="mb-2 font-semibold">Terms:</h4>
+
+                      <div
+                        v-html="coupon.terms"
+                        class="[&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2"
+                      ></div>
                     </div>
 
                     <div class="mt-4 flex items-center gap-5 px-1 text-body">
-                      <span class="text-sm">75% Success</span>
+                      <span class="text-sm">
+                        {{
+                          coupon.is_verified
+                            ? "Verified coupon"
+                            : "User submitted coupon"
+                        }}
+                      </span>
 
                       <div class="flex items-center gap-3">
                         <button class="transition hover:text-primary">

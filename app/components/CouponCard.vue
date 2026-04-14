@@ -38,9 +38,9 @@ defineProps({
   },
 });
 
-const handleClick = () => {
+const handleClick = (url) => {
   setTimeout(() => {
-    window.open("https://www.ashikahmed.net/", "_blank");
+    window.open(url, "_blank");
   }, 300);
 };
 </script>
