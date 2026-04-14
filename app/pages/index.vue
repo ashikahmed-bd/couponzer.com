@@ -94,6 +94,7 @@ const testimonials = [
 
 <template>
   <main class="">
+    <SeoMeta />
     <section class="bg-white/50">
       <div class="max-w-7xl mx-auto px-4 py-6">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">

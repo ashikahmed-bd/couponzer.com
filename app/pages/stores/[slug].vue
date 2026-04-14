@@ -10,6 +10,10 @@ const {
   error,
 } = await useAsyncData(`store-${slug}`, () => merchantStore.getStore(slug));
 
+const { data: featured } = await useAsyncData("featured", async () => {
+  return await merchantStore.getFeatured();
+});
+
 const details = [
   "Get upto 50-90% off on men's & women's fashion.",
   "Sale starts early on 25th Sep for HostingerInsider.",
@@ -279,20 +283,35 @@ const details = [
           </div>
         </div>
 
-        <aside class="space-y-6 bg-white p-4">
+        <aside class="w-full">
           <div class="sticky top-24 space-y-6">
-            <NuxtLink to="https://namecheap.pxf.io/c/3173023/1183697/5618">
-              <NuxtImg src="/ads/300x250.gif" alt="" class="w-full rounded" />
-            </NuxtLink>
+            <div class="space-y-4">
+              <NuxtLink
+                to="https://namecheap.pxf.io/c/3173023/1183690/5618"
+                title="ads"
+                class="block"
+              >
+                <NuxtImg src="/ads/728x90.gif" alt="" class="w-full rounded" />
+              </NuxtLink>
 
-            <div class="rounded-2xl border bg-white p-4 shadow-sm">
-              <h3 class="mb-4 text-lg font-bold text-gray-900">
-                Similar Stores
-              </h3>
+              <NuxtLink
+                to="https://1.envato.market/c/3173023/381185/4662"
+                title="ads"
+                class="block"
+              >
+                <NuxtImg
+                  src="/ads/970X250.jpeg"
+                  alt=""
+                  class="w-full rounded"
+                />
+              </NuxtLink>
+            </div>
+            <div class="rounded-2xl border border-border bg-white p-4 mt-4">
+              <h3 class="mb-4 text-lg font-bold text-dark">Similar Stores</h3>
 
               <div class="space-y-3">
                 <NuxtLink
-                  v-for="item in similarStores"
+                  v-for="item in featured"
                   :key="item.id"
                   :to="`/stores/${item.slug}`"
                   class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-gray-50"
@@ -317,6 +336,13 @@ const details = [
                 </NuxtLink>
               </div>
             </div>
+
+            <NuxtLink
+              to="https://namecheap.pxf.io/c/3173023/1183697/5618"
+              title="ads"
+            >
+              <NuxtImg src="/ads/300x250.gif" alt="" class="w-full rounded" />
+            </NuxtLink>
           </div>
         </aside>
       </div>
