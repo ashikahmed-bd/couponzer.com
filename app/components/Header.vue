@@ -1,14 +1,14 @@
 <script setup>
 const mobileMenuOpen = ref(false);
+const route = useRoute();
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Categories", to: "/categories" },
-  { label: "Browse Coupons", to: "/coupons" },
+  { label: "Coupons", to: "/coupons" },
   { label: "Stores", to: "/stores" },
+  { label: "Categories", to: "/categories" },
+  { label: "Submit Coupon", to: "/" },
 ];
-
-const route = useRoute();
 </script>
 
 <template>

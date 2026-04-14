@@ -6,24 +6,11 @@
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <!-- Contact -->
         <div>
-          <h3 class="mb-5 text-lg font-bold text-white">Contact</h3>
-
-          <ul class="space-y-3 text-sm leading-6 text-slate-300">
-            <li>
-              <a href="tel:+15055550115" class="transition hover:text-white">
-                (505) 555-0115
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:info@couponzer.com"
-                class="transition hover:text-white"
-              >
-                info@couponzer.com
-              </a>
-            </li>
-            <li>2118 Thornridge Cir. Syracuse, Connecticut</li>
-          </ul>
+          <p class="text-sm">
+            Couponzer is your trusted source for the latest coupons, promo
+            codes, and verified deals. Discover exclusive discounts from top
+            brands and save on fashion, electronics, hosting, travel, and more.
+          </p>
 
           <!-- Social -->
           <nav
@@ -155,8 +142,6 @@
           </form>
         </div>
       </div>
-
-      <!-- Bottom -->
       <div
         class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between"
       >

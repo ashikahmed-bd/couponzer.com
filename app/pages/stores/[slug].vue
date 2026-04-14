@@ -23,7 +23,7 @@ const handleClick = (url) => {
 
 <template>
   <main>
-    <section class="bg-white/50 py-12">
+    <section class="bg-white/50 py-6">
       <div class="mx-auto max-w-7xl px-4">
         <div
           class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left"
@@ -200,21 +200,12 @@ const handleClick = (url) => {
                         </span>
 
                         <span
-                          v-if="coupon.code"
-                          class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700"
-                        >
-                          Code: {{ coupon.code }}
-                        </span>
-
-                        <span
                           v-if="coupon.is_exclusive"
                           class="inline-flex items-center rounded-full bg-purple-50 px-3 py-1 text-sm font-medium text-purple-600"
                         >
                           Exclusive
                         </span>
-                      </div>
 
-                      <div class="flex items-center gap-4 py-4 text-body">
                         <div class="flex items-center gap-2">
                           <UIcon
                             name="i-lucide-mouse-pointer-click"

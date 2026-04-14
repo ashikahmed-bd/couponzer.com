@@ -10,7 +10,7 @@
           class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg bg-white"
         >
           <img
-            src="/images/top-stores-icon-14.png"
+            src="/images/amazon.png"
             alt="Canon"
             class="w-full object-contain"
           />
@@ -48,12 +48,6 @@
       <div
         class="flex items-center gap-3 rounded-md border border-gray-200 bg-white p-2"
       >
-        <div
-          class="flex h-8 w-8 items-center justify-center rounded-md bg-white shadow"
-        >
-          <img src="/images/fav.png" alt="fav" class="h-5 w-5 object-contain" />
-        </div>
-
         <span class="text-sm font-bold text-orange-600">
           Upto 58% Voucher
         </span>

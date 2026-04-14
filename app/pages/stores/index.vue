@@ -26,16 +26,24 @@ const loadMore = () => {
 
 <template>
   <main>
+    <SeoMeta
+      title="Top Stores with Coupons & Deals | Couponzer"
+      description="Browse top stores on Couponzer and find the latest coupons, promo codes, and verified deals. Save more with exclusive discounts from trusted brands and online shops."
+      keywords="Couponzer stores, top stores, store coupons, brand deals, online shopping discounts, verified store offers"
+    />
+
     <section class="relative overflow-hidden bg-white/60 py-6">
       <div class="mx-auto max-w-7xl px-4 py-6">
-        <div class="max-w-2xl">
+        <div class="max-w-3xl">
           <h1 class="text-3xl font-bold tracking-tight text-accent md:text-4xl">
-            Stores
+            Top Stores with Coupons & Deals
           </h1>
 
-          <p class="mt-3 max-w-xl text-sm leading-6 text-body sm:text-base">
-            Discover exclusive coupon codes, trending offers, and handpicked
-            deals from top stores.
+          <p class="mt-3 max-w-2xl text-sm leading-6 text-body sm:text-base">
+            Explore top online stores on Couponzer and discover the latest
+            coupons, promo codes, and exclusive deals. Shop smarter with
+            verified offers from trusted brands across fashion, electronics,
+            travel, and more.
           </p>
         </div>
       </div>
@@ -61,7 +69,7 @@ const loadMore = () => {
           >
             <NuxtLink
               :to="`/stores/${store.slug}`"
-              class="flex items-center justify-center px-4 py-12"
+              class="flex items-center justify-center px-4 py-6"
               :style="{
                 backgroundColor: store.background || '#f9fafb',
               }"
@@ -69,7 +77,7 @@ const loadMore = () => {
               <NuxtImg
                 :src="store.logo_url || '/stores/default.png'"
                 :alt="store.name"
-                class="relative z-10 h-24 w-auto object-contain transition-all duration-300 group-hover:scale-110"
+                class="relative z-10 h-32 w-auto object-contain transition-all duration-300 group-hover:scale-110"
               />
             </NuxtLink>
 

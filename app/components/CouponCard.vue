@@ -10,7 +10,7 @@ defineProps({
   },
   image: {
     type: String,
-    default: "/images/popular-coupons-7.png",
+    default: "/images/canon.png",
   },
   title: {
     type: String,

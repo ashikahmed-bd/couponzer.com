@@ -94,7 +94,11 @@ const testimonials = [
 
 <template>
   <main class="">
-    <SeoMeta />
+    <SeoMeta
+      title="Couponzer | Latest Coupons, Promo Codes & Verified Deals"
+      description="Find the latest coupons, promo codes, and verified deals on Couponzer. Save money with exclusive discounts from top stores across fashion, electronics, hosting, travel, and more."
+      keywords="Couponzer, coupons, promo codes, discount codes, verified deals, online deals, best coupons, latest coupons, store discounts"
+    />
     <section class="bg-white/50">
       <div class="max-w-7xl mx-auto px-4 py-6">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -293,38 +297,6 @@ const testimonials = [
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 py-8 bg-orange-100 rounded-2xl">
-      <div class="mb-5 flex items-center justify-between">
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900">
-            Trending <span class="text-orange-400">Categories</span>
-          </h2>
-          <div class="mt-3 flex flex-wrap gap-4 text-sm text-slate-500">
-            <a class="font-semibold text-sky-500" href="#">All Offer</a>
-            <a href="#">Today’s Best Offer</a>
-            <a href="#">Upcoming Offer</a>
-            <a href="#">Currently Using</a>
-          </div>
-        </div>
-        <a href="#" class="text-sm font-semibold text-accent">See All</a>
-      </div>
-
-      <div class="grid gap-5 lg:grid-cols-4">
-        <div class="grid gap-5 lg:col-span-3 md:grid-cols-2 xl:grid-cols-3">
-          <CouponCardWithReward v-for="item in 6" />
-        </div>
-
-        <aside class="space-y-4 rounded-3xl bg-white p-4 shadow-sm">
-          <div class="mb-2 flex items-center justify-between">
-            <h3 class="font-bold text-slate-800">Stores</h3>
-            <a href="#" class="text-sm font-semibold text-accent">See All</a>
-          </div>
-
-          <MiniStoreCard v-for="item in 3" />
-        </aside>
-      </div>
-    </section>
-
     <section class="max-w-7xl mx-auto px-4 py-8">
       <h2 class="mb-5 text-3xl font-bold text-accent">
         Cashback <span class="text-primary">Increased</span>
@@ -333,6 +305,8 @@ const testimonials = [
       <UCarousel
         v-slot="{ item }"
         :items="15"
+        loop
+        :autoplay="{ delay: 2000 }"
         :ui="{ item: 'basis-1/1 md:basis-1/3' }"
       >
         <div
@@ -340,7 +314,7 @@ const testimonials = [
         >
           <div class="flex items-center justify-center rounded-lg bg-white p-2">
             <img
-              src="/images/cashback-increased-img-3.png"
+              src="/images/cashback.png"
               alt="Image"
               class="w-28 h-auto object-contain"
             />
@@ -354,16 +328,6 @@ const testimonials = [
             <div
               class="flex items-center gap-2 md:gap-3 rounded-md border border-orange-200 bg-orange-50 p-1"
             >
-              <div
-                class="flex items-center justify-center rounded-md bg-white shadow-sm p-1"
-              >
-                <img
-                  src="/images/fav.png"
-                  alt="fav"
-                  class="h-5 w-5 object-contain"
-                />
-              </div>
-
               <span
                 class="whitespace-nowrap text-xs font-medium text-orange-600"
               >
@@ -397,89 +361,6 @@ const testimonials = [
             <UIcon name="i-lucide-send" class="size-5" />
           </button>
         </div>
-      </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-4 py-8">
-      <div
-        class="mb-6 flex flex-col gap-4 lg:mb-8 lg:flex-row lg:items-end lg:justify-between"
-      >
-        <!-- Heading -->
-        <div>
-          <span
-            class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
-          >
-            Best Deals
-          </span>
-          <h2
-            class="mt-3 text-2xl font-bold text-accent sm:text-3xl lg:text-4xl"
-          >
-            Popular <span class="text-primary">Offers</span>
-          </h2>
-          <p class="mt-2 max-w-2xl text-sm leading-6 text-body sm:text-base">
-            Explore trending coupons, exclusive promo codes, and the best daily
-            discounts from top brands.
-          </p>
-        </div>
-
-        <div class="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:px-0">
-          <div
-            class="flex min-w-max items-center gap-2 rounded-full bg-slate-100 p-1"
-          >
-            <a
-              href="#"
-              class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-accent transition hover:text-primary"
-            >
-              All Offers
-            </a>
-            <a
-              href="#"
-              class="rounded-full px-4 py-2 text-sm font-medium text-body transition hover:bg-white hover:text-accent"
-            >
-              Today’s Best
-            </a>
-            <a
-              href="#"
-              class="rounded-full px-4 py-2 text-sm font-medium text-body transition hover:bg-white hover:text-accent"
-            >
-              Upcoming
-            </a>
-            <a
-              href="#"
-              class="rounded-full px-4 py-2 text-sm font-medium text-body transition hover:bg-white hover:text-accent"
-            >
-              Currently Using
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        <BaseStoreCard v-for="offer in 4" />
-      </div>
-    </section>
-
-    <section class="rounded-2xl bg-slate-100 p-6">
-      <div class="grid gap-5 lg:grid-cols-3">
-        <article
-          v-for="review in testimonials"
-          :key="review.name"
-          class="rounded-3xl bg-white p-6 shadow-sm"
-        >
-          <div class="mb-4 text-orange-400">★★★★★</div>
-          <p class="text-sm leading-7 text-slate-500">{{ review.text }}</p>
-          <div class="mt-6 flex items-center gap-3">
-            <div
-              class="grid h-12 w-12 place-items-center rounded-full bg-slate-200 text-sm font-bold text-slate-700"
-            >
-              {{ review.name.charAt(0) }}
-            </div>
-            <div>
-              <div class="font-bold text-slate-800">{{ review.name }}</div>
-              <div class="text-sm text-slate-400">{{ review.role }}</div>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
 
