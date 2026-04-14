@@ -2,7 +2,7 @@
 
 <template>
   <footer class="bg-accent-hover text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <!-- Contact -->
         <div>
@@ -86,38 +86,47 @@
           </nav>
         </div>
 
-        <!-- Quick Links -->
-        <div>
-          <h3 class="mb-5 text-lg font-bold text-white">Quick Links</h3>
-          <ul class="space-y-3 text-sm text-slate-300">
-            <li><a href="#" class="transition hover:text-white">Home</a></li>
-            <li>
-              <a href="#" class="transition hover:text-white">About Us</a>
-            </li>
-            <li>
-              <a href="#" class="transition hover:text-white">Browse Coupons</a>
-            </li>
-            <li><a href="#" class="transition hover:text-white">Stores</a></li>
-            <li><a href="#" class="transition hover:text-white">Blog</a></li>
-          </ul>
-        </div>
+        <!-- Mobile 2 Column: Quick Links + Categories -->
+        <div class="grid grid-cols-2 gap-6 sm:contents">
+          <!-- Quick Links -->
+          <div>
+            <h3 class="mb-5 text-lg font-bold text-white">Quick Links</h3>
+            <ul class="space-y-3 text-sm text-slate-300">
+              <li><a href="#" class="transition hover:text-white">Home</a></li>
+              <li>
+                <a href="#" class="transition hover:text-white">About Us</a>
+              </li>
+              <li>
+                <a href="#" class="transition hover:text-white">
+                  Browse Coupons
+                </a>
+              </li>
+              <li>
+                <a href="#" class="transition hover:text-white">Stores</a>
+              </li>
+              <li><a href="#" class="transition hover:text-white">Blog</a></li>
+            </ul>
+          </div>
 
-        <!-- Categories -->
-        <div>
-          <h3 class="mb-5 text-lg font-bold text-white">Categories</h3>
-          <ul class="space-y-3 text-sm text-slate-300">
-            <li>
-              <a href="#" class="transition hover:text-white">Accessories</a>
-            </li>
-            <li><a href="#" class="transition hover:text-white">Beauty</a></li>
-            <li>
-              <a href="#" class="transition hover:text-white">Clothing</a>
-            </li>
-            <li>
-              <a href="#" class="transition hover:text-white">Electronics</a>
-            </li>
-            <li><a href="#" class="transition hover:text-white">Food</a></li>
-          </ul>
+          <!-- Categories -->
+          <div>
+            <h3 class="mb-5 text-lg font-bold text-white">Categories</h3>
+            <ul class="space-y-3 text-sm text-slate-300">
+              <li>
+                <a href="#" class="transition hover:text-white">Accessories</a>
+              </li>
+              <li>
+                <a href="#" class="transition hover:text-white">Beauty</a>
+              </li>
+              <li>
+                <a href="#" class="transition hover:text-white">Clothing</a>
+              </li>
+              <li>
+                <a href="#" class="transition hover:text-white">Electronics</a>
+              </li>
+              <li><a href="#" class="transition hover:text-white">Food</a></li>
+            </ul>
+          </div>
         </div>
 
         <!-- Newsletter -->
@@ -138,7 +147,7 @@
 
               <button
                 type="submit"
-                class="absolute right-1 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded bg-primary text-white transition hover:opacity-90"
+                class="absolute right-1 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded bg-primary text-white transition hover:opacity-90"
               >
                 <UIcon name="i-lucide-send" class="size-4" />
               </button>
