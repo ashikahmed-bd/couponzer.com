@@ -1,22 +1,4 @@
 <script setup>
-const popularCoupons = [
-  {
-    name: "PHILIPS",
-    title: "10% Off All Beauty Products - Limited Stock",
-    brandClass: "bg-sky-600",
-  },
-  {
-    name: "amazon",
-    title: "10% Off All Summer Apparel - Limited Time",
-    brandClass: "bg-slate-800",
-  },
-  {
-    name: "FedEx",
-    title: "Free Shipping on Orders Over $50 - Shop Today",
-    brandClass: "bg-purple-700",
-  },
-];
-
 const stores = [
   {
     name: "FedEx",
@@ -57,39 +39,6 @@ const stores = [
     name: "Alibaba",
     offer: "30% Off All Beauty Products - Limited Stock",
     brandClass: "bg-orange-500",
-  },
-];
-
-const categories = [
-  { name: "amazon", brandClass: "bg-slate-800" },
-  { name: "aHua", brandClass: "bg-black" },
-  { name: "Canon", brandClass: "bg-red-600" },
-  { name: "Electrolux", brandClass: "bg-sky-900" },
-  { name: "Alibaba", brandClass: "bg-orange-500" },
-  { name: "SIEMENS", brandClass: "bg-emerald-600" },
-];
-
-const sideStores = [
-  { name: "amazon", brandClass: "bg-slate-800" },
-  { name: "PHILIPS", brandClass: "bg-sky-700" },
-  { name: "Alibaba", brandClass: "bg-orange-500" },
-];
-
-const cashbackDeals = [
-  {
-    name: "PHILIPS",
-    title: "$30 Off Orders Over $150 - Use Code",
-    brandClass: "bg-sky-700",
-  },
-  {
-    name: "amazon",
-    title: "Buy One, Get One Free on Select Shoes",
-    brandClass: "bg-slate-800",
-  },
-  {
-    name: "Electrolux",
-    title: "Save 15% On Your First Purchase",
-    brandClass: "bg-sky-900",
   },
 ];
 
@@ -145,9 +94,7 @@ const testimonials = [
 
 <template>
   <main class="mx-auto max-w-7xl px-4 py-6">
-    <!-- Hero banners -->
     <section class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <!-- Left big image -->
       <div class="group relative overflow-hidden rounded">
         <NuxtImg
           src="/images/index-2-banner-1.png"
@@ -159,10 +106,8 @@ const testimonials = [
         ></div>
       </div>
 
-      <!-- Right side -->
       <div class="grid gap-4">
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <!-- Top left image -->
           <div class="group relative overflow-hidden rounded">
             <NuxtImg
               src="/images/index-2-banner-2.png"
@@ -174,7 +119,6 @@ const testimonials = [
             ></div>
           </div>
 
-          <!-- Right stacked images -->
           <div class="grid gap-4">
             <div class="group relative overflow-hidden rounded">
               <NuxtImg
@@ -202,10 +146,8 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Feature cards -->
-    <section class="max-w-7xl mx-auto px-4 py-8">
+    <section class="py-8">
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        <!-- Card 1 -->
         <div
           class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl md:p-7"
         >
@@ -225,7 +167,7 @@ const testimonials = [
                 <h5
                   class="text-lg font-extrabold text-gray-900 transition duration-300 group-hover:text-green-600"
                 >
-                  Log In &amp; Shop
+                  Log In &amp; Store
                 </h5>
               </a>
               <p class="text-sm leading-6 text-gray-600">
@@ -242,7 +184,6 @@ const testimonials = [
           </span>
         </div>
 
-        <!-- Card 2 -->
         <div
           class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl md:p-7"
         >
@@ -279,7 +220,6 @@ const testimonials = [
           </span>
         </div>
 
-        <!-- Card 3 -->
         <div
           class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl md:p-7"
         >
@@ -318,42 +258,29 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Popular coupons -->
-    <section class="max-w-7xl mx-auto px-4 py-8">
+    <section class="py-8">
       <div class="mb-6 flex items-center justify-between">
         <div>
-          <h2 class="text-3xl font-bold text-slate-900">
-            Popular <span class="text-orange-400">Coupons</span>
+          <h2 class="text-3xl font-bold text-accent">
+            Popular <span class="text-primary">Coupons</span>
           </h2>
         </div>
-        <a href="#" class="text-sm font-semibold text-sky-500"
-          >See All Coupons</a
+        <NuxtLink to="/coupons" class="text-sm font-semibold text-accent"
+          >See All Coupons</NuxtLink
         >
       </div>
 
       <div class="grid gap-5 lg:grid-cols-3">
-        <CouponCard
-          v-for="item in 6"
-          badge="Exclusive"
-          date="25 Nov, 24"
-          image="/images/popular-coupons-7.png"
-          title="10% Off All Summer Apparel - Limited Time"
-          expiry="25 Nov, 24"
-          :comments="25"
-          :shares="15"
-          code="FGFKG6589895AF"
-          storeLink="/stores-style-3"
-        />
+        <CouponCard v-for="item in 6" />
       </div>
     </section>
 
-    <!-- Top stores -->
-    <section class="max-w-7xl mx-auto px-4 py-8">
+    <section class="py-8">
       <div class="mb-5 flex items-center justify-between">
-        <h2 class="text-3xl font-bold text-slate-900">
-          Top <span class="text-orange-400">Stores</span>
+        <h2 class="text-3xl font-bold text-accent">
+          Top <span class="text-primary">Stores</span>
         </h2>
-        <a href="#" class="text-sm font-semibold text-sky-500">See All Store</a>
+        <a href="#" class="text-sm font-semibold text-accent">See All Store</a>
       </div>
 
       <div class="grid gap-4 sm:grid-cols-4">
@@ -361,8 +288,7 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Trending categories -->
-    <section class="max-w-7xl mx-auto px-4 py-8 bg-orange-100 rounded-2xl">
+    <section class="px-4 py-8 bg-orange-100 rounded-2xl">
       <div class="mb-5 flex items-center justify-between">
         <div>
           <h2 class="text-3xl font-bold text-slate-900">
@@ -375,7 +301,7 @@ const testimonials = [
             <a href="#">Currently Using</a>
           </div>
         </div>
-        <a href="#" class="text-sm font-semibold text-sky-500">See All</a>
+        <a href="#" class="text-sm font-semibold text-accent">See All</a>
       </div>
 
       <div class="grid gap-5 lg:grid-cols-4">
@@ -386,7 +312,7 @@ const testimonials = [
         <aside class="space-y-4 rounded-3xl bg-white p-4 shadow-sm">
           <div class="mb-2 flex items-center justify-between">
             <h3 class="font-bold text-slate-800">Stores</h3>
-            <a href="#" class="text-sm font-semibold text-sky-500">See All</a>
+            <a href="#" class="text-sm font-semibold text-accent">See All</a>
           </div>
 
           <MiniStoreCard v-for="item in 3" />
@@ -394,13 +320,16 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Cashback increased -->
-    <section class="max-w-7xl mx-auto px-4 py-8">
-      <h2 class="mb-5 text-3xl font-bold text-slate-900">
-        Cashback <span class="text-orange-400">Increased</span>
+    <section class="py-8">
+      <h2 class="mb-5 text-3xl font-bold text-accent">
+        Cashback <span class="text-primary">Increased</span>
       </h2>
 
-      <UCarousel v-slot="{ item }" :items="15" :ui="{ item: 'basis-1/3' }">
+      <UCarousel
+        v-slot="{ item }"
+        :items="15"
+        :ui="{ item: 'basis-1/1 md:basis-1/3' }"
+      >
         <div
           class="flex items-start gap-4 rounded-xl border border-gray-200 transition duration-300 p-3"
         >
@@ -441,7 +370,6 @@ const testimonials = [
       </UCarousel>
     </section>
 
-    <!-- Newsletter -->
     <section class="max-w-7xl mx-auto px-12 py-16 bg-orange-100 rounded-2xl">
       <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
         <div>
@@ -467,14 +395,13 @@ const testimonials = [
       </div>
     </section>
 
-    <!-- Popular offers -->
-    <section class="max-w-7xl mx-auto px-4 py-8">
+    <section class="py-8">
       <div class="mb-5 flex items-center justify-between">
-        <h2 class="text-3xl font-bold text-slate-900">
-          Popular <span class="text-orange-400">Offers</span>
+        <h2 class="text-3xl font-bold text-accent">
+          Popular <span class="text-primary">Offers</span>
         </h2>
-        <div class="flex gap-4 text-sm text-slate-500">
-          <a class="font-semibold text-sky-500" href="#">All Offer</a>
+        <div class="flex gap-4 text-sm text-body">
+          <a class="font-semibold text-accent" href="#">All Offer</a>
           <a href="#">Today’s Best Offer</a>
           <a href="#">Upcoming Offer</a>
           <a href="#">Currently Using</a>
@@ -514,7 +441,7 @@ const testimonials = [
     </section>
 
     <!-- Testimonials -->
-    <section class="rounded-[2rem] bg-slate-100 p-6 md:p-8">
+    <section class="rounded-2xl bg-slate-100 p-6 md:p-8">
       <div class="grid gap-5 lg:grid-cols-3">
         <article
           v-for="review in testimonials"

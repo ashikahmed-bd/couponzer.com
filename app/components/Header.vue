@@ -10,9 +10,9 @@
           <div class="flex items-center justify-between lg:hidden">
             <NuxtLink to="/">
               <NuxtImg
-                src="/images/logo.png"
+                src="/logo.svg"
                 alt="logo"
-                class="h-8 w-auto object-contain"
+                class="w-full h-12 object-contain"
               />
             </NuxtLink>
             <div class="flex gap-2">
@@ -34,9 +34,9 @@
           <div class="hidden lg:flex">
             <NuxtLink to="/">
               <NuxtImg
-                src="/images/logo.png"
+                src="/logo.svg"
                 alt="logo"
-                class="h-12 w-auto object-contain"
+                class="w-full h-auto object-contain"
               />
             </NuxtLink>
           </div>
