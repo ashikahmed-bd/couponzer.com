@@ -1,4 +1,6 @@
 <script setup>
+import HeroSection from "~/components/home/HeroSection.vue";
+
 const stores = [
   {
     name: "FedEx",
@@ -41,55 +43,6 @@ const stores = [
     brandClass: "bg-orange-500",
   },
 ];
-
-const offers = [
-  {
-    name: "amazon",
-    title: "Flat 5% Off On Order",
-    brandClass: "bg-slate-800",
-    button: "Show Coupon",
-    buttonClass: "bg-sky-500 text-white",
-  },
-  {
-    name: "aHua",
-    title: "25% Off All Furnishings",
-    brandClass: "bg-black",
-    button: "06 : 21 : 40",
-    buttonClass: "bg-orange-50 text-orange-500",
-  },
-  {
-    name: "Canon",
-    title: "$30 Off Orders Over $150",
-    brandClass: "bg-red-600",
-    button: "Get Deal",
-    buttonClass: "bg-sky-500 text-white",
-  },
-  {
-    name: "Electrolux",
-    title: "10% Off All Apparel",
-    brandClass: "bg-sky-900",
-    button: "Offer not available",
-    buttonClass: "bg-orange-50 text-orange-500",
-  },
-];
-
-const testimonials = [
-  {
-    name: "Harrel Williamson",
-    role: "Medical Assistant",
-    text: "There are many variations of passages of Lorem Ipsum available and all work seamlessly for modern coupon pages.",
-  },
-  {
-    name: "Kathryn Murphy",
-    role: "President of Sales",
-    text: "My favourite app that gave me cashback on brands like Amazon and FedEx. Clean layout and easy to use.",
-  },
-  {
-    name: "Sofia Martin",
-    role: "Marketing Lead",
-    text: "A lightweight landing page design that feels premium, simple and highly conversion focused for deals.",
-  },
-];
 </script>
 
 <template>
@@ -99,61 +52,8 @@ const testimonials = [
       description="Find the latest coupons, promo codes, and verified deals on Couponzer. Save money with exclusive discounts from top stores across fashion, electronics, hosting, travel, and more."
       keywords="Couponzer, coupons, promo codes, discount codes, verified deals, online deals, best coupons, latest coupons, store discounts"
     />
-    <section class="bg-white/50">
-      <div class="max-w-7xl mx-auto px-4 py-6">
-        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <div class="group relative overflow-hidden rounded">
-            <NuxtImg
-              src="/images/index-2-banner-1.png"
-              alt="Banner image 1"
-              class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-            />
-            <div
-              class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-            ></div>
-          </div>
 
-          <div class="grid gap-4">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div class="group relative overflow-hidden rounded">
-                <NuxtImg
-                  src="/images/index-2-banner-2.png"
-                  alt="Banner image 2"
-                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-                ></div>
-              </div>
-
-              <div class="grid gap-4">
-                <div class="group relative overflow-hidden rounded">
-                  <NuxtImg
-                    src="/images/index-2-banner-3.png"
-                    alt="Banner image 3"
-                    class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-                  />
-                  <div
-                    class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-                  ></div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded">
-                  <NuxtImg
-                    src="/images/index-2-banner-4.png"
-                    alt="Banner image 4"
-                    class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
-                  />
-                  <div
-                    class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <LazyHomeHeroSection />
 
     <section class="max-w-7xl mx-auto px-4 py-8">
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
