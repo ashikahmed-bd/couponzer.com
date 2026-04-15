@@ -2,8 +2,9 @@ export const useCouponStore = defineStore("coupon", {
   state: () => ({
     errors: null,
     loading: false,
+    dialog: false,
     coupons: [],
-    coupon: {},
+    coupon: null,
   }),
 
   getters: {},
@@ -160,6 +161,17 @@ export const useCouponStore = defineStore("coupon", {
         this.errors = error.message;
         return null;
       }
+    },
+
+    openDialog(coupon) {
+      this.coupon = coupon;
+      this.dialog = true;
+    },
+
+    // modal close
+    closeDialog() {
+      this.dialog = false;
+      this.coupon = null;
     },
   },
 });

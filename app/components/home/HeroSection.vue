@@ -52,36 +52,18 @@ const getBannerImage = (banner) => {
       <div v-else-if="error" class="text-red-500">Failed to load banners.</div>
 
       <div v-else class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <a
-          v-if="heroLeft"
-          :href="heroLeft.redirect_url"
+        <NuxtLink
+          :to="`/click/hostinger-80-off-coupon`"
+          rel="nofollow noreferrer sponsored"
           class="group relative overflow-hidden rounded"
           target="_blank"
-          rel="noopener noreferrer"
         >
           <NuxtImg
             :src="heroLeft.image_url"
             :alt="heroLeft.alt_text ?? heroLeft.title"
             class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
           />
-          <div
-            class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-          ></div>
-
-          <div
-            class="absolute inset-0 flex flex-col justify-end p-6 text-white"
-          >
-            <p v-if="heroLeft.subtitle" class="mb-1 text-sm">
-              {{ heroLeft.subtitle }}
-            </p>
-            <h2 class="text-xl font-bold">
-              {{ heroLeft.title }}
-            </h2>
-            <p v-if="heroLeft.description" class="mt-2 text-sm line-clamp-2">
-              {{ heroLeft.description }}
-            </p>
-          </div>
-        </a>
+        </NuxtLink>
 
         <div class="grid gap-4">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">

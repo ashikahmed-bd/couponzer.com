@@ -9,6 +9,7 @@ const toaster = {
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
+      <CouponDialog />
     </NuxtLayout>
   </UApp>
 </template>
