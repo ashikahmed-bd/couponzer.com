@@ -1,4 +1,15 @@
-<script setup></script>
+<script setup>
+const subscriberStore = useSubscriberStore();
+
+const form = reactive({
+  email: "",
+  name: null,
+});
+
+const submit = async () => {
+  await subscriberStore.store(form);
+};
+</script>
 
 <template>
   <footer class="bg-accent-hover text-white">
@@ -124,10 +135,14 @@
             and updates.
           </p>
 
-          <form class="rounded border border-white/10 bg-white/5 p-2">
+          <form
+            @submit.prevent="submit"
+            class="rounded border border-white/10 bg-white/5 p-2"
+          >
             <div class="relative">
               <input
                 type="email"
+                v-model="form.email"
                 placeholder="Email address"
                 class="h-11 w-full rounded bg-white px-4 pr-12 text-sm text-body outline-none placeholder:text-slate-400"
               />

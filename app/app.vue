@@ -1,6 +1,14 @@
+<script setup>
+const toaster = {
+  position: "top-right",
+};
+</script>
+
 <template>
-  <NuxtLayout>
-    <NuxtLoadingIndicator />
-    <NuxtPage />
-  </NuxtLayout>
+  <UApp :toaster="toaster">
+    <NuxtLayout>
+      <NuxtLoadingIndicator />
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>
