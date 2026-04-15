@@ -143,7 +143,7 @@ const { data: stores } = await useAsyncData("stores", () =>
           </h2>
         </div>
         <NuxtLink to="/coupons" class="text-sm font-semibold text-accent"
-          >See All Coupons</NuxtLink
+          >See All</NuxtLink
         >
       </div>
 
@@ -165,30 +165,7 @@ const { data: stores } = await useAsyncData("stores", () =>
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-12 py-16 bg-orange-100 rounded-2xl">
-      <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
-        <div>
-          <h2 class="text-3xl font-bold text-accent">
-            Subscribe our newsletter to get the best deals right in your email
-          </h2>
-        </div>
-        <div
-          class="flex w-full max-w-xl items-center rounded-full bg-white p-2"
-        >
-          <input
-            type="email"
-            placeholder="Enter Email..."
-            class="flex-1 px-4 py-3 text-sm outline-none placeholder:text-slate-400"
-          />
-          <button
-            class="flex items-center gap-2 cursor-pointer rounded-full bg-orange-400 px-8 py-3 text-sm font-semibold text-white"
-          >
-            Send
-            <UIcon name="i-lucide-send" class="size-5" />
-          </button>
-        </div>
-      </div>
-    </section>
+    <Newsletter />
 
     <section class="max-w-7xl mx-auto px-4 py-6">
       <div class="mx-auto max-w-3xl text-center">

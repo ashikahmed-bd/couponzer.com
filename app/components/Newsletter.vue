@@ -1,17 +1,29 @@
-<script setup></script>
+<script setup>
+const subscriberStore = useSubscriberStore();
+
+const form = reactive({
+  email: "",
+  name: null,
+});
+
+const submit = async () => {
+  await subscriberStore.store(form);
+  form.email = null;
+};
+</script>
 
 <template>
   <section
-    class="relative max-w-6xl mx-auto px-4 py-20 overflow-hidden rounded-2xl bg-primary"
+    class="relative max-w-6xl mx-auto px-4 py-20 overflow-hidden rounded-2xl bg-accent"
   >
     <div class="pointer-events-none absolute inset-0 hidden md:block">
-      <img
-        src="/images/newsletter-illus-1.png"
+      <NuxtImg
+        src="/images/newsletter-1.png"
         alt=""
         class="absolute bottom-0 left-0 w-44 lg:w-64 opacity-90"
       />
-      <img
-        src="/images/newsletter-illus-2.png"
+      <NuxtImg
+        src="/images/newsletter-2.png"
         alt=""
         class="absolute right-0 top-0 w-28 lg:w-64 opacity-90"
       />
@@ -27,12 +39,13 @@
         Join our community with more than 300K active users
       </p>
 
-      <form class="mx-auto mt-6 max-w-xl">
+      <form @submit.prevent="submit" class="mx-auto mt-6 max-w-xl">
         <div
           class="flex items-center gap-2 rounded-full bg-white p-2 shadow-lg ring-1 ring-black/5"
         >
           <input
             type="email"
+            v-model="form.email"
             placeholder="Email address"
             class="h-12 w-full rounded-full bg-transparent px-4 text-sm text-slate-800 outline-none placeholder:text-slate-400"
           />
