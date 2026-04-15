@@ -187,5 +187,29 @@ export const useMerchantStore = defineStore("merchant", {
         return null;
       }
     },
+
+    async getFeaturedStores() {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data, error } = await supabase
+          .from("stores")
+          .select("*")
+          .eq("is_featured", true)
+          .eq("status", "active")
+          .order("name", { ascending: true })
+          .limit(12);
+
+        if (error) {
+          throw error;
+        }
+
+        this.stores = data;
+        return data;
+      } catch (error) {
+        this.errors = error.message;
+        return null;
+      }
+    },
   },
 });

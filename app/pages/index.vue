@@ -1,48 +1,16 @@
 <script setup>
-import HeroSection from "~/components/home/HeroSection.vue";
+const couponStore = useCouponStore();
+const merchantStore = useMerchantStore();
 
-const stores = [
-  {
-    name: "FedEx",
-    offer: "Save 15% On Your First Online Purchase Today",
-    brandClass: "bg-purple-700",
-  },
-  {
-    name: "Canon",
-    offer: "Buy One, Get One Free on Select Shoes",
-    brandClass: "bg-red-600",
-  },
-  {
-    name: "Philips",
-    offer: "25% Off All Home Furnishings - Shop Now",
-    brandClass: "bg-sky-700",
-  },
-  {
-    name: "Siemens",
-    offer: "$30 Off Orders Over $150 - Use Code",
-    brandClass: "bg-emerald-600",
-  },
-  {
-    name: "LinkedIn",
-    offer: "20% Off All Electronics - Limited Time Offer",
-    brandClass: "bg-blue-700",
-  },
-  {
-    name: "AD Hua",
-    offer: "10% Off All Summer Apparel - Limited Time",
-    brandClass: "bg-black",
-  },
-  {
-    name: "Amazon",
-    offer: "Free Shipping on Orders Over $50 - Shop Today",
-    brandClass: "bg-slate-800",
-  },
-  {
-    name: "Alibaba",
-    offer: "30% Off All Beauty Products - Limited Stock",
-    brandClass: "bg-orange-500",
-  },
-];
+const {
+  data: coupons,
+  pending,
+  error,
+} = await useAsyncData("coupons", () => couponStore.getFeaturedCoupons());
+
+const { data: stores } = await useAsyncData("stores", () =>
+  merchantStore.getFeaturedStores(),
+);
 </script>
 
 <template>
@@ -180,7 +148,7 @@ const stores = [
       </div>
 
       <div class="grid gap-5 lg:grid-cols-3">
-        <CouponCard v-for="item in 6" />
+        <CouponCard v-for="coupon in coupons" :coupon="coupon" />
       </div>
     </section>
 
@@ -193,56 +161,14 @@ const stores = [
       </div>
 
       <div class="grid gap-4 sm:grid-cols-4">
-        <StoreCard v-for="store in stores" :key="store.name" />
+        <StoreMiniCard v-for="store in stores" :store="store" />
       </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-4 py-8">
-      <h2 class="mb-5 text-3xl font-bold text-accent">
-        Cashback <span class="text-primary">Increased</span>
-      </h2>
-
-      <UCarousel
-        v-slot="{ item }"
-        :items="15"
-        loop
-        :autoplay="{ delay: 2000 }"
-        :ui="{ item: 'basis-1/1 md:basis-1/3' }"
-      >
-        <div
-          class="flex items-start gap-4 rounded-xl border border-gray-200 transition duration-300 p-3"
-        >
-          <div class="flex items-center justify-center rounded-lg bg-white p-2">
-            <img
-              src="/images/cashback.png"
-              alt="Image"
-              class="w-28 h-auto object-contain"
-            />
-          </div>
-
-          <div class="grid gap-3">
-            <p class="text-sm font-medium text-gray-900">
-              $30 Off Orders Over $150 - Use Code
-            </p>
-
-            <div
-              class="flex items-center gap-2 md:gap-3 rounded-md border border-orange-200 bg-orange-50 p-1"
-            >
-              <span
-                class="whitespace-nowrap text-xs font-medium text-orange-600"
-              >
-                Upto 25% OFF
-              </span>
-            </div>
-          </div>
-        </div>
-      </UCarousel>
     </section>
 
     <section class="max-w-7xl mx-auto px-12 py-16 bg-orange-100 rounded-2xl">
       <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
         <div>
-          <h2 class="text-3xl font-bold text-slate-900">
+          <h2 class="text-3xl font-bold text-accent">
             Subscribe our newsletter to get the best deals right in your email
           </h2>
         </div>
@@ -273,7 +199,7 @@ const stores = [
         </span>
 
         <h2 class="mt-4 text-2xl font-bold text-accent sm:text-3xl lg:text-4xl">
-          Trusted by 12,500+ Leading Brands & Partners
+          Trusted by 250+ Leading Brands & Partners
         </h2>
 
         <p class="mt-3 text-sm leading-6 text-slate-500 sm:text-base">

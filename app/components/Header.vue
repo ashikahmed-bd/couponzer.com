@@ -13,18 +13,18 @@ const navItems = [
 
 <template>
   <header
-    class="sticky top-0 z-50 border-b border-border/80 bg-white/90 backdrop-blur-md"
+    class="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur-md"
   >
     <div class="mx-auto max-w-7xl px-4">
       <div class="flex h-16 items-center justify-between lg:h-20">
         <!-- Logo -->
-        <NuxtLink to="/" class="shrink-0">
+        <a href="/" class="shrink-0">
           <NuxtImg
             src="/logo.svg"
             alt="logo"
             class="h-10 w-auto object-contain lg:h-12"
           />
-        </NuxtLink>
+        </a>
 
         <!-- Desktop Nav -->
         <nav class="hidden items-center gap-1 lg:flex">

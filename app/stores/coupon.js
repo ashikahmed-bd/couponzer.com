@@ -139,5 +139,27 @@ export const useCouponStore = defineStore("coupon", {
         return null;
       }
     },
+
+    async getFeaturedCoupons() {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data, error } = await supabase
+          .from("coupons")
+          .select(`*,stores(*)`)
+          .eq("is_featured", true)
+          .order("clicks", { ascending: false })
+          .limit(12);
+
+        if (error) {
+          throw error;
+        }
+
+        return data;
+      } catch (error) {
+        this.errors = error.message;
+        return null;
+      }
+    },
   },
 });
