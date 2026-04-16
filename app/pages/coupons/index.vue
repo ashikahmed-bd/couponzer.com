@@ -1,11 +1,20 @@
 <script setup>
 const couponStore = useCouponStore();
+const bannerStore = useBannerStore();
 
 const {
   data: coupons,
   pending,
   error,
 } = await useAsyncData("coupons", () => couponStore.getCoupons());
+
+const { data: top_banner } = await useAsyncData("banner-728x90", async () => {
+  return await bannerStore.getBanner("728x90");
+});
+
+const { data: sidebar } = await useAsyncData("banner-1080x1920", async () => {
+  return await bannerStore.getBanner("1080x1920");
+});
 </script>
 
 <template>
@@ -18,13 +27,19 @@ const {
 
     <section class="relative overflow-hidden bg-white/60 py-6">
       <div class="mx-auto max-w-7xl px-4 space-y-4">
-        <NuxtLink
-          to="https://namecheap.pxf.io/c/3173023/1183690/5618"
+        <a
+          :href="top_banner.redirect_url"
+          rel="nofollow noreferrer sponsored"
+          target="_blank"
           title="ads"
           class="block"
         >
-          <NuxtImg src="/ads/728x90.gif" alt="" class="w-full rounded" />
-        </NuxtLink>
+          <NuxtImg
+            :src="top_banner.image_url"
+            :alt="top_banner.title"
+            class="w-full rounded"
+          />
+        </a>
 
         <div class="max-w-3xl">
           <h1 class="text-3xl font-bold tracking-tight text-accent md:text-4xl">
@@ -55,17 +70,22 @@ const {
         <aside class="w-full">
           <div class="sticky top-24 space-y-6">
             <div class="space-y-4">
-              <NuxtLink
-                to="https://1.envato.market/c/3173023/381185/4662"
-                title="ads"
+              <a
+                v-if="sidebar?.redirect_url"
+                :href="sidebar.redirect_url"
+                rel="nofollow sponsored"
+                target="_blank"
+                :title="sidebar.title"
                 class="block"
               >
                 <NuxtImg
-                  src="https://nzcjfrzjfbiukoejhqgc.supabase.co/storage/v1/object/public/ads/sidebar.gif"
-                  alt=""
+                  :src="sidebar.image_url"
+                  :alt="sidebar.alt_text ?? sidebar.title"
                   class="w-full rounded"
+                  loading="lazy"
+                  format="webp"
                 />
-              </NuxtLink>
+              </a>
             </div>
           </div>
         </aside>

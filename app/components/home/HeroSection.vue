@@ -17,8 +17,8 @@ const { data: top } = await useAsyncData("banner-336x280", async () => {
   return await bannerStore.getBanner("336x280");
 });
 
-const { data: bottom } = await useAsyncData("banner-728x90", async () => {
-  return await bannerStore.getBanner("728x90");
+const { data: bottom } = await useAsyncData("banner-1200x300", async () => {
+  return await bannerStore.getBanner("1200x300");
 });
 </script>
 
@@ -40,12 +40,12 @@ const { data: bottom } = await useAsyncData("banner-728x90", async () => {
 
       <div v-else-if="error" class="text-red-500">Failed to load banners.</div>
 
-      <div v-else class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div v-else class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <NuxtLink
           :to="`/click/hostinger-80-off-coupon`"
-          rel="nofollow noreferrer sponsored"
-          class="group relative overflow-hidden rounded"
+          rel="nofollow sponsored"
           target="_blank"
+          class="group relative overflow-hidden rounded"
         >
           <NuxtImg
             :src="main?.image_url"
@@ -59,7 +59,7 @@ const { data: bottom } = await useAsyncData("banner-728x90", async () => {
             <a
               v-if="square"
               :href="square.redirect_url"
-              rel="noopener noreferrer"
+              rel="nofollow sponsored"
               target="_blank"
               class="group bg-surface relative overflow-hidden rounded"
             >
@@ -81,21 +81,21 @@ const { data: bottom } = await useAsyncData("banner-728x90", async () => {
                 <NuxtImg
                   :src="top.image_url"
                   :alt="top.alt_text ?? top.title"
-                  class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
+                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-110"
                 />
               </a>
 
               <a
                 v-if="bottom"
                 :href="bottom.redirect_url"
-                rel="noopener noreferrer"
+                rel="nofollow sponsored"
                 target="_blank"
                 class="group relative block overflow-hidden rounded"
               >
                 <NuxtImg
                   :src="bottom.image_url"
                   :alt="bottom.alt_text ?? bottom.title"
-                  class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
+                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-110"
                 />
               </a>
             </div>
