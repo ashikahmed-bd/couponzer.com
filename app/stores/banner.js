@@ -115,18 +115,21 @@ export const useBannerStore = defineStore("banner", {
       }
     },
 
-    async getHeroBanners() {
+    async getBanner(size) {
       const supabase = useSupabaseClient();
 
       try {
+        const now = new Date().toISOString();
+
         const { data, error } = await supabase
           .from("banners")
           .select("*")
-          .in("placement", ["hero_left", "hero_middle", "hero_right"])
+          .eq("size", size)
           .eq("is_active", true)
-          .lte("start_at", new Date().toISOString())
-          .gte("end_at", new Date().toISOString())
-          .order("sort_order", { ascending: true });
+          .lte("start_at", now)
+          .gte("end_at", now)
+          .limit(1)
+          .single();
 
         if (error) throw error;
 

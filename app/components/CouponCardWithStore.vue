@@ -126,10 +126,10 @@ defineProps({
             </h1>
 
             <p
-              v-if="coupon.summary"
+              v-if="coupon.description"
               class="line-clamp-2 text-sm leading-6 text-body mt-2"
             >
-              {{ coupon.summary }}
+              {{ coupon.description }}
             </p>
           </div>
         </div>

@@ -2,35 +2,24 @@
 const bannerStore = useBannerStore();
 
 const {
-  data: banners,
+  data: main,
   pending,
   error,
-} = await useAsyncData("banners", async () => {
-  return await bannerStore.getHeroBanners();
+} = await useAsyncData("banner-1200x630", async () => {
+  return await bannerStore.getBanner("1200x630");
 });
 
-const heroLeft = computed(
-  () => banners.value?.find((item) => item.placement === "hero_left") || null,
-);
+const { data: square } = await useAsyncData("banner-300x300", async () => {
+  return await bannerStore.getBanner("300x300");
+});
 
-const heroMiddle = computed(
-  () => banners.value?.find((item) => item.placement === "hero_middle") || null,
-);
+const { data: top } = await useAsyncData("banner-336x280", async () => {
+  return await bannerStore.getBanner("336x280");
+});
 
-const heroRights = computed(() =>
-  (banners.value || [])
-    .filter((item) => item.placement === "hero_right")
-    .sort((a, b) => a.sort_order - b.sort_order),
-);
-
-const heroRightTop = computed(() => heroRights.value[0] || null);
-const heroRightBottom = computed(() => heroRights.value[1] || null);
-
-const getBannerImage = (banner) => {
-  return (
-    banner?.mobile_image_url || banner?.image_url || "/ads/placeholder.png"
-  );
-};
+const { data: bottom } = await useAsyncData("banner-728x90", async () => {
+  return await bannerStore.getBanner("728x90");
+});
 </script>
 
 <template>
@@ -59,8 +48,8 @@ const getBannerImage = (banner) => {
           target="_blank"
         >
           <NuxtImg
-            :src="heroLeft.image_url"
-            :alt="heroLeft.alt_text ?? heroLeft.title"
+            :src="main?.image_url"
+            :alt="main?.title"
             class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
           />
         </NuxtLink>
@@ -68,82 +57,46 @@ const getBannerImage = (banner) => {
         <div class="grid gap-4">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <a
-              v-if="heroMiddle"
-              :href="heroMiddle.redirect_url"
-              class="group bg-surface relative overflow-hidden rounded"
-              target="_blank"
+              v-if="square"
+              :href="square.redirect_url"
               rel="noopener noreferrer"
+              target="_blank"
+              class="group bg-surface relative overflow-hidden rounded"
             >
               <NuxtImg
-                :src="heroMiddle.image_url"
-                :alt="heroMiddle.alt_text ?? heroMiddle.title"
+                :src="square.image_url"
+                :alt="square.alt_text ?? square.title"
                 class="w-full h-auto object-contain transition duration-700 ease-out group-hover:scale-110"
               />
-              <div
-                class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-              ></div>
-
-              <div
-                class="absolute inset-0 flex flex-col justify-end p-4 text-accent"
-              >
-                <p v-if="heroMiddle.subtitle" class="mb-1 text-xs">
-                  {{ heroMiddle.subtitle }}
-                </p>
-                <h3 class="text-lg font-semibold">
-                  {{ heroMiddle.title }}
-                </h3>
-              </div>
             </a>
 
             <div class="grid gap-4">
               <a
-                v-if="heroRightTop"
-                :href="heroRightTop.redirect_url"
-                class="group relative block overflow-hidden rounded"
-                target="_blank"
+                v-if="top"
+                :href="top.redirect_url"
                 rel="noopener noreferrer"
+                target="_blank"
+                class="group bg-surface relative overflow-hidden rounded"
               >
                 <NuxtImg
-                  :src="heroRightTop.image_url"
-                  :alt="heroRightTop.alt_text ?? heroRightTop.title"
-                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
+                  :src="top.image_url"
+                  :alt="top.alt_text ?? top.title"
+                  class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
                 />
-                <div
-                  class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-                ></div>
-
-                <div
-                  class="absolute inset-0 flex flex-col justify-end p-4 text-white"
-                >
-                  <h3 class="text-base font-semibold">
-                    {{ heroRightTop.title }}
-                  </h3>
-                </div>
               </a>
 
               <a
-                v-if="heroRightBottom"
-                :href="heroRightBottom.redirect_url"
-                class="group relative block overflow-hidden rounded"
-                target="_blank"
+                v-if="bottom"
+                :href="bottom.redirect_url"
                 rel="noopener noreferrer"
+                target="_blank"
+                class="group relative block overflow-hidden rounded"
               >
                 <NuxtImg
-                  :src="heroRightBottom.image_url"
-                  :alt="heroRightBottom.alt_text ?? heroRightBottom.title"
-                  class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-110"
+                  :src="bottom.image_url"
+                  :alt="bottom.alt_text ?? bottom.title"
+                  class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
                 />
-                <div
-                  class="absolute inset-0 bg-black/20 opacity-0 transition duration-500 group-hover:opacity-100"
-                ></div>
-
-                <div
-                  class="absolute inset-0 flex flex-col justify-end p-4 text-white"
-                >
-                  <h3 class="text-base font-semibold">
-                    {{ heroRightBottom.title }}
-                  </h3>
-                </div>
               </a>
             </div>
           </div>

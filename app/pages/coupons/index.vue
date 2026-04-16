@@ -17,7 +17,15 @@ const {
     />
 
     <section class="relative overflow-hidden bg-white/60 py-6">
-      <div class="mx-auto max-w-7xl px-4 py-6">
+      <div class="mx-auto max-w-7xl px-4 space-y-4">
+        <NuxtLink
+          to="https://namecheap.pxf.io/c/3173023/1183690/5618"
+          title="ads"
+          class="block"
+        >
+          <NuxtImg src="/ads/728x90.gif" alt="" class="w-full rounded" />
+        </NuxtLink>
+
         <div class="max-w-3xl">
           <h1 class="text-3xl font-bold tracking-tight text-accent md:text-4xl">
             Best Coupons & Promo Codes for Top Stores
@@ -48,30 +56,15 @@ const {
           <div class="sticky top-24 space-y-6">
             <div class="space-y-4">
               <NuxtLink
-                to="https://namecheap.pxf.io/c/3173023/1183690/5618"
-                title="ads"
-                class="block"
-              >
-                <NuxtImg src="/ads/728x90.gif" alt="" class="w-full rounded" />
-              </NuxtLink>
-
-              <NuxtLink
                 to="https://1.envato.market/c/3173023/381185/4662"
                 title="ads"
                 class="block"
               >
                 <NuxtImg
-                  src="/ads/970X250.jpeg"
+                  src="https://nzcjfrzjfbiukoejhqgc.supabase.co/storage/v1/object/public/ads/sidebar.gif"
                   alt=""
                   class="w-full rounded"
                 />
-              </NuxtLink>
-
-              <NuxtLink
-                to="https://namecheap.pxf.io/c/3173023/1183697/5618"
-                title="ads"
-              >
-                <NuxtImg src="/ads/300x250.gif" alt="" class="w-full rounded" />
               </NuxtLink>
             </div>
           </div>
