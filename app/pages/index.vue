@@ -151,12 +151,18 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
         <h2 class="text-3xl font-bold text-accent">
           Top <span class="text-primary">Stores</span>
         </h2>
-        <a href="#" class="text-sm font-semibold text-accent">See All Store</a>
+        <NuxtLink to="/stores" class="text-sm font-semibold text-accent">See All Store</NuxtLink>
       </div>
 
       <div class="grid gap-4 sm:grid-cols-4">
         <StoreMiniCard v-for="store in stores" :store="store" />
       </div>
+	  
+	  <div class="mt-8 flex justify-center">
+	  <button type="button" class="inline-flex items-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-body transition hover:border-primary hover:text-primary">
+	  Load More
+	  </button>
+	  </div>
     </section>
 
     <Newsletter />
