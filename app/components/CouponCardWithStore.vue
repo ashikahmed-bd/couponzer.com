@@ -149,9 +149,11 @@ defineProps({
             </div>
           </div>
 
-          <button
-            @click.prevent="couponStore.openDialog(coupon)"
-            class="relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
+          <a
+            :href="`/click/${coupon.slug}`"
+            rel="nofollow sponsored"
+            @click="couponStore.openDialog(coupon)"
+            class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
           >
             <span
               class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-bold text-white transition-all duration-300 group-hover:w-[80%]"
@@ -164,7 +166,7 @@ defineProps({
             >
               {{ coupon.code || "No Code Needed" }}
             </span>
-          </button>
+          </a>
         </div>
       </div>
     </div>

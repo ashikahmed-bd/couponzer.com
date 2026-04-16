@@ -22,10 +22,20 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/supabase',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
 
   supabase: {
     redirect: false
+  },
+
+
+  routeRules: {
+    "/click/**": {
+      headers: {
+        "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet",
+      },
+    },
   },
 
 

@@ -7,6 +7,8 @@ export const useCouponStore = defineStore("coupon", {
     coupon: null,
   }),
 
+  persist: true,
+
   getters: {},
 
   actions: {
@@ -166,6 +168,10 @@ export const useCouponStore = defineStore("coupon", {
     openDialog(coupon) {
       this.coupon = coupon;
       this.dialog = true;
+      if (process.client && coupon?.slug) {
+        const url = `/stores/${coupon.stores?.slug}?coupon=${coupon.slug}&modal=1`;
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
     },
 
     // modal close

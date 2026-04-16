@@ -36,88 +36,116 @@ const copyCode = async () => {
           <div
             class="relative w-full max-w-xl overflow-hidden rounded-2xl bg-white"
           >
-            <div
-              class="flex items-center justify-between border-b border-gray-300 px-6 py-5"
+            <header
+              class="flex items-center justify-between border-b border-border px-6 py-4"
             >
-              <h2 class="pr-6 text-[18px] font-semibold text-slate-800">
+              <h2 class="pr-6 text-base font-semibold text-accent">
                 {{ coupon?.title }}
               </h2>
 
               <button
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-orange-400 text-xl text-orange-500 transition hover:bg-orange-50"
+                class="flex size-8 items-center justify-center rounded-full border border-primary text-xl text-primary transition hover:bg-primary/10"
                 @click="closeDialog"
               >
-                ×
+                <UIcon name="i-lucide-x" class="size-5" />
               </button>
+            </header>
+
+            <div class="relative flex justify-center">
+              <div class="rounded-2xl p-5">
+                <NuxtImg
+                  :src="coupon?.stores?.logo_url ?? '/stores/default.png'"
+                  :alt="coupon?.stores?.name"
+                  class="h-16 w-auto object-contain"
+                />
+              </div>
             </div>
 
-            <div class="px-6 py-6">
-              <div
-                class="flex max-w-md mx-auto overflow-hidden rounded-full border border-dashed border-primary bg-primary/10"
-              >
-                <input
-                  type="text"
-                  :value="coupon?.code"
-                  readonly
-                  class="w-full bg-transparent px-6 py-2 text-center text-lg font-semibold tracking-wider text-slate-700 outline-none"
-                />
-
-                <button
-                  class="min-w-32 rounded-full bg-orange-500 px-4 py-2 text-base font-bold text-white transition hover:bg-orange-600"
-                  @click="copyCode"
+            <main class="px-6">
+              <div class="text-center">
+                <h1 class="text-3xl font-semibold text-accent">
+                  {{ coupon?.title }}
+                </h1>
+                <div class="mb-3">
+                  <span>Copy and paste this code at </span>
+                  <a
+                    :href="`/click/${coupon.slug}`"
+                    rel="nofollow sponsored"
+                    target="_blank"
+                    class="font-semibold text-primary"
+                    >namecheap.com</a
+                  >
+                </div>
+                <div
+                  class="flex max-w-md mx-auto overflow-hidden rounded-full border border-dashed border-primary bg-primary/10"
                 >
-                  {{ copied ? "Copied" : "Copy" }}
-                </button>
-              </div>
+                  <input
+                    type="text"
+                    :value="coupon?.code"
+                    readonly
+                    class="w-full bg-transparent px-6 py-2 text-center text-lg font-semibold tracking-wider text-slate-700 outline-none"
+                  />
 
-              <div class="mt-5 text-center text-sm text-slate-500">
-                Continue to
-                <span class="font-semibold text-orange-500">
-                  {{ coupon?.stores?.name || "Hostinger" }}
-                </span>
-                •
-                <button class="font-semibold text-slate-700 hover:underline">
-                  Terms
-                </button>
-              </div>
-
-              <div class="space-y-5 text-sm leading-7 text-slate-600">
-                <p>
-                  <span class="font-bold text-slate-800">Offer Details:</span>
-                  {{ coupon?.description }}
-                </p>
-
-                <div>
-                  <p class="mb-2 font-bold text-slate-800">Terms:</p>
-                  <div
-                    class="text-sm text-slate-600"
-                    v-html="coupon?.terms"
-                  ></div>
+                  <button
+                    class="min-w-32 rounded-full bg-orange-500 px-4 py-2 text-base font-bold text-white transition hover:bg-orange-600"
+                    @click="copyCode"
+                  >
+                    {{ copied ? "Copied" : "Copy" }}
+                  </button>
                 </div>
               </div>
 
-              <div
-                class="flex flex-wrap items-center justify-center gap-2 mt-4"
-              >
-                <span class="mr-2 text-sm font-semibold text-dark">
-                  Did it work?
-                </span>
-
-                <button
-                  class="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 font-bold text-green-600 transition hover:bg-green-200"
+              <div class="mt-5 text-center text-sm">
+                Continue to
+                <a
+                  :href="
+                    coupon?.stores?.affiliate_url ?? coupon?.stores?.website_url
+                  "
+                  rel="nofollow sponsored"
+                  target="_blank"
+                  class="font-semibold text-primary after:content-['•'] after:mx-1 after:text-slate-400"
                 >
-                  <UIcon name="i-lucide-thumbs-up" class="size-5" />
-                  <span>Yes</span>
-                </button>
+                  {{ coupon?.stores?.name }}
+                </a>
 
-                <button
-                  class="flex items-center gap-2 rounded-lg bg-red-100 px-3 py-2 font-bold text-red-600 transition hover:bg-red-200"
+                <a
+                  :href="
+                    coupon?.stores?.affiliate_url ?? coupon?.stores?.website_url
+                  "
+                  rel="nofollow sponsored"
+                  target="_blank"
+                  class="font-semibold text-slate-700 hover:underline"
                 >
-                  <UIcon name="i-lucide-thumbs-down" class="size-5" />
-                  <span>No</span>
-                </button>
+                  Visit Store
+                </a>
               </div>
-            </div>
+
+              <div class="text-sm leading-7">
+                <h3 class="font-bold text-dark">Offer Details:</h3>
+                <div v-html="coupon?.instructions" class="text-body"></div>
+              </div>
+            </main>
+            <footer
+              class="flex flex-wrap items-center justify-center gap-2 border-t border-border mt-3 py-3.5"
+            >
+              <span class="mr-2 text-sm font-semibold text-dark">
+                Did it work?
+              </span>
+
+              <button
+                class="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 font-bold text-green-600 transition hover:bg-green-200"
+              >
+                <UIcon name="i-lucide-thumbs-up" class="size-5" />
+                <span>Yes</span>
+              </button>
+
+              <button
+                class="flex items-center gap-2 rounded-lg bg-red-100 px-3 py-2 font-bold text-red-600 transition hover:bg-red-200"
+              >
+                <UIcon name="i-lucide-thumbs-down" class="size-5" />
+                <span>No</span>
+              </button>
+            </footer>
           </div>
         </transition>
       </div>

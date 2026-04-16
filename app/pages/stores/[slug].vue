@@ -23,6 +23,13 @@ const handleClick = (url) => {
 
 <template>
   <main>
+    <SeoMeta
+      :title="store.meta_title"
+      :description="store.meta_description"
+      :keywords="store.meta_keywords"
+      :url="store.canonical_url"
+      :image="store.og_image_url"
+    />
     <section class="bg-white/50 py-6">
       <div class="mx-auto max-w-7xl px-4">
         <div
@@ -132,8 +139,6 @@ const handleClick = (url) => {
     <section class="max-w-7xl mx-auto px-4 py-8">
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
         <div class="space-y-6">
-          <div v-html="store.description"></div>
-
           <div class="rounded-2xl border border-border bg-white p-5">
             <div class="mb-4">
               <h2 class="text-xl font-bold text-dark">Latest Coupons</h2>
@@ -151,6 +156,8 @@ const handleClick = (url) => {
               />
             </div>
           </div>
+
+          <div v-html="store.description"></div>
         </div>
 
         <aside class="w-full">
