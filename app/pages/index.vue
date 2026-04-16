@@ -6,9 +6,9 @@ const {
   data: coupons,
   pending,
   error,
-} = await useAsyncData("coupons", () => couponStore.getFeaturedCoupons());
+} = await useAsyncData("homepage-coupons", () => couponStore.getFeaturedCoupons());
 
-const { data: stores } = await useAsyncData("stores", () =>
+const { data: stores } = await useAsyncData("homepage-stores", () =>
   merchantStore.getFeaturedStores(),
 );
 </script>

@@ -43,7 +43,7 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
           class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left"
         >
           <div
-            class="mx-auto flex shrink-0 items-center justify-center rounded-2xl p-10"
+            class="mx-auto max-w-xs flex shrink-0 items-center justify-center rounded-2xl p-10"
             :style="{
               backgroundColor: store.background,
             }"
