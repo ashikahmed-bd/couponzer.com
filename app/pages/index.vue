@@ -23,10 +23,10 @@ const { data: stores } = await useAsyncData("stores", () =>
 
     <LazyHomeHeroSection />
 
-    <section class="max-w-7xl mx-auto px-4 py-8">
-      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <section class="max-w-7xl mx-auto px-4 py-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <div
-          class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl md:p-7"
+          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-border"
         >
           <div class="relative z-10 flex items-start gap-4">
             <div
@@ -40,14 +40,12 @@ const { data: stores } = await useAsyncData("stores", () =>
             </div>
 
             <div class="space-y-2">
-              <a href="faqs.html" class="inline-block">
-                <h5
-                  class="text-lg font-extrabold text-gray-900 transition duration-300 group-hover:text-green-600"
-                >
-                  Log In &amp; Store
-                </h5>
-              </a>
-              <p class="text-sm leading-6 text-gray-600">
+              <h5
+                class="text-lg font-extrabold text-dark transition duration-300 group-hover:text-green-600"
+              >
+                Log In &amp; Store
+              </h5>
+              <p class="text-sm leading-6 text-body line-clamp-2">
                 Click to select your favorite coupon, explore amazing deals, and
                 start shopping.
               </p>
@@ -62,7 +60,7 @@ const { data: stores } = await useAsyncData("stores", () =>
         </div>
 
         <div
-          class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-xl md:p-7"
+          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-border"
         >
           <div class="relative z-10 flex items-start gap-4">
             <div
@@ -76,14 +74,12 @@ const { data: stores } = await useAsyncData("stores", () =>
             </div>
 
             <div class="space-y-2">
-              <a href="faqs.html" class="inline-block">
-                <h5
-                  class="text-lg font-extrabold text-gray-900 transition duration-300 group-hover:text-orange-600"
-                >
-                  Cashback Earned
-                </h5>
-              </a>
-              <p class="text-sm leading-6 text-gray-600">
+              <h5
+                class="text-lg font-extrabold text-dark transition duration-300 group-hover:text-orange-600"
+              >
+                Cashback Earned
+              </h5>
+              <p class="text-sm leading-6 text-body line-clamp-2">
                 Cashback rewards are instantly added to your Couponly wallet,
                 ready for future.
               </p>
@@ -98,7 +94,7 @@ const { data: stores } = await useAsyncData("stores", () =>
         </div>
 
         <div
-          class="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl md:p-7"
+          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-border"
         >
           <div class="relative z-10 flex items-start gap-4">
             <div
@@ -112,14 +108,12 @@ const { data: stores } = await useAsyncData("stores", () =>
             </div>
 
             <div class="space-y-2">
-              <a href="faqs.html" class="inline-block">
-                <h5
-                  class="text-lg font-extrabold text-gray-900 transition duration-300 group-hover:text-blue-600"
-                >
-                  Withdraw Cashback
-                </h5>
-              </a>
-              <p class="text-sm leading-6 text-gray-600">
+              <h5
+                class="text-lg font-extrabold text-gray-900 transition duration-300 group-hover:text-blue-600"
+              >
+                Withdraw Cashback
+              </h5>
+              <p class="text-sm leading-6 text-body line-clamp-2">
                 Cashback gets added to your bank account, or as a voucher or
                 recharge option instantly.
               </p>
@@ -135,7 +129,7 @@ const { data: stores } = await useAsyncData("stores", () =>
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 py-8">
+    <section class="max-w-7xl mx-auto px-4 py-6">
       <div class="mb-6 flex items-center justify-between">
         <div>
           <h2 class="text-3xl font-bold text-accent">
@@ -147,7 +141,7 @@ const { data: stores } = await useAsyncData("stores", () =>
         >
       </div>
 
-      <div class="grid gap-5 lg:grid-cols-3">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <CouponCard v-for="coupon in coupons" :coupon="coupon" />
       </div>
     </section>

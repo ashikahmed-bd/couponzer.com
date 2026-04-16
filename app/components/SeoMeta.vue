@@ -45,17 +45,19 @@ const props = defineProps({
     <Meta property="og:title" :content="props.title" />
     <Meta property="og:description" :content="props.description" />
     <Meta property="og:image" :content="props.image" />
+    <Meta property="og:image:alt" :content="props.title" />
     <Meta property="og:url" :content="props.url" />
     <Meta property="og:type" content="website" />
-    <Meta property="og:site_name" content="" />
-
     <Meta property="og:locale" content="en_US" />
-    <Meta property="og:image:alt" :content="props.title" />
 
     <Meta name="twitter:card" content="summary_large_image" />
     <Meta name="twitter:title" :content="props.title" />
     <Meta name="twitter:description" :content="props.description" />
+    <Meta name="twitter:url" :content="props.url" />
     <Meta name="twitter:image" :content="props.image" />
+    <Meta name="twitter:image:alt" :content="props.title" />
+    <Meta name="twitter:creator" content="@couponzer" />
+    <Meta name="twitter:site" content="@couponzer" />
   </Head>
 </template>
 

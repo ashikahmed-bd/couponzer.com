@@ -40,7 +40,7 @@ const copyCode = async () => {
               class="flex items-center justify-between border-b border-border px-6 py-4"
             >
               <h2 class="pr-6 text-base font-semibold text-accent">
-                {{ coupon?.title }}
+                {{ coupon?.stores?.name }}
               </h2>
 
               <button
@@ -126,7 +126,7 @@ const copyCode = async () => {
               </div>
             </main>
             <footer
-              class="flex flex-wrap items-center justify-center gap-2 border-t border-border mt-3 py-3.5"
+              class="flex flex-wrap items-center justify-center gap-2 border-t border-border mt-3 py-4"
             >
               <span class="mr-2 text-sm font-semibold text-dark">
                 Did it work?

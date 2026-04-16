@@ -64,7 +64,7 @@ defineProps({
 
             <div class="flex items-center gap-2">
               <UIcon name="i-lucide-mouse-pointer-click" class="size-4" />
-              <span>{{ coupon.click_count }} Clicks</span>
+              <span>{{ coupon.clicks }} Clicks</span>
             </div>
           </div>
         </div>

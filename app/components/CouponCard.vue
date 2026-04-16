@@ -25,10 +25,10 @@ const statusText = computed(() => {
 
 <template>
   <div
-    class="group flex flex-col overflow-hidden rounded-3xl border border-border bg-white p-3 transition duration-300 hover:-translate-y-1 hover:border-primary"
+    class="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition duration-300 hover:-translate-y-1 hover:border-primary"
   >
     <div
-      class="flex min-h-40 w-full items-center justify-center overflow-hidden rounded-2xl"
+      class="flex min-h-40 w-full items-center justify-center overflow-hidden"
       :style="{ background: store?.background }"
     >
       <NuxtImg
@@ -42,76 +42,58 @@ const statusText = computed(() => {
       </div>
     </div>
 
-    <div class="flex w-full items-center justify-between gap-2 p-3">
-      <span
-        class="rounded-lg border border-orange-200 bg-orange-50 px-3 py-1 text-sm font-medium text-orange-600"
-      >
-        {{ badgeText }}
-      </span>
-
-      <span
-        class="flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-3 py-1 text-sm font-medium text-green-700"
-      >
-        <UIcon name="i-lucide-badge-check" class="size-4" />
-        <span>{{ statusText }}</span>
-      </span>
-    </div>
-
-    <div class="grid gap-4 p-3">
-      <div>
-        <p v-if="store?.name" class="mb-1 text-sm font-medium text-body">
+    <div class="block p-4">
+      <div class="flex w-full items-center justify-between gap-2 mb-2">
+        <p v-if="store?.name" class="text-base font-semibold text-body">
           {{ store.name }}
         </p>
 
-        <h3
-          class="text-xl font-bold leading-snug text-accent transition duration-300 group-hover:text-orange-600"
+        <span
+          class="flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-2 py-1 text-sm font-medium text-green-700"
         >
-          {{ coupon.title }}
-        </h3>
-
-        <p
-          v-if="coupon.summary"
-          class="mt-2 text-sm leading-6 text-gray-600 line-clamp-2"
-        >
-          {{ coupon.summary }}
-        </p>
+          <UIcon name="i-lucide-badge-check" class="size-4" />
+          <span>{{ statusText }}</span>
+        </span>
       </div>
-
-      <div
-        class="flex w-full items-center justify-between border-y border-gray-200 py-3 text-sm text-gray-500"
-      >
-        <div class="flex items-center gap-1.5">
-          <UIcon name="i-lucide-calendar" class="size-4" />
-          <span>
-            Expires:
-            {{ coupon.expires_at ? $date(coupon.expires_at) : "No expiry" }}
+      <div class="grid gap-4">
+        <div class="block">
+          <h3
+            class="text-xl font-bold text-accent line-clamp-2 transition duration-300 mb-2"
+          >
+            {{ coupon.title }}
+          </h3>
+          <span
+            class="rounded-lg border border-border bg-primary/10 px-3 py-1 text-sm font-medium text-primary"
+          >
+            {{ badgeText }}
           </span>
+          <p
+            v-if="coupon.summary"
+            class="mt-2 text-sm leading-6 text-gray-600 line-clamp-2"
+          >
+            {{ coupon.summary }}
+          </p>
         </div>
 
-        <div class="flex items-center gap-1.5">
-          <UIcon name="i-lucide-mouse-pointer-click" class="size-4" />
-          <span>{{ coupon.clicks }} Clicks</span>
-        </div>
+        <a
+          :href="`/click/${coupon.slug}`"
+          rel="nofollow sponsored"
+          @click="couponStore.openDialog(coupon)"
+          class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
+        >
+          <span
+            class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-bold text-white transition-all duration-300 group-hover:w-[80%]"
+          >
+            {{ coupon.code ? "Show Coupon" : "Get Deal" }}
+          </span>
+
+          <span
+            class="flex w-full items-center justify-end px-4 text-sm font-semibold tracking-wider text-orange-600"
+          >
+            {{ coupon.code || "No Code Needed" }}
+          </span>
+        </a>
       </div>
-
-      <a
-        :href="`/click/${coupon.slug}`"
-        rel="nofollow sponsored"
-        @click="couponStore.openDialog(coupon)"
-        class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
-      >
-        <span
-          class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-bold text-white transition-all duration-300 group-hover:w-[80%]"
-        >
-          {{ coupon.code ? "Show Coupon" : "Get Deal" }}
-        </span>
-
-        <span
-          class="flex w-full items-center justify-end px-4 text-sm font-semibold tracking-wider text-orange-600"
-        >
-          {{ coupon.code || "No Code Needed" }}
-        </span>
-      </a>
     </div>
   </div>
 </template>

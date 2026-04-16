@@ -30,10 +30,10 @@ const ratingText = computed(() => {
 
 <template>
   <div
-    class="group overflow-hidden rounded-3xl border border-gray-200/80 bg-white transition-all duration-300 hover:-translate-y-1"
+    class="group overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all duration-300 hover:-translate-y-1"
   >
     <div class="relative p-5" :style="{ backgroundColor: store.background }">
-      <div class="relative flex items-center gap-4">
+      <div class="relative flex items-start gap-4">
         <div
           class="flex size-20 shrink-0 items-center justify-center rounded-2xl bg-white p-2.5"
         >
@@ -46,27 +46,22 @@ const ratingText = computed(() => {
         </div>
 
         <div class="min-w-0">
-          <h3 class="truncate text-lg font-bold text-accent md:text-xl">
-            {{ store.name }}
-          </h3>
-
-          <div class="mt-3 flex flex-wrap items-center gap-2">
-            <span
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <h3 class="truncate text-lg font-bold text-accent md:text-xl">
+              {{ store.name }}
+            </h3>
+            <UIcon
               v-if="store.is_verified"
-              class="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-100"
-            >
-              <UIcon name="i-lucide-badge-check" class="size-4" />
-              Verified
-            </span>
-
-            <span
-              v-if="store.is_featured"
-              class="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-orange-700 ring-1 ring-orange-100"
-            >
-              <UIcon name="i-lucide-sparkles" class="size-4" />
-              Featured
-            </span>
+              name="i-lucide-badge-check"
+              class="size-4 text-success"
+            />
           </div>
+          <span
+            v-if="store.offer_text"
+            class="rounded-2xl bg-orange-50 px-3.5 py-1 text-sm font-semibold text-primary"
+          >
+            {{ store.offer_text }}
+          </span>
         </div>
       </div>
     </div>
@@ -77,13 +72,6 @@ const ratingText = computed(() => {
       </p>
 
       <div class="mt-2 flex flex-wrap items-center gap-2">
-        <span
-          v-if="store.offer_text"
-          class="rounded-2xl bg-orange-50 px-3.5 py-2 text-sm font-semibold text-orange-600"
-        >
-          {{ store.offer_text }}
-        </span>
-
         <span
           v-if="store.cashback_text"
           class="rounded-2xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-600"
