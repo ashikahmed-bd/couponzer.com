@@ -1,4 +1,6 @@
 <script setup>
+const couponStore = useCouponStore();
+
 const props = defineProps({
   coupon: {
     type: Object,
@@ -6,11 +8,7 @@ const props = defineProps({
   },
 });
 
-const hasCode = computed(() => !!props.coupon?.code);
 const store = computed(() => props.coupon?.stores || null);
-const targetUrl = computed(
-  () => props.coupon?.affiliate_url || props.coupon?.deal_url || "#",
-);
 
 const badgeText = computed(() => {
   if (props.coupon?.discount_text) return props.coupon.discount_text;
@@ -23,17 +21,6 @@ const statusText = computed(() => {
   if (props.coupon?.is_verified) return "Verified";
   return "Active";
 });
-
-async function copyCode() {
-  if (!props.coupon?.code || !navigator?.clipboard) return;
-  await navigator.clipboard.writeText(props.coupon.code);
-}
-
-function openDeal() {
-  if (process.client && targetUrl.value !== "#") {
-    window.open(targetUrl.value, "_blank", "noopener,noreferrer");
-  }
-}
 </script>
 
 <template>
@@ -107,125 +94,24 @@ function openDeal() {
         </div>
       </div>
 
-      <UModal
-        :title="coupon.title"
-        :ui="{ content: 'w-full max-w-2xl' }"
-        :close="{
-          color: 'primary',
-          variant: 'outline',
-          class: 'rounded-full',
-        }"
+      <a
+        :href="`/click/${coupon.slug}`"
+        rel="nofollow sponsored"
+        @click="couponStore.openDialog(coupon)"
+        class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
       >
-        <button
-          type="button"
-          class="relative flex w-full items-center justify-between rounded-full border border-dashed border-orange-400 py-2.5"
+        <span
+          class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-bold text-white transition-all duration-300 group-hover:w-[80%]"
         >
-          <span
-            class="absolute z-20 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 text-white transition-all duration-500 ease-out group-hover:w-[80%]"
-          >
-            {{ hasCode ? "Show Coupon" : "Get Deal" }}
-          </span>
-          <span
-            class="flex w-full items-center justify-end px-4 font-semibold text-orange-600"
-          >
-            {{ coupon.code || "Get Deal" }}
-          </span>
-        </button>
+          {{ coupon.code ? "Show Coupon" : "Get Deal" }}
+        </span>
 
-        <template #body>
-          <div class="flex flex-col items-center gap-3">
-            <div class="flex w-full justify-center px-2 md:px-0">
-              <div class="w-full max-w-sm">
-                <div
-                  class="flex w-full overflow-hidden rounded-full border border-dashed border-orange-300 bg-orange-50"
-                >
-                  <input
-                    type="text"
-                    :value="coupon.code"
-                    readonly
-                    class="w-full bg-transparent px-6 py-3 text-sm font-bold tracking-wider text-orange-600 outline-none md:px-10 md:py-4"
-                  />
-
-                  <button
-                    type="button"
-                    @click="copyCode"
-                    class="shrink-0 rounded-full bg-orange-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600 md:px-10 md:py-4"
-                  >
-                    Copy
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <p class="py-2 text-center text-sm font-medium text-gray-500">
-              Continue to
-              <button
-                type="button"
-                @click="openDeal"
-                class="font-semibold text-primary hover:text-primary-hover"
-              >
-                {{ store?.name || "Visit Store" }}
-              </button>
-              <template v-if="coupon.slug">
-                •
-                <NuxtLink
-                  :to="`/coupon/${coupon.slug}`"
-                  class="font-semibold text-gray-700 hover:text-orange-600"
-                >
-                  Terms
-                </NuxtLink>
-              </template>
-            </p>
-          </div>
-
-          <div class="grid gap-3 border-y border-gray-200 p-4">
-            <p
-              v-if="coupon.description"
-              class="text-sm leading-7 text-gray-600"
-            >
-              <span class="font-semibold text-gray-900">Offer Details:</span>
-              {{ coupon.description }}
-            </p>
-
-            <p class="text-sm leading-7 text-gray-600">
-              <span class="font-semibold text-gray-900">Expires:</span>
-              {{
-                coupon.expires_at ? $date(coupon.expires_at) : "No expiry date"
-              }}
-            </p>
-
-            <div v-if="coupon.terms">
-              <p class="text-sm font-semibold text-gray-900">Terms:</p>
-              <div
-                v-html="coupon.terms"
-                class="text-sm text-gray-600 [&_ul]:grid [&_ul]:gap-2 [&_ul]:pl-5 [&_li]:list-disc"
-              />
-            </div>
-          </div>
-
-          <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
-            <span class="mr-2 text-sm font-semibold text-gray-800">
-              Did it work?
-            </span>
-
-            <button
-              type="button"
-              class="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 font-bold text-green-600 transition hover:bg-green-200"
-            >
-              <UIcon name="i-lucide-thumbs-up" class="size-5" />
-              <span>Yes</span>
-            </button>
-
-            <button
-              type="button"
-              class="flex items-center gap-2 rounded-lg bg-red-100 px-3 py-2 font-bold text-red-600 transition hover:bg-red-200"
-            >
-              <UIcon name="i-lucide-thumbs-down" class="size-5" />
-              <span>No</span>
-            </button>
-          </div>
-        </template>
-      </UModal>
+        <span
+          class="flex w-full items-center justify-end px-4 text-sm font-semibold tracking-wider text-orange-600"
+        >
+          {{ coupon.code || "No Code Needed" }}
+        </span>
+      </a>
     </div>
   </div>
 </template>

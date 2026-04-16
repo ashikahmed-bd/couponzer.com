@@ -10,15 +10,22 @@ const {
   error,
 } = await useAsyncData(`store-${slug}`, () => merchantStore.getStore(slug));
 
-const { data: featured } = await useAsyncData("featured", async () => {
-  return await merchantStore.getFeatured();
-});
+const { data: coupons, pending: couponsPending } = await useAsyncData(
+  `coupons-${slug}`,
+  async () => {
+    if (!slug) return [];
 
-const handleClick = (url) => {
-  setTimeout(() => {
-    window.open(url, "_blank");
-  }, 300);
-};
+    return await merchantStore.getCouponsByStoreSlug(slug);
+  },
+  {
+    watch: [store],
+  },
+);
+
+const { data: related } = await useAsyncData(`related-${slug}`, async () => {
+  if (!store.value?.id) return [];
+  return await merchantStore.getRelated(store.value.id);
+});
 </script>
 
 <template>
@@ -149,7 +156,7 @@ const handleClick = (url) => {
 
             <div class="space-y-4">
               <CouponListCard
-                v-for="coupon in store.coupons"
+                v-for="coupon in coupons"
                 :key="coupon.id"
                 :coupon="coupon"
                 :store="store"
@@ -188,7 +195,7 @@ const handleClick = (url) => {
 
               <div class="space-y-3">
                 <NuxtLink
-                  v-for="item in featured"
+                  v-for="item in related"
                   :key="item.id"
                   :to="`/stores/${item.slug}`"
                   class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-gray-50"

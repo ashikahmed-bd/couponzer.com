@@ -4,6 +4,7 @@ export const useMerchantStore = defineStore("merchant", {
     loading: false,
     stores: [],
     store: {},
+    coupons: [],
   }),
 
   getters: {},
@@ -148,15 +149,16 @@ export const useMerchantStore = defineStore("merchant", {
       try {
         const { data, error } = await supabase
           .from("stores")
-          .select(`*,coupons(*)`)
+          .select("*")
           .eq("slug", slug)
           .single();
-
-        this.store = data;
 
         if (error) {
           throw error;
         }
+
+        this.store = data;
+
         return data;
       } catch (error) {
         this.errors = error.message;
@@ -164,7 +166,7 @@ export const useMerchantStore = defineStore("merchant", {
       }
     },
 
-    async getFeatured() {
+    async getRelated(storeId) {
       const supabase = useSupabaseClient();
 
       try {
@@ -173,6 +175,7 @@ export const useMerchantStore = defineStore("merchant", {
           .select("*")
           .eq("is_featured", true)
           .eq("status", "active")
+          .neq("id", storeId)
           .order("name", { ascending: true })
           .limit(5);
 
@@ -180,11 +183,10 @@ export const useMerchantStore = defineStore("merchant", {
           throw error;
         }
 
-        this.stores = data;
         return data;
       } catch (error) {
         this.errors = error.message;
-        return null;
+        return [];
       }
     },
 
@@ -209,6 +211,38 @@ export const useMerchantStore = defineStore("merchant", {
       } catch (error) {
         this.errors = error.message;
         return null;
+      }
+    },
+
+    async getCouponsByStoreSlug(slug) {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data: store, error: storeError } = await supabase
+          .from("stores")
+          .select("id")
+          .eq("slug", slug)
+          .single();
+
+        if (storeError) {
+          throw storeError;
+        }
+
+        const { data, error } = await supabase
+          .from("coupons")
+          .select("*, stores(*)")
+          .eq("store_id", store.id)
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          throw error;
+        }
+
+        this.coupons = data;
+        return data;
+      } catch (error) {
+        this.errors = error.message;
+        throw error;
       }
     },
   },

@@ -73,7 +73,7 @@ const copyCode = async () => {
                     rel="nofollow sponsored"
                     target="_blank"
                     class="font-semibold text-primary"
-                    >namecheap.com</a
+                    >{{ coupon?.stores?.name }}</a
                   >
                 </div>
                 <div
