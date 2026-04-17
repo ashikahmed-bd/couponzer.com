@@ -53,6 +53,10 @@ export default defineNuxtConfig({
           name: "impact-site-verification",
           content: "625740518",
         },
+        {
+          name: "impact-site-verification",
+          content: "309a0a67-94a1-41f4-a931-92fa91fa66e1",
+        },
       ],
       bodyAttrs: {
         class: 'antialiased text-base font-body text-dark overflow-x-hidden',
