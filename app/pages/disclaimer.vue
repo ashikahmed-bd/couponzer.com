@@ -95,7 +95,7 @@
           If you have any questions about this Disclaimer, you can contact us
           at:
           <br />
-          <strong>Email:</strong> info@couponzer.com
+          <strong>Email:</strong> support@couponzer.com
         </p>
       </div>
     </section>

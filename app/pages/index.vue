@@ -25,31 +25,42 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
 
     <LazyHomeHeroSection />
 
-    <section class="max-w-7xl mx-auto px-4 py-6">
+    <section class="max-w-7xl mx-auto px-4 py-10">
+      <!-- Section Heading (SEO Boost) -->
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-dark">
+          How to Use Coupons & Promo Codes
+        </h2>
+        <p class="text-body mt-2">
+          Save money in 3 simple steps with Couponzer. Find, copy, and apply the
+          best deals instantly.
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <div
-          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-border"
+          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-green-400"
         >
           <div class="relative z-10 flex items-start gap-4">
             <div
               class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-green-200 bg-green-50 p-3"
             >
               <NuxtImg
-                src="/icons/engineering.png"
-                alt="Engineering icon"
-                class="h-8 w-8 object-contain transition duration-300 group-hover:scale-110"
+                src="/icons/search.png"
+                alt="Find coupons and deals"
+                class="size-12 object-contain transition duration-300 group-hover:scale-110"
               />
             </div>
 
-            <div class="space-y-2">
-              <h5
+            <div class="space-y-0.5">
+              <h3
                 class="text-lg font-extrabold text-dark transition duration-300 group-hover:text-green-600"
               >
-                Log In &amp; Store
-              </h5>
+                Find Coupons
+              </h3>
               <p class="text-sm leading-6 text-body line-clamp-2">
-                Click to select your favorite coupon, explore amazing deals, and
-                start shopping.
+                Browse thousands of verified coupons, promo codes, and exclusive
+                deals from top online stores.
               </p>
             </div>
           </div>
@@ -62,28 +73,28 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
         </div>
 
         <div
-          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-border"
+          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-orange-400"
         >
           <div class="relative z-10 flex items-start gap-4">
             <div
               class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-orange-200 bg-orange-50 p-3"
             >
               <NuxtImg
-                src="/icons/briefcase.png"
-                alt="Briefcase icon"
-                class="h-8 w-8 object-contain transition duration-300 group-hover:scale-110"
+                src="/icons/coupon.png"
+                alt="Copy promo code"
+                class="size-12 object-contain transition duration-300 group-hover:scale-110"
               />
             </div>
 
-            <div class="space-y-2">
-              <h5
+            <div class="space-y-0.5">
+              <h3
                 class="text-lg font-extrabold text-dark transition duration-300 group-hover:text-orange-600"
               >
-                Cashback Earned
-              </h5>
+                Copy Promo Code
+              </h3>
               <p class="text-sm leading-6 text-body line-clamp-2">
-                Cashback rewards are instantly added to your Couponly wallet,
-                ready for future.
+                Click and copy the best working coupon code instantly with one
+                tap. No login required.
               </p>
             </div>
           </div>
@@ -96,28 +107,28 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
         </div>
 
         <div
-          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-border"
+          class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-400"
         >
           <div class="relative z-10 flex items-start gap-4">
             <div
               class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-blue-200 bg-blue-50 p-3"
             >
               <NuxtImg
-                src="/icons/wallet.png"
-                alt="Wallet icon"
-                class="h-8 w-8 object-contain transition duration-300 group-hover:scale-110"
+                src="/icons/checkout.png"
+                alt="Apply coupon at checkout"
+                class="size-12 object-contain transition duration-300 group-hover:scale-110"
               />
             </div>
 
-            <div class="space-y-2">
-              <h5
-                class="text-lg font-extrabold text-gray-900 transition duration-300 group-hover:text-blue-600"
+            <div class="space-y-0.5">
+              <h3
+                class="text-lg font-extrabold text-dark transition duration-300 group-hover:text-blue-600"
               >
-                Withdraw Cashback
-              </h5>
+                Apply & Save
+              </h3>
               <p class="text-sm leading-6 text-body line-clamp-2">
-                Cashback gets added to your bank account, or as a voucher or
-                recharge option instantly.
+                Paste the coupon code at checkout and enjoy instant discounts on
+                your purchase.
               </p>
             </div>
           </div>

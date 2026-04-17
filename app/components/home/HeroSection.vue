@@ -25,6 +25,9 @@ const { data: bottom } = await useAsyncData("banner-1200x300", async () => {
 <template>
   <section class="bg-white/50">
     <div class="max-w-7xl mx-auto px-4 py-6">
+      <!-- Sponsored Section -->
+      <div class="mb-3 text-xs text-gray-500">Sponsored Deals</div>
+
       <div v-if="pending" class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div class="h-72 rounded bg-gray-200 animate-pulse"></div>
         <div class="grid gap-4">
@@ -38,64 +41,74 @@ const { data: bottom } = await useAsyncData("banner-1200x300", async () => {
         </div>
       </div>
 
-      <div v-else-if="error" class="text-red-500">Failed to load banners.</div>
+      <div v-else-if="error" class="text-red-500">
+        Unable to load deals right now.
+      </div>
 
       <div v-else class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <!-- Main Banner -->
         <NuxtLink
-          :to="`/click/hostinger-80-off-coupon`"
-          rel="nofollow sponsored"
+          :to="`/go/hostinger-offer`"
+          rel="sponsored"
           target="_blank"
+          aria-label="View Hostinger Discount Offer"
           class="group relative overflow-hidden rounded"
         >
           <NuxtImg
             :src="main?.image_url"
-            :alt="main?.title"
-            class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-110"
+            :alt="main?.title || 'Best Hosting Deal'"
+            class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-105"
           />
         </NuxtLink>
 
         <div class="grid gap-4">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Square -->
             <a
               v-if="square"
-              :href="square.redirect_url"
-              rel="nofollow sponsored"
+              :href="`/go/${square.slug}`"
+              rel="sponsored"
               target="_blank"
-              class="group bg-surface relative overflow-hidden rounded"
+              aria-label="View exclusive deal"
+              class="group relative overflow-hidden rounded"
             >
               <NuxtImg
                 :src="square.image_url"
-                :alt="square.alt_text ?? square.title"
-                class="w-full h-auto object-contain transition duration-700 ease-out group-hover:scale-110"
+                :alt="square.alt_text || 'Exclusive Deal'"
+                class="w-full h-auto object-contain transition duration-700 ease-out group-hover:scale-105"
               />
             </a>
 
             <div class="grid gap-4">
+              <!-- Top -->
               <a
                 v-if="top"
-                :href="top.redirect_url"
-                rel="noopener noreferrer"
+                :href="`/go/${top.slug}`"
+                rel="sponsored"
                 target="_blank"
-                class="group bg-surface relative overflow-hidden rounded"
+                aria-label="Top discount deal"
+                class="group relative overflow-hidden rounded"
               >
                 <NuxtImg
                   :src="top.image_url"
-                  :alt="top.alt_text ?? top.title"
-                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-110"
+                  :alt="top.alt_text || 'Top Deal'"
+                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-105"
                 />
               </a>
 
+              <!-- Bottom -->
               <a
                 v-if="bottom"
-                :href="bottom.redirect_url"
-                rel="nofollow sponsored"
+                :href="`/go/${bottom.slug}`"
+                rel="sponsored"
                 target="_blank"
+                aria-label="Limited time offer"
                 class="group relative block overflow-hidden rounded"
               >
                 <NuxtImg
                   :src="bottom.image_url"
-                  :alt="bottom.alt_text ?? bottom.title"
-                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-110"
+                  :alt="bottom.alt_text || 'Limited Offer'"
+                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-105"
                 />
               </a>
             </div>

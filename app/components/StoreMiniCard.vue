@@ -53,7 +53,7 @@ const ratingText = computed(() => {
             <UIcon
               v-if="store.is_verified"
               name="i-lucide-badge-check"
-              class="size-4 text-success"
+              class="size-4 text-blue-500"
             />
           </div>
           <span
