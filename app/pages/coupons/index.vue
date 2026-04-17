@@ -104,16 +104,19 @@ const { data: sidebar } = await useAsyncData("banner-300x250", async () => {
                 :coupon="coupon"
               />
             </div>
-            <button
-              v-if="!noMoreData"
-              @click="loadMore"
-              :disabled="loadingMore"
-              class="bg-primary px-5 py-2.5 text-sm font-medium rounded-full text-white transition hover:bg-primary-hover"
-            >
-              {{ loadingMore ? "Loading..." : "Load More" }}
-            </button>
 
-            <p v-else>No more coupons</p>
+            <div class="flex justify-center mt-6">
+              <button
+                v-if="!noMoreData"
+                @click="loadMore"
+                :disabled="loadingMore"
+                class="bg-primary px-5 py-2.5 text-sm font-medium rounded-full text-white transition hover:bg-primary-hover"
+              >
+                {{ loadingMore ? "Loading..." : "Load More" }}
+              </button>
+
+              <p v-else>No more coupons</p>
+            </div>
           </div>
 
           <aside class="w-full">
