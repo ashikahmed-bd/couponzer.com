@@ -26,7 +26,6 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
     <LazyHomeHeroSection />
 
     <section class="max-w-7xl mx-auto px-4 py-10">
-      <!-- Section Heading (SEO Boost) -->
       <div class="text-center max-w-2xl mx-auto mb-8">
         <h2 class="text-2xl md:text-3xl font-bold text-dark">
           How to Use Coupons & Promo Codes

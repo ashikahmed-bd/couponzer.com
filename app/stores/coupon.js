@@ -123,18 +123,20 @@ export const useCouponStore = defineStore("coupon", {
       }
     },
 
-    async getCoupons() {
+    async getCoupons(page = 1, limit = 10) {
       const supabase = useSupabaseClient();
 
       try {
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+
         const { data, error } = await supabase
           .from("coupons")
-          .select(`*,stores(*)`)
-          .order("created_at", { ascending: true });
+          .select(`*, stores(*)`)
+          .order("created_at", { ascending: false })
+          .range(from, to);
 
-        if (error) {
-          throw error;
-        }
+        if (error) throw error;
 
         return data;
       } catch (error) {
