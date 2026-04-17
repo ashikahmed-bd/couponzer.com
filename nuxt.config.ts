@@ -49,10 +49,10 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
       meta: [
-        {
-          name: "impact-site-verification",
-          content: "625740518",
-        },
+        // {
+        //   name: "impact-site-verification",
+        //   content: "625740518",
+        // },
         {
           name: "impact-site-verification",
           content: "309a0a67-94a1-41f4-a931-92fa91fa66e1",

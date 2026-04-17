@@ -184,9 +184,20 @@ const submit = async () => {
         <p>Copyright © 2026 Couponzer. All rights reserved.</p>
 
         <div class="flex flex-wrap items-center gap-4 md:gap-6">
-          <a href="#" class="transition hover:text-white">Help & Support</a>
-          <a href="#" class="transition hover:text-white">Privacy Policy</a>
-          <a href="#" class="transition hover:text-white">Terms & Conditions</a>
+          <NuxtLink to="/help" class="transition hover:text-white"
+            >Help & Support</NuxtLink
+          >
+          <NuxtLink to="/privacy-policy" class="transition hover:text-white"
+            >Privacy Policy</NuxtLink
+          >
+          <NuxtLink
+            to="/terms-and-conditions"
+            class="transition hover:text-white"
+            >Terms & Conditions</NuxtLink
+          >
+          <NuxtLink to="/disclaimer" class="transition hover:text-white"
+            >Disclaimer</NuxtLink
+          >
         </div>
       </div>
     </div>

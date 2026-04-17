@@ -166,7 +166,7 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
 
           <MarkdownPreview
             :content="store.description"
-            class="markdown px-5 rounded-2xl"
+            class="markdown px-5 rounded-2xl py-6"
           />
         </div>
 
@@ -251,10 +251,10 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
 :deep(.markdown .md-editor-preview h4),
 :deep(.markdown .md-editor-preview h5),
 :deep(.markdown .md-editor-preview h6) {
-  margin: 1.5em 0 0.7em;
   font-weight: 700;
   line-height: 1.3;
   color: #0f172a;
+  margin: 0;
 }
 
 :deep(.markdown .md-editor-preview h1) {
@@ -280,18 +280,15 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
 
 :deep(.markdown .md-editor-preview p) {
   color: #475569;
-  margin: 0 0 1rem;
 }
 
 :deep(.markdown .md-editor-preview ul) {
-  margin: 1rem 0;
   padding-left: 1.5rem;
   list-style-type: disc;
   list-style-position: outside;
 }
 
 :deep(.markdown .md-editor-preview ol) {
-  margin: 1rem 0;
   padding-left: 1.5rem;
   list-style-type: decimal;
   list-style-position: outside;
@@ -299,7 +296,6 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
 
 :deep(.markdown .md-editor-preview li) {
   display: list-item;
-  margin: 0.25rem 0;
   color: #475569;
 }
 
@@ -363,7 +359,7 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
 }
 
 :deep(.markdown .md-editor-preview hr) {
-  margin: 2rem 0;
+  margin: 1rem 0;
   border: 0;
   border-top: 1px solid #e2e8f0;
 }
@@ -375,7 +371,6 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-collapse: collapse;
-  margin: 1.25rem 0;
   white-space: nowrap;
 }
 
