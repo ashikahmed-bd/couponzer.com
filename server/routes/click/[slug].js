@@ -37,7 +37,6 @@ export default defineEventHandler(async (event) => {
     event.node.req.socket.remoteAddress ||
     null;
 
-  // logging fail hole redirect bondho korbo na
   supabase
     .from("clicks")
     .insert({

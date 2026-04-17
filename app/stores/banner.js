@@ -119,17 +119,14 @@ export const useBannerStore = defineStore("banner", {
       const supabase = useSupabaseClient();
 
       try {
-        const now = new Date().toISOString();
-
         const { data, error } = await supabase
           .from("banners")
           .select("*")
           .eq("size", size)
           .eq("is_active", true)
-          .lte("start_at", now)
-          .gte("end_at", now)
+          .order("sort_order", { ascending: true })
           .limit(1)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
 
@@ -137,6 +134,27 @@ export const useBannerStore = defineStore("banner", {
       } catch (error) {
         this.errors = error.message;
         return null;
+      }
+    },
+
+    async getBanners(size, limit = 2) {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data, error } = await supabase
+          .from("banners")
+          .select("*")
+          .eq("size", size)
+          .eq("is_active", true)
+          .order("sort_order", { ascending: true })
+          .limit(limit);
+
+        if (error) throw error;
+
+        return data || [];
+      } catch (error) {
+        this.errors = error.message;
+        return [];
       }
     },
   },

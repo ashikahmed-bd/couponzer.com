@@ -2,43 +2,29 @@
 const bannerStore = useBannerStore();
 
 const {
-  data: main,
+  data: heroBanner,
   pending,
   error,
-} = await useAsyncData("banner-1200x630", async () => {
-  return await bannerStore.getBanner("1200x630");
+} = await useAsyncData("hero-banner", async () => {
+  return await bannerStore.getBanner("1000x500");
 });
 
-const { data: square } = await useAsyncData("banner-300x300", async () => {
-  return await bannerStore.getBanner("300x300");
+const { data: centerBanner } = await useAsyncData("center-banner", async () => {
+  return await bannerStore.getBanner("400x500");
 });
 
-const { data: top } = await useAsyncData("banner-336x280", async () => {
-  return await bannerStore.getBanner("336x280");
-});
-
-const { data: bottom } = await useAsyncData("banner-1200x300", async () => {
-  return await bannerStore.getBanner("1200x300");
+const { data: rightBanners } = await useAsyncData("right-banners", async () => {
+  return await bannerStore.getBanners("400x245", 2);
 });
 </script>
 
 <template>
   <section class="bg-white/50">
     <div class="max-w-7xl mx-auto px-4 py-6">
-      <!-- Sponsored Section -->
       <div class="mb-3 text-xs text-gray-500">Sponsored Deals</div>
 
       <div v-if="pending" class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <div class="h-72 rounded bg-gray-200 animate-pulse"></div>
-        <div class="grid gap-4">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div class="h-72 rounded bg-gray-200 animate-pulse"></div>
-            <div class="grid gap-4">
-              <div class="h-34 rounded bg-gray-200 animate-pulse"></div>
-              <div class="h-34 rounded bg-gray-200 animate-pulse"></div>
-            </div>
-          </div>
-        </div>
+        <p>Loading...</p>
       </div>
 
       <div v-else-if="error" class="text-red-500">
@@ -46,71 +32,52 @@ const { data: bottom } = await useAsyncData("banner-1200x300", async () => {
       </div>
 
       <div v-else class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <!-- Main Banner -->
-        <NuxtLink
-          :to="`/go/hostinger-offer`"
-          rel="sponsored"
+        <a
+          :href="`/redirect/${heroBanner?.slug}`"
           target="_blank"
-          aria-label="View Hostinger Discount Offer"
-          class="group relative overflow-hidden rounded"
+          rel="nofollow sponsored noopener noreferrer"
+          class="group block overflow-hidden rounded-xl"
         >
           <NuxtImg
-            :src="main?.image_url"
-            :alt="main?.title || 'Best Hosting Deal'"
-            class="w-full h-auto object-cover transition duration-700 ease-out group-hover:scale-105"
+            :src="heroBanner?.image_url"
+            :alt="heroBanner?.title"
+            loading="lazy"
+            class="w-full object-cover transition duration-700 group-hover:scale-105"
           />
-        </NuxtLink>
+        </a>
 
         <div class="grid gap-4">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <!-- Square -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a
-              v-if="square"
-              :href="`/go/${square.slug}`"
-              rel="sponsored"
+              :href="`/redirect/${centerBanner?.slug}`"
               target="_blank"
-              aria-label="View exclusive deal"
-              class="group relative overflow-hidden rounded"
+              rel="nofollow sponsored noopener noreferrer"
+              class="group block overflow-hidden rounded-xl"
             >
               <NuxtImg
-                :src="square.image_url"
-                :alt="square.alt_text || 'Exclusive Deal'"
-                class="w-full h-auto object-contain transition duration-700 ease-out group-hover:scale-105"
+                :src="centerBanner?.image_url"
+                :alt="centerBanner?.alt_text"
+                loading="lazy"
+                class="w-full h-full object-cover transition duration-700 group-hover:scale-105"
               />
             </a>
 
             <div class="grid gap-4">
-              <!-- Top -->
-              <a
-                v-if="top"
-                :href="`/go/${top.slug}`"
-                rel="sponsored"
-                target="_blank"
-                aria-label="Top discount deal"
-                class="group relative overflow-hidden rounded"
-              >
-                <NuxtImg
-                  :src="top.image_url"
-                  :alt="top.alt_text || 'Top Deal'"
-                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-105"
-                />
-              </a>
-
-              <!-- Bottom -->
-              <a
-                v-if="bottom"
-                :href="`/go/${bottom.slug}`"
-                rel="sponsored"
-                target="_blank"
-                aria-label="Limited time offer"
-                class="group relative block overflow-hidden rounded"
-              >
-                <NuxtImg
-                  :src="bottom.image_url"
-                  :alt="bottom.alt_text || 'Limited Offer'"
-                  class="w-full h-full object-contain transition duration-700 ease-out group-hover:scale-105"
-                />
-              </a>
+              <article v-for="(banner, i) in rightBanners" :key="i">
+                <a
+                  :href="`/redirect/${banner.slug}`"
+                  target="_blank"
+                  rel="nofollow sponsored noopener noreferrer"
+                  class="group block overflow-hidden rounded-xl"
+                >
+                  <NuxtImg
+                    :src="banner.image_url"
+                    :alt="banner.alt_text"
+                    loading="lazy"
+                    class="w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </a>
+              </article>
             </div>
           </div>
         </div>
