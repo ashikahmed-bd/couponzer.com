@@ -44,12 +44,14 @@ const statusText = computed(() => {
 
     <div class="block p-4">
       <div class="flex w-full items-center justify-between gap-2 mb-2">
-        <p v-if="store?.name" class="text-base font-semibold text-body">
-          {{ store.name }}
-        </p>
+        <NuxtLink :to="`/stores/${store.slug}`" v-if="store?.name">
+          <h3 class="text-base font-semibold text-primary">
+            {{ store.name }}
+          </h3>
+        </NuxtLink>
 
         <span
-          class="flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-2 py-1 text-sm font-medium text-green-700"
+          class="flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-2 py-1 text-sm font-medium text-blue-700"
         >
           <UIcon name="i-lucide-badge-check" class="size-4" />
           <span>{{ statusText }}</span>

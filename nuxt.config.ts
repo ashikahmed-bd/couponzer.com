@@ -38,6 +38,29 @@ export default defineNuxtConfig({
     },
   },
 
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: {
+        lang: 'en',
+      },
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
+      meta: [
+        {
+          name: "impact-site-verification",
+          content: "625740518",
+        },
+      ],
+      bodyAttrs: {
+        class: 'antialiased text-base font-body text-dark overflow-x-hidden',
+      },
+      
+    },
+  },
+
 
   
 })

@@ -27,7 +27,7 @@ const props = defineProps({
 
   author: {
     type: String,
-    default: "Ashik Ahmed",
+    default: "Couponzer.com",
   },
 });
 </script>

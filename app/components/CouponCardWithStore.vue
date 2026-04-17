@@ -43,7 +43,7 @@ defineProps({
               </h3>
               <span
                 v-if="coupon.stores?.is_verified"
-                class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200"
+                class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-200"
               >
                 <UIcon name="i-lucide-badge-check" class="size-3.5" />
                 Verified

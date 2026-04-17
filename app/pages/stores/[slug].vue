@@ -164,7 +164,10 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
             </div>
           </div>
 
-          <div v-html="store.description"></div>
+          <MarkdownPreview
+            :content="store.description"
+            class="markdown px-5 rounded-2xl"
+          />
         </div>
 
         <aside class="w-full">
@@ -234,4 +237,201 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+:deep(.markdown .md-editor-preview) {
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.9;
+  word-break: break-word;
+}
+
+:deep(.markdown .md-editor-preview h1),
+:deep(.markdown .md-editor-preview h2),
+:deep(.markdown .md-editor-preview h3),
+:deep(.markdown .md-editor-preview h4),
+:deep(.markdown .md-editor-preview h5),
+:deep(.markdown .md-editor-preview h6) {
+  margin: 1.5em 0 0.7em;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #0f172a;
+}
+
+:deep(.markdown .md-editor-preview h1) {
+  font-size: 1.65rem;
+}
+
+:deep(.markdown .md-editor-preview h2) {
+  font-size: 1.35rem;
+}
+
+:deep(.markdown .md-editor-preview h3) {
+  font-size: 1.1rem;
+}
+
+:deep(.markdown .md-editor-preview h4) {
+  font-size: 1rem;
+}
+
+:deep(.markdown .md-editor-preview h5),
+:deep(.markdown .md-editor-preview h6) {
+  font-size: 0.95rem;
+}
+
+:deep(.markdown .md-editor-preview p) {
+  color: #475569;
+  margin: 0 0 1rem;
+}
+
+:deep(.markdown .md-editor-preview ul) {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+:deep(.markdown .md-editor-preview ol) {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+  list-style-type: decimal;
+  list-style-position: outside;
+}
+
+:deep(.markdown .md-editor-preview li) {
+  display: list-item;
+  margin: 0.25rem 0;
+  color: #475569;
+}
+
+:deep(.markdown .md-editor-preview ul li::marker),
+:deep(.markdown .md-editor-preview ol li::marker) {
+  color: #475569;
+}
+
+:deep(.markdown .md-editor-preview li p) {
+  margin: 0;
+}
+
+:deep(.markdown .md-editor-preview a) {
+  color: #059669;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+:deep(.markdown .md-editor-preview a:hover) {
+  text-decoration: underline;
+}
+
+:deep(.markdown .md-editor-preview blockquote) {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #10b981;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+  color: #475569;
+}
+
+:deep(.markdown .md-editor-preview pre) {
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+:deep(.markdown .md-editor-preview code) {
+  background: #f1f5f9;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+:deep(.markdown .md-editor-preview pre code) {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+}
+
+:deep(.markdown .md-editor-preview img) {
+  display: block;
+  margin: 1rem 0;
+  border-radius: 0.75rem;
+  max-width: 100%;
+  height: auto;
+}
+
+:deep(.markdown .md-editor-preview hr) {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+:deep(.markdown .md-editor-preview table) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  white-space: nowrap;
+}
+
+:deep(.markdown .md-editor-preview thead) {
+  background: #f8fafc;
+}
+
+:deep(.markdown .md-editor-preview th),
+:deep(.markdown .md-editor-preview td) {
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+:deep(.markdown .md-editor-preview th) {
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+:deep(.markdown .md-editor-preview tbody tr:nth-child(even)) {
+  background: #fcfcfd;
+}
+
+@media (max-width: 640px) {
+  :deep(.markdown .md-editor-preview) {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  :deep(.markdown .md-editor-preview h1) {
+    font-size: 1.45rem;
+  }
+
+  :deep(.markdown .md-editor-preview h2) {
+    font-size: 1.25rem;
+  }
+
+  :deep(.markdown .md-editor-preview h3) {
+    font-size: 1.05rem;
+  }
+
+  :deep(.markdown .md-editor-preview blockquote) {
+    padding: 0.875rem 1rem;
+  }
+
+  :deep(.markdown .md-editor-preview pre) {
+    padding: 0.875rem;
+    border-radius: 0.625rem;
+  }
+
+  :deep(.markdown .md-editor-preview th),
+  :deep(.markdown .md-editor-preview td) {
+    padding: 0.65rem 0.875rem;
+    font-size: 0.92rem;
+  }
+}
+</style>

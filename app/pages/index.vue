@@ -6,7 +6,9 @@ const {
   data: coupons,
   pending,
   error,
-} = await useAsyncData("homepage-coupons", () => couponStore.getFeaturedCoupons());
+} = await useAsyncData("homepage-coupons", () =>
+  couponStore.getFeaturedCoupons(),
+);
 
 const { data: stores } = await useAsyncData("homepage-stores", () =>
   merchantStore.getFeaturedStores(),
@@ -151,18 +153,23 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
         <h2 class="text-3xl font-bold text-accent">
           Top <span class="text-primary">Stores</span>
         </h2>
-        <NuxtLink to="/stores" class="text-sm font-semibold text-accent">See All Store</NuxtLink>
+        <NuxtLink to="/stores" class="text-sm font-semibold text-primary"
+          >See All Store</NuxtLink
+        >
       </div>
 
       <div class="grid gap-4 sm:grid-cols-4">
         <StoreMiniCard v-for="store in stores" :store="store" />
       </div>
-	  
-	  <div class="mt-8 flex justify-center">
-	  <button type="button" class="inline-flex items-center rounded-full border border-border bg-white px-6 py-3 text-sm font-semibold text-body transition hover:border-primary hover:text-primary">
-	  Load More
-	  </button>
-	  </div>
+
+      <div class="mt-8 flex justify-center">
+        <NuxtLink
+          to="/stores"
+          class="inline-flex items-center rounded-full border border-primary bg-white px-6 py-3 text-sm font-semibold text-primary transition hover:opacity-90"
+        >
+          Load More
+        </NuxtLink>
+      </div>
     </section>
 
     <Newsletter />

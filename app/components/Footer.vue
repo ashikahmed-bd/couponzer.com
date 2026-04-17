@@ -15,7 +15,6 @@ const submit = async () => {
   <footer class="bg-accent-hover text-white">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        <!-- Contact -->
         <div>
           <p class="text-sm">
             Couponzer is your trusted source for the latest coupons, promo
@@ -23,12 +22,10 @@ const submit = async () => {
             brands and save on fashion, electronics, hosting, travel, and more.
           </p>
 
-          <!-- Social -->
           <nav
             class="mt-6 flex items-center gap-3"
             aria-label="Social media links"
           >
-            <!-- Facebook -->
             <a
               href="#"
               aria-label="Facebook"
@@ -46,7 +43,6 @@ const submit = async () => {
               </svg>
             </a>
 
-            <!-- X -->
             <a
               href="#"
               aria-label="X"
@@ -64,7 +60,6 @@ const submit = async () => {
               </svg>
             </a>
 
-            <!-- Instagram -->
             <a
               href="#"
               aria-label="Instagram"
@@ -81,28 +76,54 @@ const submit = async () => {
                 />
               </svg>
             </a>
+            <a
+              href="#"
+              aria-label="Linkedin"
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:border-blue-700/40 hover:bg-blue-800 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="h-5 w-5"
+              >
+                <path
+                  d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5c3.18 0 5.75-2.57 5.75-5.75v-8.5C22 4.57 19.43 2 16.25 2h-8.5Zm0 2h8.5C18.55 4 20 5.45 20 7.75v8.5c0 2.3-1.45 3.75-3.75 3.75h-8.5C5.45 20 4 18.55 4 16.25v-8.5C4 5.45 5.45 4 7.75 4Zm9.5 1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"
+                />
+              </svg>
+            </a>
           </nav>
         </div>
 
-        <!-- Mobile 2 Column: Quick Links + Categories -->
         <div class="grid grid-cols-2 gap-6 sm:contents">
-          <!-- Quick Links -->
           <div>
             <h3 class="mb-5 text-lg font-bold text-white">Quick Links</h3>
             <ul class="space-y-3 text-sm text-slate-300">
-              <li><a href="#" class="transition hover:text-white">Home</a></li>
               <li>
-                <a href="#" class="transition hover:text-white">About Us</a>
+                <NuxtLink to="/" class="transition hover:text-white"
+                  >Home</NuxtLink
+                >
               </li>
               <li>
-                <a href="#" class="transition hover:text-white">
-                  Browse Coupons
-                </a>
+                <NuxtLink to="/about" class="transition hover:text-white"
+                  >About Us</NuxtLink
+                >
               </li>
               <li>
-                <a href="#" class="transition hover:text-white">Stores</a>
+                <NuxtLink to="/coupons" class="transition hover:text-white">
+                  Coupons
+                </NuxtLink>
               </li>
-              <li><a href="#" class="transition hover:text-white">Blog</a></li>
+              <li>
+                <NuxtLink to="/stores" class="transition hover:text-white"
+                  >Stores</NuxtLink
+                >
+              </li>
+              <li>
+                <NuxtLink to="/" class="transition hover:text-white"
+                  >Blog</NuxtLink
+                >
+              </li>
             </ul>
           </div>
 
