@@ -1,6 +1,7 @@
 <script setup>
 const route = useRoute();
 const merchantStore = useMerchantStore();
+const bannerStore = useBannerStore();
 
 const slug = route.params.slug;
 
@@ -26,6 +27,17 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
   if (!store.value?.id) return [];
   return await merchantStore.getRelated(store.value.id);
 });
+
+const { data: square } = await useAsyncData("square-300", async () => {
+  return await bannerStore.getBanner("300x300");
+});
+
+const { data: rectangle } = await useAsyncData(
+  "rectangle-300x250",
+  async () => {
+    return await bannerStore.getBanner("300x250");
+  },
+);
 </script>
 
 <template>
@@ -87,7 +99,7 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
                 </span>
               </div>
               <h1
-                class="text-2xl font-extrabold tracking-tight text-gray-900 md:text-4xl"
+                class="text-2xl font-extrabold tracking-tight text-accent md:text-3xl"
               >
                 {{ store.title }}
               </h1>
@@ -124,11 +136,10 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
                   <span>{{ store.votes }} votes</span>
                 </div>
                 <a
-                  v-if="store.website_url"
                   :href="store.affiliate_url ?? store.website_url"
                   target="_blank"
                   rel="nofollow noopener noreferrer"
-                  class="inline-flex items-center gap-1 font-medium text-primary transition hover:text-primary-hover"
+                  class="inline-flex items-center gap-1 text-sm font-medium text-primary transition hover:text-primary-hover"
                 >
                   Visit Website
                   <UIcon name="i-lucide-arrow-up-right" class="size-4" />
@@ -137,7 +148,7 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
 
               <p
                 v-if="store.summary"
-                class="mt-4 max-w-3xl text-sm leading-6 text-body md:text-base"
+                class="mt-2 max-w-3xl text-sm leading-6 text-body"
               >
                 {{ store.summary }}
               </p>
@@ -176,30 +187,64 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
           <aside class="w-full">
             <div class="sticky top-24 space-y-6">
               <div class="space-y-4">
-                <NuxtLink
-                  to="https://namecheap.pxf.io/c/3173023/1183690/5618"
-                  title="ads"
-                  class="block"
+                <div
+                  class="overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300"
                 >
-                  <NuxtImg
-                    src="/ads/728x90.gif"
-                    alt=""
-                    class="w-full rounded"
-                  />
-                </NuxtLink>
+                  <div
+                    class="flex items-center justify-between border-b border-border px-4 py-3"
+                  >
+                    <span
+                      class="inline-flex items-center rounded-full bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-600 ring-1 ring-orange-200"
+                    >
+                      Sponsored
+                    </span>
 
-                <NuxtLink
-                  to="https://1.envato.market/c/3173023/381185/4662"
-                  title="ads"
-                  class="block"
-                >
-                  <NuxtImg
-                    src="/ads/970X250.jpeg"
-                    alt=""
-                    class="w-full rounded"
-                  />
-                </NuxtLink>
+                    <span class="text-xs font-medium text-gray-400"
+                      >Advertisement</span
+                    >
+                  </div>
+
+                  <a
+                    :href="`/redirect/${square?.slug}`"
+                    target="_blank"
+                    rel="sponsored nofollow noopener"
+                    class="group block p-4"
+                  >
+                    <div
+                      class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
+                    >
+                      <NuxtImg
+                        :src="square?.image_url"
+                        :alt="square?.alt_text ?? square?.title"
+                        class="h-auto w-full transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        format="webp"
+                      />
+                    </div>
+
+                    <div class="pt-4">
+                      <h3
+                        class="line-clamp-2 text-lg font-bold leading-6 text-dark transition-colors duration-300 group-hover:text-primary"
+                      >
+                        {{ square?.title }}
+                      </h3>
+
+                      <p class="mt-2 line-clamp-3 text-sm leading-6 text-body">
+                        {{ square?.description }}
+                      </p>
+
+                      <div class="mt-4">
+                        <span
+                          class="inline-flex items-center justify-center rounded bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:bg-primary-hover"
+                        >
+                          Explore Offer
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
               </div>
+
               <div class="rounded-2xl border border-border bg-white p-4 mt-4">
                 <h3 class="mb-4 text-lg font-bold text-dark">Similar Stores</h3>
 
@@ -231,12 +276,23 @@ const { data: related } = await useAsyncData(`related-${slug}`, async () => {
                 </div>
               </div>
 
-              <NuxtLink
-                to="https://namecheap.pxf.io/c/3173023/1183697/5618"
-                title="ads"
+              <a
+                :href="`/redirect/${rectangle?.slug}`"
+                target="_blank"
+                rel="sponsored nofollow noopener"
               >
-                <NuxtImg src="/ads/300x250.gif" alt="" class="w-full rounded" />
-              </NuxtLink>
+                <div
+                  class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
+                >
+                  <NuxtImg
+                    :src="rectangle?.image_url"
+                    :alt="rectangle?.alt_text ?? rectangle?.title"
+                    class="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                    format="webp"
+                  />
+                </div>
+              </a>
             </div>
           </aside>
         </div>

@@ -1,6 +1,7 @@
 <script setup>
 const couponStore = useCouponStore();
 const merchantStore = useMerchantStore();
+const bannerStore = useBannerStore();
 
 const {
   data: coupons,
@@ -13,6 +14,10 @@ const {
 const { data: stores } = await useAsyncData("homepage-stores", () =>
   merchantStore.getFeaturedStores(),
 );
+
+const { data: banner } = await useAsyncData("home-banner", async () => {
+  return await bannerStore.getBanner("728x90");
+});
 </script>
 
 <template>
@@ -156,6 +161,22 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <CouponCard v-for="coupon in coupons" :coupon="coupon" />
       </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4">
+      <a
+        :href="`/redirect/${banner?.slug}`"
+        target="_blank"
+        rel="nofollow sponsored noopener noreferrer"
+        class="group block overflow-hidden rounded-xl"
+      >
+        <NuxtImg
+          :src="banner?.image_url"
+          :alt="banner?.title"
+          loading="lazy"
+          class="w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+      </a>
     </section>
 
     <section class="max-w-7xl mx-auto px-4 py-8">

@@ -7,17 +7,15 @@ const navItems = [
   { label: "Coupons", to: "/coupons" },
   { label: "Stores", to: "/stores" },
   { label: "Categories", to: "/categories" },
-  { label: "Submit Coupon", to: "/" },
 ];
 </script>
 
 <template>
   <header
-    class="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur-md"
+    class="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur"
   >
     <div class="mx-auto max-w-7xl px-4">
       <div class="flex h-16 items-center justify-between lg:h-20">
-        <!-- Logo -->
         <a href="/" class="shrink-0">
           <NuxtImg
             src="/logo.svg"
@@ -26,17 +24,16 @@ const navItems = [
           />
         </a>
 
-        <!-- Desktop Nav -->
-        <nav class="hidden items-center gap-1 lg:flex">
+        <nav class="hidden items-center gap-3 lg:flex">
           <NuxtLink
             v-for="item in navItems"
             :key="item.to"
             :to="item.to"
-            class="rounded-full px-4 py-2 text-sm font-medium transition"
+            class="rounded-full px-4 py-2 text-sm font-semibold transition"
             :class="
               route.path === item.to
                 ? 'bg-primary/10 text-primary'
-                : 'text-slate-700 hover:bg-slate-100 hover:text-primary'
+                : 'text-body hover:bg-slate-100 hover:text-primary'
             "
           >
             {{ item.label }}
