@@ -98,7 +98,7 @@ const { data: sidebar } = await useAsyncData("banner-300x250", async () => {
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
           <div class="space-y-6">
             <div class="space-y-4">
-              <CouponCardWithStore
+              <CouponListCard
                 v-for="coupon in coupons"
                 :key="coupon.id"
                 :coupon="coupon"

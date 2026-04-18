@@ -170,7 +170,7 @@ export const useCouponStore = defineStore("coupon", {
     openDialog(coupon) {
       this.coupon = coupon;
       this.dialog = true;
-      if (process.client && coupon?.slug) {
+      if (coupon?.slug) {
         const url = `/stores/${coupon.stores?.slug}?coupon=${coupon.slug}&modal=1`;
         window.open(url, "_blank", "noopener,noreferrer");
       }
@@ -178,8 +178,8 @@ export const useCouponStore = defineStore("coupon", {
 
     // modal close
     closeDialog() {
-      this.dialog = false;
-      this.coupon = null;
+      // this.dialog = false;
+      // this.coupon = null;
     },
   },
 });

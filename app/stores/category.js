@@ -140,5 +140,34 @@ export const useCategoryStore = defineStore("category", {
         return null;
       }
     },
+
+    async getStoresByCategory(slug) {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data: category, error: categoryError } = await supabase
+          .from("categories")
+          .select("*")
+          .eq("slug", slug)
+          .single();
+
+        if (categoryError) throw categoryError;
+
+        const { data: stores, error: storeError } = await supabase
+          .from("stores")
+          .select("*")
+          .eq("category_id", category.id);
+
+        if (storeError) throw storeError;
+
+        return {
+          category,
+          stores,
+        };
+      } catch (error) {
+        this.errors = error.message;
+        return null;
+      }
+    },
   },
 });

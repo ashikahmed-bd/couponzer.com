@@ -33,7 +33,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <Head>
+  <Head v-if="props.title">
     <Title>{{ props.title }}</Title>
 
     <Meta name="description" :content="props.description" />
