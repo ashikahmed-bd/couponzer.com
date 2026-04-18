@@ -7,7 +7,10 @@ export const useCouponStore = defineStore("coupon", {
     coupon: null,
   }),
 
-  persist: true,
+  // persist: true,
+  persist: {
+    pick: ["dialog", "coupon"],
+  },
 
   getters: {},
 
@@ -167,19 +170,21 @@ export const useCouponStore = defineStore("coupon", {
       }
     },
 
-    openDialog(coupon) {
+    async openDialog(coupon) {
       this.coupon = coupon;
       this.dialog = true;
+
       if (coupon?.slug) {
-        const url = `/stores/${coupon.stores?.slug}?coupon=${coupon.slug}&modal=1`;
+        const url = `/stores/${coupon.stores.slug}?coupon=${coupon.slug}`;
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
         window.open(url, "_blank", "noopener,noreferrer");
       }
     },
 
-    // modal close
     closeDialog() {
-      // this.dialog = false;
-      // this.coupon = null;
+      this.dialog = false;
+      this.coupon = null;
     },
   },
 });

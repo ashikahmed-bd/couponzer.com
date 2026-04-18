@@ -114,7 +114,7 @@ const copyCode = async () => {
                   "
                   rel="nofollow sponsored"
                   target="_blank"
-                  class="font-semibold text-slate-700 hover:underline"
+                  class="font-semibold text-body hover:underline"
                 >
                   Visit Store
                 </a>

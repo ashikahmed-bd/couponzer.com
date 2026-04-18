@@ -13,20 +13,20 @@ const { data, pending, error } = await useAsyncData(
 <template>
   <main>
     <SeoMeta
-      title="Top Stores with Coupons & Deals | Couponzer"
-      description="Browse top stores on Couponzer and find the latest coupons, promo codes, and verified deals. Save more with exclusive discounts from trusted brands and online shops."
-      keywords="Couponzer stores, top stores, store coupons, brand deals, online shopping discounts, verified store offers"
+      :title="data.category?.meta_title"
+      :description="data.category?.meta_description"
+      :keywords="data.category?.meta_keywords"
     />
 
     <section class="relative overflow-hidden bg-white/60 py-6">
       <div class="mx-auto max-w-7xl px-4 py-6">
         <div class="max-w-3xl">
           <h1 class="text-3xl font-bold tracking-tight text-accent md:text-4xl">
-            {{ data.category?.meta_title }}
+            {{ data.category?.title }}
           </h1>
 
           <p class="mt-3 max-w-2xl text-sm leading-6 text-body sm:text-base">
-            {{ data.category?.meta_description }}
+            {{ data.category?.description }}
           </p>
         </div>
       </div>
