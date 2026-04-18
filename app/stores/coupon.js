@@ -172,8 +172,6 @@ export const useCouponStore = defineStore("coupon", {
     },
 
     async openDialog(coupon) {
-      // this.coupon = JSON.parse(JSON.stringify(coupon));
-
       this.coupon = {
         id: coupon.id,
         title: coupon.title,
@@ -193,8 +191,10 @@ export const useCouponStore = defineStore("coupon", {
 
       this.dialog = true;
 
-      const url = `/stores/${coupon.stores.slug}?coupon=${coupon.slug}`;
-      window.open(url, "_blank", "noopener,noreferrer");
+      const url = `/stores/${this.coupon.store?.slug}?coupon=${this.coupon.slug}`;
+      if (this.coupon.store?.slug && this.coupon.slug) {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
     },
 
     closeDialog() {
