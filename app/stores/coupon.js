@@ -9,6 +9,7 @@ export const useCouponStore = defineStore("coupon", {
 
   // persist: true,
   persist: {
+    storage: piniaPluginPersistedstate.localStorage(),
     pick: ["dialog", "coupon"],
   },
 
@@ -171,15 +172,29 @@ export const useCouponStore = defineStore("coupon", {
     },
 
     async openDialog(coupon) {
-      this.coupon = coupon;
+      // this.coupon = JSON.parse(JSON.stringify(coupon));
+
+      this.coupon = {
+        id: coupon.id,
+        title: coupon.title,
+        slug: coupon.slug,
+        code: coupon.code,
+        discount_text: coupon.discount_text,
+        affiliate_url: coupon.affiliate_url,
+        instructions: coupon.instructions,
+        store: {
+          id: coupon.stores?.id ?? coupon.store_id,
+          name: coupon.stores?.name ?? null,
+          slug: coupon.stores?.slug ?? null,
+          logo_url: coupon.stores?.logo_url ?? null,
+          website_url: coupon.stores?.website_url ?? null,
+        },
+      };
+
       this.dialog = true;
 
-      if (coupon?.slug) {
-        const url = `/stores/${coupon.stores.slug}?coupon=${coupon.slug}`;
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        window.open(url, "_blank", "noopener,noreferrer");
-      }
+      const url = `/stores/${coupon.stores.slug}?coupon=${coupon.slug}`;
+      window.open(url, "_blank", "noopener,noreferrer");
     },
 
     closeDialog() {

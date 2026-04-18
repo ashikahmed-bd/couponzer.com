@@ -2,7 +2,6 @@ import { getHeader, getRouterParam, sendRedirect, setHeader } from "h3";
 import { serverSupabaseClient } from "#supabase/server";
 
 export default defineEventHandler(async (event) => {
-  // redirect route search engine-e index na korte
   setHeader(event, "X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet");
 
   const slug = getRouterParam(event, "slug");

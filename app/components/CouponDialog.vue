@@ -40,7 +40,7 @@ const copyCode = async () => {
               class="flex items-center justify-between border-b border-border px-6 py-4"
             >
               <h2 class="pr-6 text-base font-semibold text-accent">
-                {{ coupon?.stores?.name }}
+                {{ coupon?.store?.name }}
               </h2>
 
               <button
@@ -54,8 +54,8 @@ const copyCode = async () => {
             <div class="relative flex justify-center">
               <div class="rounded-2xl p-5">
                 <NuxtImg
-                  :src="coupon?.stores?.logo_url ?? '/stores/default.png'"
-                  :alt="coupon?.stores?.name"
+                  :src="coupon?.store?.logo_url ?? '/stores/default.png'"
+                  :alt="coupon?.store?.name"
                   class="h-16 w-auto object-contain"
                 />
               </div>
@@ -73,7 +73,7 @@ const copyCode = async () => {
                     rel="nofollow sponsored"
                     target="_blank"
                     class="font-semibold text-primary"
-                    >{{ coupon?.stores?.name }}</a
+                    >{{ coupon?.store?.name }}</a
                   >
                 </div>
                 <div
@@ -99,18 +99,18 @@ const copyCode = async () => {
                 Continue to
                 <a
                   :href="
-                    coupon?.stores?.affiliate_url ?? coupon?.stores?.website_url
+                    coupon?.store?.affiliate_url ?? coupon?.store?.website_url
                   "
                   rel="nofollow sponsored"
                   target="_blank"
                   class="font-semibold text-primary after:content-['•'] after:mx-1 after:text-slate-400"
                 >
-                  {{ coupon?.stores?.name }}
+                  {{ coupon?.store?.name }}
                 </a>
 
                 <a
                   :href="
-                    coupon?.stores?.affiliate_url ?? coupon?.stores?.website_url
+                    coupon?.store?.affiliate_url ?? coupon?.store?.website_url
                   "
                   rel="nofollow sponsored"
                   target="_blank"

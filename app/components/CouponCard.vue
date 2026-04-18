@@ -80,7 +80,7 @@ const statusText = computed(() => {
         <a
           :href="`/click/${coupon.slug}`"
           rel="nofollow sponsored"
-          @click.prevent="couponStore.openDialog(coupon)"
+          @click="couponStore.openDialog(coupon)"
           class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
         >
           <span
