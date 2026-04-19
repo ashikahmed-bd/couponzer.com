@@ -1,4 +1,11 @@
 <script setup>
+const route = useRoute();
+const couponStore = useCouponStore();
+
+const { data, error } = await useAsyncData(`coupon-${route.params.slug}`, () =>
+  couponStore.getCouponBySlug(route.params.slug),
+);
+
 useSchemaOrg([
   defineWebPage({
     "@type": "WebPage",
@@ -53,6 +60,7 @@ useSchemaOrg([
 
 <template>
   <main>
+    {{ coupon }}
     <SeoMeta title="" description="" keywords="" url="" image="" />
     <h1>Get 50% Off on Amazon</h1>
     <p>

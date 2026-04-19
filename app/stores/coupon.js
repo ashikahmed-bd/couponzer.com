@@ -127,6 +127,50 @@ export const useCouponStore = defineStore("coupon", {
       }
     },
 
+    async getCouponBySlug(slug) {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data, error } = await supabase
+          .from("coupons")
+          .select(`*, stores(*)`)
+          .eq("slug", slug)
+          .single();
+
+        if (error) throw error;
+
+        this.coupon = {
+          id: data.id,
+          title: data.title,
+          slug: data.slug,
+          code: data.code,
+          discount_text: data.discount_text,
+          affiliate_url: data.affiliate_url,
+          instructions: data.instructions,
+          store: {
+            id: data.stores?.id ?? data.store_id,
+            name: data.stores?.name ?? null,
+            slug: data.stores?.slug ?? null,
+            logo_url: data.stores?.logo_url ?? null,
+            website_url: data.stores?.website_url ?? null,
+          },
+        };
+
+        this.dialog = true;
+
+        if (this.coupon.slug) {
+          await navigateTo(
+            `/store/${this.coupon.store.slug}?coupon=${this.coupon.slug}`,
+          );
+        }
+
+        return data;
+      } catch (error) {
+        this.errors = error.message;
+        return null;
+      }
+    },
+
     async getCoupons(page = 1, limit = 10) {
       const supabase = useSupabaseClient();
 
@@ -191,7 +235,7 @@ export const useCouponStore = defineStore("coupon", {
 
       this.dialog = true;
 
-      const url = `/stores/${this.coupon.store?.slug}?coupon=${this.coupon.slug}`;
+      const url = `/store/${this.coupon.store?.slug}?coupon=${this.coupon.slug}`;
       if (this.coupon.store?.slug && this.coupon.slug) {
         window.open(url, "_blank", "noopener,noreferrer");
       }
