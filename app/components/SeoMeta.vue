@@ -30,6 +30,19 @@ const props = defineProps({
     default: "Couponzer.com",
   },
 });
+
+const requestURL = useRequestURL();
+
+const canonicalUrl = computed(() => {
+  if (!props.url) return "";
+
+  if (props.url.startsWith("http")) {
+    return props.url;
+  }
+
+  const path = props.url.startsWith("/") ? props.url : `/${props.url}`;
+  return `${requestURL.origin}${path}`;
+});
 </script>
 
 <template>
@@ -38,7 +51,7 @@ const props = defineProps({
 
     <Meta name="description" :content="props.description" />
     <Meta name="keywords" :content="props.keywords" />
-    <Link rel="canonical" :href="props.url" />
+    <Link rel="canonical" :href="canonicalUrl" />
     <Meta name="robots" :content="props.robots" />
     <Meta name="author" :content="props.author" />
 
@@ -46,14 +59,14 @@ const props = defineProps({
     <Meta property="og:description" :content="props.description" />
     <Meta property="og:image" :content="props.image" />
     <Meta property="og:image:alt" :content="props.title" />
-    <Meta property="og:url" :content="props.url" />
+    <Meta property="og:url" :content="canonicalUrl" />
     <Meta property="og:type" content="website" />
     <Meta property="og:locale" content="en_US" />
 
     <Meta name="twitter:card" content="summary_large_image" />
     <Meta name="twitter:title" :content="props.title" />
     <Meta name="twitter:description" :content="props.description" />
-    <Meta name="twitter:url" :content="props.url" />
+    <Meta name="twitter:url" :content="canonicalUrl" />
     <Meta name="twitter:image" :content="props.image" />
     <Meta name="twitter:image:alt" :content="props.title" />
     <Meta name="twitter:creator" content="@couponzer" />

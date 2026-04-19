@@ -30,8 +30,8 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://www.couponzer.com',
-    name: 'Couponzer - Latest Coupons, Promo Codes & Discount Deals',
-    description: 'Discover the latest coupon codes, promo deals, and exclusive discounts from top brands. Save more with Couponzer.',
+    name: 'Couponzer- Latest coupon, Discount Codes, Promo codes and Cashback offer',
+    description: 'description: Discover the latest coupon codes, promo deals, cash back offer and exclusive discounts from top brands in the world. Save more with Couponzer.',
     defaultLocale: 'en',
 
     host: 'https://www.couponzer.com',
@@ -39,20 +39,42 @@ export default defineNuxtConfig({
 
 
   sitemap: {
-    urls: [
-      { loc: '/', lastmod: new Date().toISOString() },  
-      { loc: '/coupons', lastmod: new Date().toISOString() },
-      { loc: '/stores', lastmod: new Date().toISOString() },
-      { loc: '/categories', lastmod: new Date().toISOString() }, 
-      { loc: '/help', lastmod: new Date().toISOString() },
-      { loc: '/privacy', lastmod: new Date().toISOString() },
-      { loc: '/terms', lastmod: new Date().toISOString() },
-      { loc: '/disclaimer', lastmod: new Date().toISOString() },
-    ],
-    sources: ['/api/__sitemap__/coupons', '/api/__sitemap__/stores', '/api/__sitemap__/categories'],
+    sitemaps: {
+      pages: {
+        urls: [
+          { loc: '/', lastmod: new Date().toISOString() },
+          { loc: '/coupons', lastmod: new Date().toISOString() },
+          { loc: '/stores', lastmod: new Date().toISOString() },
+          { loc: '/categories', lastmod: new Date().toISOString() },
+          { loc: '/help', lastmod: new Date().toISOString() },
+          { loc: '/privacy', lastmod: new Date().toISOString() },
+          { loc: '/terms', lastmod: new Date().toISOString() },
+          { loc: '/disclaimer', lastmod: new Date().toISOString() },
+          ],
+      },
+
+      coupons: {
+        includeAppSources: true,
+        include: ['/coupon/**'],
+        sources: ['/api/sitemap/coupons'],
+      },
+
+      stores: {
+        includeAppSources: true,
+        include: ['/store/**'],
+        sources: ['/api/sitemap/stores'],
+      },
+
+      categories: {
+        includeAppSources: true,
+        include: ['/category/**'],
+        sources: ['/api/sitemap/categories'],
+      },
+    },
+
     exclude: [
       '/auth/**',
-      '/dashboard/**'
+      '/dashboard/**',
     ],
   },
 

@@ -4,22 +4,24 @@ export default defineSitemapEventHandler(async (event) => {
   const supabase = await serverSupabaseClient(event);
 
   const { data, error } = await supabase
-    .from("stores")
+    .from("coupons")
     .select("slug, updated_at")
-    .eq("status", "active")
+    .eq("is_active", true)
     .not("slug", "is", null)
     .order("id", { ascending: false });
 
   if (error) {
-    console.error("stores sitemap error:", error);
+    console.error("coupons sitemap error:", error);
     throw createError({
       statusCode: 500,
       statusMessage: error.message,
     });
   }
 
-  return (data || []).map((store) => ({
-    loc: `/store/${store.slug}`,
-    lastmod: store.updated_at || new Date().toISOString(),
+  return (data ?? []).map((coupon) => ({
+    loc: `/coupon/${coupon.slug}`,
+    lastmod: coupon.updated_at
+      ? new Date(coupon.updated_at).toISOString()
+      : new Date().toISOString(),
   }));
 });

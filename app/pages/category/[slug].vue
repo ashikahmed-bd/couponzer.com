@@ -86,6 +86,8 @@ useSchemaOrg([
       :title="data.category?.meta_title"
       :description="data.category?.meta_description"
       :keywords="data.category?.meta_keywords"
+      :url="data.category?.canonical_url"
+      :image="data.category?.image_url"
     />
 
     <section class="relative overflow-hidden bg-white/60 py-6">

@@ -52,7 +52,8 @@ useSchemaOrg([
 </script>
 
 <template>
-  <div>
+  <main>
+    <SeoMeta title="" description="" keywords="" url="" image="" />
     <h1>Get 50% Off on Amazon</h1>
     <p>
       Use this verified Amazon coupon code and get 50% discount on electronics
@@ -62,7 +63,7 @@ useSchemaOrg([
     <p><strong>Code:</strong> SAVE50</p>
     <p><strong>Expires:</strong> April 30, 2026</p>
     <p><strong>Store:</strong> Amazon</p>
-  </div>
+  </main>
 </template>
 
 <style scoped></style>

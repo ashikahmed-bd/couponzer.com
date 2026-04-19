@@ -19,6 +19,8 @@ export default defineSitemapEventHandler(async (event) => {
 
   return (data ?? []).map((category) => ({
     loc: `/category/${category.slug}`,
-    lastmod: category.updated_at ?? new Date().toISOString(),
+    lastmod: category.updated_at
+      ? new Date(category.updated_at).toISOString()
+      : new Date().toISOString(),
   }));
 });
