@@ -9,66 +9,25 @@ const {
 
 useSchemaOrg([
   defineWebPage({
-    "@type": "CollectionPage",
-    name: "All Categories | Couponzer",
+    name: "All Categories - Couponzer",
+    url: "https://www.couponzer.com/categories/",
     description:
-      "Browse coupon categories on Couponzer to find the latest promo codes, discount deals, and special offers.",
-    url: "https://www.couponzer.com/categories",
-    inLanguage: "en",
+      "Browse all coupon categories on Couponzer and discover the latest promo codes, discount deals, and verified offers by category.",
+    inLanguage: "en-US",
   }),
 
   defineBreadcrumb({
     itemListElement: [
       {
         name: "Home",
-        item: "https://www.couponzer.com",
+        item: "https://www.couponzer.com/",
       },
       {
         name: "Categories",
-        item: "https://www.couponzer.com/categories",
+        item: "https://www.couponzer.com/categories/",
       },
     ],
   }),
-
-  {
-    "@type": "ItemList",
-    name: "Coupon Categories",
-    description: "A curated list of coupon categories available on Couponzer.",
-    itemListOrder: "https://schema.org/ItemListOrderAscending",
-    numberOfItems: 5,
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        url: "https://www.couponzer.com/category/electronics",
-        name: "Electronics",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        url: "https://www.couponzer.com/category/fashion",
-        name: "Fashion",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        url: "https://www.couponzer.com/category/food",
-        name: "Food",
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        url: "https://www.couponzer.com/category/travel",
-        name: "Travel",
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        url: "https://www.couponzer.com/category/health-beauty",
-        name: "Health & Beauty",
-      },
-    ],
-  },
 ]);
 </script>
 

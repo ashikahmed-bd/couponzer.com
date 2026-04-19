@@ -8,8 +8,8 @@ useSchemaOrg([
     name: "Couponzer",
     url: "https://www.couponzer.com",
     description:
-      "Find verified coupons, promo codes, and discount deals for top online stores.",
-    inLanguage: "en",
+      "Couponzer is a coupon and promo code sharing website where users can find verified coupons, promo codes, and discount deals for online stores.",
+    inLanguage: "en-US",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://www.couponzer.com/search?q={search_term_string}",
@@ -19,6 +19,8 @@ useSchemaOrg([
 
   defineOrganization({
     name: "Couponzer",
+    description:
+      "Couponzer is a coupon and promo code sharing website where users can find verified coupons, promo codes, and discount deals for online stores.",
     url: "https://www.couponzer.com",
     logo: "https://www.couponzer.com/logo.svg",
     sameAs: [

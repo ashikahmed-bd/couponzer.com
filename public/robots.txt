@@ -1,2 +1,27 @@
-User-Agent: *
-Disallow: /
+User-agent: *
+Allow: /
+
+# Block sensitive routes
+Disallow: /login
+Disallow: /dashboard
+Disallow: /dashboard/*
+Disallow: /admin
+Disallow: /api
+Disallow: /*?
+Disallow: /*?/
+
+# Block query parameters (avoid duplicate content)
+Disallow: /*?*
+
+# Block system/internal files
+Disallow: /_nuxt/
+Disallow: /server/
+Disallow: /node_modules/
+
+# Allow important assets
+Allow: /_nuxt/*.js
+Allow: /_nuxt/*.css
+Allow: /images/
+
+# Sitemap
+Sitemap: https://www.couponzer.com/sitemap.xml

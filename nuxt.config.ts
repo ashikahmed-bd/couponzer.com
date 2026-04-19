@@ -31,8 +31,8 @@ export default defineNuxtConfig({
   site: {
     url: 'https://www.couponzer.com',
     name: 'Couponzer- Latest coupon, Discount Codes, Promo codes and Cashback offer',
-    description: 'description: Discover the latest coupon codes, promo deals, cash back offer and exclusive discounts from top brands in the world. Save more with Couponzer.',
-    defaultLocale: 'en',
+    description: 'Couponzer is a coupon and promo code sharing website where users can find verified coupons, promo codes, and discount deals for online stores.',
+    defaultLocale: 'en-US',
 
     host: 'https://www.couponzer.com',
   },

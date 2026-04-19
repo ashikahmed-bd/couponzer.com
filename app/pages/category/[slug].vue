@@ -1,82 +1,61 @@
 <script setup>
 const categoryStore = useCategoryStore();
 const route = useRoute();
+const siteUrl = "https://www.couponzer.com";
 
 const { data, pending, error } = await useAsyncData(
-  () => `category-${route.params.slug}`,
+  `category-${route.params.slug}`,
   async () => {
     return await categoryStore.getStoresByCategory(route.params.slug);
   },
 );
 
+const categoryName = computed(() => {
+  return data.value?.category?.name ?? "Category";
+});
+
+const categoryUrl = computed(() => {
+  return `${siteUrl}/category/${route.params.slug}/`;
+});
+
+const categoryStoreList = computed(() => {
+  return (data.value?.stores || []).map((store, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: `${store.name} Coupons`,
+    url: `${siteUrl}/store/${store.slug}/`,
+  }));
+});
+
 useSchemaOrg([
   defineWebPage({
-    "@type": "CollectionPage",
-    name: "Electronics Coupons & Deals | Couponzer",
-    description:
-      "Find the best electronics coupons, promo codes, and discount deals from top brands.",
-    url: "https://www.couponzer.com/category/electronics",
-    inLanguage: "en",
+    name: `${categoryName.value} Coupons & Promo Codes - Couponzer`,
+    url: categoryUrl.value,
+    description: `Discover the latest ${categoryName.value.toLowerCase()} coupons, promo codes, and discount deals at Couponzer.`,
+    inLanguage: "en-US",
+  }),
+
+  defineItemList({
+    name: `${categoryName.value} Stores`,
+    itemListElement: categoryStoreList.value,
   }),
 
   defineBreadcrumb({
     itemListElement: [
       {
         name: "Home",
-        item: "https://www.couponzer.com",
+        item: `${siteUrl}/`,
       },
       {
         name: "Categories",
-        item: "https://www.couponzer.com/categories",
+        item: `${siteUrl}/categories/`,
       },
       {
-        name: "Electronics",
-        item: "https://www.couponzer.com/category/electronics",
+        name: categoryName.value,
+        item: categoryUrl.value,
       },
     ],
   }),
-
-  {
-    "@type": "ItemList",
-    name: "Electronics Coupons",
-    description:
-      "Latest electronics coupon codes, promo deals, and discounts available now.",
-    itemListOrder: "https://schema.org/ItemListOrderDescending",
-    numberOfItems: 5,
-
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        url: "https://www.couponzer.com/coupon/amazon-electronics-50-off",
-        name: "Amazon 50% Off Electronics",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        url: "https://www.couponzer.com/coupon/daraz-tech-sale",
-        name: "Daraz Tech Week Sale",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        url: "https://www.couponzer.com/coupon/bestbuy-discount",
-        name: "BestBuy Gadget Discount Code",
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        url: "https://www.couponzer.com/coupon/ebay-electronics",
-        name: "eBay Electronics Deal",
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        url: "https://www.couponzer.com/coupon/aliexpress-gadgets",
-        name: "AliExpress Gadget Offers",
-      },
-    ],
-  },
 ]);
 </script>
 

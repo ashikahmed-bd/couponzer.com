@@ -25,67 +25,25 @@ const loadMore = () => {
 
 useSchemaOrg([
   defineWebPage({
-    "@type": "CollectionPage",
-    name: "All Stores & Brands | Couponzer",
+    name: "All Stores & Brands - Couponzer",
+    url: "https://www.couponzer.com/stores/",
     description:
-      "Browse all stores and brands on Couponzer to find the latest coupons, promo codes, and discount deals.",
-    url: "https://www.couponzer.com/stores",
-    inLanguage: "en",
+      "Browse all stores on Couponzer and find the latest coupons, promo codes, and exclusive deals from your favorite brands.",
+    inLanguage: "en-US",
   }),
 
   defineBreadcrumb({
     itemListElement: [
       {
         name: "Home",
-        item: "https://www.couponzer.com",
+        item: "https://www.couponzer.com/",
       },
       {
         name: "Stores",
-        item: "https://www.couponzer.com/stores",
+        item: "https://www.couponzer.com/stores/",
       },
     ],
   }),
-
-  {
-    "@type": "ItemList",
-    name: "Popular Stores",
-    description:
-      "A curated list of popular stores and brands available on Couponzer.",
-    itemListOrder: "https://schema.org/ItemListOrderAscending",
-    numberOfItems: 5,
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        url: "https://www.couponzer.com/store/amazon",
-        name: "Amazon",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        url: "https://www.couponzer.com/store/daraz",
-        name: "Daraz",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        url: "https://www.couponzer.com/store/foodpanda",
-        name: "Foodpanda",
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        url: "https://www.couponzer.com/store/uber",
-        name: "Uber",
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        url: "https://www.couponzer.com/store/booking",
-        name: "Booking.com",
-      },
-    ],
-  },
 ]);
 </script>
 

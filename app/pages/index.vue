@@ -21,18 +21,18 @@ const { data: banner } = await useAsyncData("home-banner", async () => {
 
 useSchemaOrg([
   defineWebPage({
-    name: "Couponzer - Latest Coupons & Deals",
-    url: "https://www.couponzer.com",
+    name: "Couponzer - Latest Coupons, Promo Codes & Deals",
+    url: "https://www.couponzer.com/",
     description:
-      "Browse the best coupon codes, promo deals, and discounts updated daily on Couponzer.",
-    inLanguage: "en",
+      "Browse the latest verified coupons, promo codes, and discount deals updated daily on Couponzer.",
+    inLanguage: "en-US",
   }),
 
   defineBreadcrumb({
     itemListElement: [
       {
         name: "Home",
-        item: "https://www.couponzer.com",
+        item: "https://www.couponzer.com/",
       },
     ],
   }),

@@ -123,13 +123,13 @@ const submit = async () => {
               </div>
 
               <div class="bg-gray-100 p-4 rounded-2xl max-w-2xl space-y-2">
-                <p class="text-body text-sm font-medium">
+                <p class="text-dark text-sm font-bold text-center">
                   Never miss a great
                   <a
                     :href="`/click/${coupon.slug}`"
                     rel="nofollow sponsored"
                     target="_blank"
-                    class="font-semibold text-primary"
+                    class="text-primary"
                   >
                     {{ coupon?.store?.name }}
                   </a>

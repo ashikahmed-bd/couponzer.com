@@ -399,7 +399,7 @@ useSchemaOrg([
   font-weight: 700;
   line-height: 1.3;
   color: #0f172a;
-  margin: 0;
+  margin: 8px 0;
 }
 
 :deep(.markdown .md-editor-preview h1) {
@@ -425,12 +425,14 @@ useSchemaOrg([
 
 :deep(.markdown .md-editor-preview p) {
   color: #475569;
+  margin: 0;
 }
 
 :deep(.markdown .md-editor-preview ul) {
   padding-left: 1.5rem;
   list-style-type: disc;
   list-style-position: outside;
+  margin: 6px 4px;
 }
 
 :deep(.markdown .md-editor-preview ol) {
@@ -442,6 +444,7 @@ useSchemaOrg([
 :deep(.markdown .md-editor-preview li) {
   display: list-item;
   color: #475569;
+  margin: 0;
 }
 
 :deep(.markdown .md-editor-preview ul li::marker),
