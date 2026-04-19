@@ -105,7 +105,7 @@ const ratingText = computed(() => {
           </button>
 
           <NuxtLink
-            :to="`/stores/${store.slug}`"
+            :to="`/store/${store.slug}`"
             class="inline-flex items-center gap-2 rounded bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary"
           >
             View

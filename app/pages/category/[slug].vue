@@ -8,6 +8,76 @@ const { data, pending, error } = await useAsyncData(
     return await categoryStore.getStoresByCategory(route.params.slug);
   },
 );
+
+useSchemaOrg([
+  defineWebPage({
+    "@type": "CollectionPage",
+    name: "Electronics Coupons & Deals | Couponzer",
+    description:
+      "Find the best electronics coupons, promo codes, and discount deals from top brands.",
+    url: "https://www.couponzer.com/category/electronics",
+    inLanguage: "en",
+  }),
+
+  defineBreadcrumb({
+    itemListElement: [
+      {
+        name: "Home",
+        item: "https://www.couponzer.com",
+      },
+      {
+        name: "Categories",
+        item: "https://www.couponzer.com/categories",
+      },
+      {
+        name: "Electronics",
+        item: "https://www.couponzer.com/category/electronics",
+      },
+    ],
+  }),
+
+  {
+    "@type": "ItemList",
+    name: "Electronics Coupons",
+    description:
+      "Latest electronics coupon codes, promo deals, and discounts available now.",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: 5,
+
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        url: "https://www.couponzer.com/coupon/amazon-electronics-50-off",
+        name: "Amazon 50% Off Electronics",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        url: "https://www.couponzer.com/coupon/daraz-tech-sale",
+        name: "Daraz Tech Week Sale",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        url: "https://www.couponzer.com/coupon/bestbuy-discount",
+        name: "BestBuy Gadget Discount Code",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        url: "https://www.couponzer.com/coupon/ebay-electronics",
+        name: "eBay Electronics Deal",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        url: "https://www.couponzer.com/coupon/aliexpress-gadgets",
+        name: "AliExpress Gadget Offers",
+      },
+    ],
+  },
+]);
 </script>
 
 <template>

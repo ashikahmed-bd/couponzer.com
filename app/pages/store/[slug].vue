@@ -38,6 +38,86 @@ const { data: rectangle } = await useAsyncData(
     return await bannerStore.getBanner("300x250");
   },
 );
+
+useSchemaOrg([
+  defineWebPage({
+    "@type": "WebPage",
+    name: "Amazon Coupons & Promo Codes | Couponzer",
+    description:
+      "Find the latest Amazon coupons, promo codes, and discount deals on Couponzer.",
+    url: "https://www.couponzer.com/store/amazon",
+    inLanguage: "en",
+  }),
+
+  defineBreadcrumb({
+    itemListElement: [
+      {
+        name: "Home",
+        item: "https://www.couponzer.com",
+      },
+      {
+        name: "Stores",
+        item: "https://www.couponzer.com/stores",
+      },
+      {
+        name: "Amazon",
+        item: "https://www.couponzer.com/store/amazon",
+      },
+    ],
+  }),
+
+  defineOrganization({
+    name: "Amazon",
+    url: "https://www.couponzer.com/store/amazon",
+    logo: "https://www.couponzer.com/logo/amazon.png",
+    sameAs: [
+      "https://www.facebook.com/Amazon",
+      "https://twitter.com/amazon",
+      "https://www.instagram.com/amazon",
+    ],
+  }),
+
+  {
+    "@type": "ItemList",
+    name: "Amazon Coupons",
+    description:
+      "Latest Amazon coupon codes, promo deals, and discounts available now.",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: 5,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        url: "https://www.couponzer.com/coupon/amazon-50-off",
+        name: "Amazon 50% Off Coupon",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        url: "https://www.couponzer.com/coupon/amazon-free-shipping",
+        name: "Amazon Free Shipping Code",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        url: "https://www.couponzer.com/coupon/amazon-student-deal",
+        name: "Amazon Student Discount",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        url: "https://www.couponzer.com/coupon/amazon-fashion-sale",
+        name: "Amazon Fashion Sale Offer",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        url: "https://www.couponzer.com/coupon/amazon-electronics-deal",
+        name: "Amazon Electronics Discount",
+      },
+    ],
+  },
+]);
 </script>
 
 <template>

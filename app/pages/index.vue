@@ -18,6 +18,25 @@ const { data: stores } = await useAsyncData("homepage-stores", () =>
 const { data: banner } = await useAsyncData("home-banner", async () => {
   return await bannerStore.getBanner("728x90");
 });
+
+useSchemaOrg([
+  defineWebPage({
+    name: "Couponzer - Latest Coupons & Deals",
+    url: "https://www.couponzer.com",
+    description:
+      "Browse the best coupon codes, promo deals, and discounts updated daily on Couponzer.",
+    inLanguage: "en",
+  }),
+
+  defineBreadcrumb({
+    itemListElement: [
+      {
+        name: "Home",
+        item: "https://www.couponzer.com",
+      },
+    ],
+  }),
+]);
 </script>
 
 <template>

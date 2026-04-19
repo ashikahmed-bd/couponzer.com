@@ -13,7 +13,7 @@ const submit = async () => {
 
 <template>
   <footer class="bg-accent-hover text-white">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 py-12">
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <p class="text-sm">
@@ -202,9 +202,7 @@ const submit = async () => {
           <NuxtLink to="/privacy-policy" class="transition hover:text-white"
             >Privacy Policy</NuxtLink
           >
-          <NuxtLink
-            to="/terms-and-conditions"
-            class="transition hover:text-white"
+          <NuxtLink to="/terms" class="transition hover:text-white"
             >Terms & Conditions</NuxtLink
           >
           <NuxtLink to="/disclaimer" class="transition hover:text-white"

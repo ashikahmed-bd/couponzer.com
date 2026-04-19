@@ -46,6 +46,71 @@ const { data: banners } = await useAsyncData("banner-728x90", async () => {
 const { data: sidebar } = await useAsyncData("banner-300x250", async () => {
   return await bannerStore.getBanner("300x250");
 });
+
+useSchemaOrg([
+  defineWebPage({
+    "@type": "CollectionPage",
+    name: "All Coupons & Promo Codes | Couponzer",
+    description:
+      "Browse the latest coupons, promo codes, and discount deals from top stores on Couponzer.",
+    url: "https://www.couponzer.com/coupons",
+    inLanguage: "en",
+  }),
+
+  defineBreadcrumb({
+    itemListElement: [
+      {
+        name: "Home",
+        item: "https://www.couponzer.com",
+      },
+      {
+        name: "Coupons",
+        item: "https://www.couponzer.com/coupons",
+      },
+    ],
+  }),
+
+  {
+    "@type": "ItemList",
+    name: "Latest Coupons",
+    description:
+      "A curated list of the latest coupons, promo codes, and discount deals available on Couponzer.",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: 5,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        url: "https://www.couponzer.com/coupon/amazon-50-off",
+        name: "Get 50% Off on Amazon",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        url: "https://www.couponzer.com/coupon/foodpanda-deal",
+        name: "Foodpanda 30% Discount Code",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        url: "https://www.couponzer.com/coupon/daraz-sale",
+        name: "Daraz Mega Sale Offer",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        url: "https://www.couponzer.com/coupon/uber-ride",
+        name: "Uber Ride Promo Code",
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        url: "https://www.couponzer.com/coupon/booking-hotel",
+        name: "Booking.com Hotel Discount",
+      },
+    ],
+  },
+]);
 </script>
 
 <template>

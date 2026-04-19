@@ -12,7 +12,7 @@ const props = defineProps({
     class="group overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-primary"
   >
     <NuxtLink
-      :to="`/stores/${store.slug}`"
+      :to="`/store/${store.slug}`"
       class="flex items-center justify-center px-4 py-6"
       :style="{
         backgroundColor: store.background || '#f9fafb',
@@ -28,7 +28,7 @@ const props = defineProps({
     <div class="p-4">
       <div class="flex items-start justify-between gap-3">
         <NuxtLink
-          :to="`/stores/${store.slug}`"
+          :to="`/store/${store.slug}`"
           class="min-w-0 flex-1 text-gray-900 hover:text-primary"
         >
           <h2 class="truncate text-base font-bold md:text-lg">
@@ -68,10 +68,11 @@ const props = defineProps({
       </div>
 
       <NuxtLink
-        :to="`/stores/${store.slug}`"
-        class="mt-4 block w-full rounded bg-primary px-4 py-3 text-center text-sm font-semibold text-white hover:bg-primary-hover"
+        :to="`/store/${store.slug}`"
+        class="flex items-center justify-center mt-4 w-full rounded bg-primary px-4 py-3 text-center text-sm font-semibold text-white hover:bg-primary-hover"
       >
-        View Store →
+        View Store
+        <UIcon name="i-lucide-arrow-up-right" class="size-5" />
       </NuxtLink>
     </div>
   </article>

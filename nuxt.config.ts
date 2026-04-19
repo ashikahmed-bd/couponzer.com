@@ -23,7 +23,38 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    'nuxt-schema-org',
+    '@nuxtjs/sitemap',
   ],
+
+
+  site: {
+    url: 'https://www.couponzer.com',
+    name: 'Couponzer - Latest Coupons, Promo Codes & Discount Deals',
+    description: 'Discover the latest coupon codes, promo deals, and exclusive discounts from top brands. Save more with Couponzer.',
+    defaultLocale: 'en',
+
+    host: 'https://www.couponzer.com',
+  },
+
+
+  sitemap: {
+    urls: [
+      { loc: '/', lastmod: new Date().toISOString() },  
+      { loc: '/coupons', lastmod: new Date().toISOString() },
+      { loc: '/stores', lastmod: new Date().toISOString() },
+      { loc: '/categories', lastmod: new Date().toISOString() }, 
+      { loc: '/help', lastmod: new Date().toISOString() },
+      { loc: '/privacy', lastmod: new Date().toISOString() },
+      { loc: '/terms', lastmod: new Date().toISOString() },
+      { loc: '/disclaimer', lastmod: new Date().toISOString() },
+    ],
+    sources: ['/api/__sitemap__/coupons', '/api/__sitemap__/stores', '/api/__sitemap__/categories'],
+    exclude: [
+      '/auth/**',
+      '/dashboard/**'
+    ],
+  },
 
   supabase: {
     redirect: false
