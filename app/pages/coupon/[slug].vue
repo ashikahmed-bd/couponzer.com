@@ -1,76 +1,36 @@
 <script setup>
+import { onMounted, watch } from "vue";
+
 const route = useRoute();
 const couponStore = useCouponStore();
 
-const { data, error } = await useAsyncData(`coupon-${route.params.slug}`, () =>
-  couponStore.getCouponBySlug(route.params.slug),
-);
+const redirect = async () => {
+  const coupon = await couponStore.getCouponBySlug(route.params.slug);
 
-useSchemaOrg([
-  defineWebPage({
-    "@type": "WebPage",
-    name: "Get 50% Off on Amazon | Couponzer",
-    description:
-      "Use this verified Amazon coupon code and get 50% discount on electronics and accessories.",
-    url: "https://www.couponzer.com/coupon/amazon-50-off",
-    inLanguage: "en",
-  }),
+  console.log(coupon);
 
-  defineBreadcrumb({
-    itemListElement: [
-      {
-        name: "Home",
-        item: "https://www.couponzer.com",
-      },
-      {
-        name: "Coupons",
-        item: "https://www.couponzer.com/coupons",
-      },
-      {
-        name: "Get 50% Off on Amazon",
-        item: "https://www.couponzer.com/coupon/amazon-50-off",
-      },
-    ],
-  }),
+  if (coupon?.slug && coupon?.store?.slug) {
+    await navigateTo(`/store/${coupon.store.slug}?coupon=${coupon.slug}`, {
+      replace: true,
+    });
+  } else {
+    console.log("Invalid coupon data:", coupon);
+  }
+};
 
-  defineOffer({
-    name: "Get 50% Off on Amazon",
-    description:
-      "Apply this promo code and save 50% on Amazon electronics and accessories.",
-    url: "https://www.couponzer.com/coupon/amazon-50-off",
-    priceCurrency: "USD",
-    availability: "https://schema.org/InStock",
+onMounted(redirect);
 
-    validFrom: "2026-04-01",
-    validThrough: "2026-04-30",
-
-    seller: {
-      "@type": "Organization",
-      name: "Amazon",
-      url: "https://www.couponzer.com/store/amazon",
-    },
-
-    itemOffered: {
-      "@type": "Service",
-      name: "Amazon Discount Offer",
-    },
-  }),
-]);
+watch(() => route.params.slug, redirect);
 </script>
 
 <template>
-  <main>
-    {{ coupon }}
-    <SeoMeta title="" description="" keywords="" url="" image="" />
-    <h1>Get 50% Off on Amazon</h1>
-    <p>
-      Use this verified Amazon coupon code and get 50% discount on electronics
-      and accessories.
-    </p>
-
-    <p><strong>Code:</strong> SAVE50</p>
-    <p><strong>Expires:</strong> April 30, 2026</p>
-    <p><strong>Store:</strong> Amazon</p>
+  <main class="min-h-screen flex items-center justify-center">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <div class="text-center">
+        <h1 class="text-xl font-semibold mb-2">Please wait...</h1>
+        <p class="text-gray-500">Redirecting you to the store page...</p>
+      </div>
+    </div>
   </main>
 </template>
 

@@ -1,6 +1,8 @@
 <script setup>
 const couponStore = useCouponStore();
+const subscriberStore = useSubscriberStore();
 const copied = ref(false);
+const route = useRoute();
 
 const closeDialog = () => {
   couponStore.closeDialog();
@@ -22,6 +24,16 @@ const copyCode = async () => {
     console.error("Copy failed:", error);
   }
 };
+
+const form = reactive({
+  email: "",
+  name: route.params.slug,
+});
+
+const submit = async () => {
+  await subscriberStore.store(form);
+  form.email = null;
+};
 </script>
 
 <template>
@@ -34,48 +46,36 @@ const copyCode = async () => {
       >
         <transition name="zoom">
           <div
-            class="relative w-full max-w-xl overflow-hidden rounded-2xl bg-white"
+            class="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white p-5"
           >
-            <header
-              class="flex items-center justify-between border-b border-border px-6 py-4"
+            <button
+              class="absolute top-2 right-2 z-10 flex size-6 items-center justify-center rounded-full border border-primary text-primary transition hover:bg-primary/10"
+              @click="closeDialog"
             >
-              <h2 class="pr-6 text-base font-semibold text-accent">
-                {{ coupon?.store?.name }}
-              </h2>
-
-              <button
-                class="flex size-8 items-center justify-center rounded-full border border-primary text-xl text-primary transition hover:bg-primary/10"
-                @click="closeDialog"
-              >
-                <UIcon name="i-lucide-x" class="size-5" />
-              </button>
-            </header>
+              <UIcon name="i-lucide-x" class="size-4 cursor-pointer" />
+            </button>
 
             <div class="relative flex justify-center">
-              <div class="rounded-2xl p-5">
+              <div class="rounded-2xl">
                 <NuxtImg
                   :src="coupon?.store?.logo_url ?? '/stores/default.png'"
                   :alt="coupon?.store?.name"
-                  class="h-16 w-auto object-contain"
+                  class="h-24 w-auto object-contain p-4"
                 />
               </div>
             </div>
 
-            <main class="px-6">
+            <main class="max-w-2xl mx-auto px-10">
               <div class="text-center">
-                <h1 class="text-3xl font-semibold text-accent">
-                  {{ coupon?.title }}
-                </h1>
-                <div class="mb-3">
-                  <span>Copy and paste this code at </span>
-                  <a
-                    :href="`/click/${coupon.slug}`"
-                    rel="nofollow sponsored"
-                    target="_blank"
-                    class="font-semibold text-primary"
-                    >{{ coupon?.store?.name }}</a
-                  >
+                <div class="py-4">
+                  <h1 class="text-xl font-semibold text-accent truncate">
+                    {{ coupon?.title }}
+                  </h1>
+                  <span class="text-sm font-normal line-clamp-2">
+                    {{ coupon?.description }}
+                  </span>
                 </div>
+
                 <div
                   class="flex max-w-md mx-auto overflow-hidden rounded-full border border-dashed border-primary bg-primary/10"
                 >
@@ -95,57 +95,78 @@ const copyCode = async () => {
                 </div>
               </div>
 
-              <div class="mt-5 text-center text-sm">
-                Continue to
-                <a
-                  :href="
-                    coupon?.store?.affiliate_url ?? coupon?.store?.website_url
-                  "
-                  rel="nofollow sponsored"
-                  target="_blank"
-                  class="font-semibold text-primary after:content-['•'] after:mx-1 after:text-slate-400"
-                >
-                  {{ coupon?.store?.name }}
-                </a>
-
-                <a
-                  :href="
-                    coupon?.store?.affiliate_url ?? coupon?.store?.website_url
-                  "
-                  rel="nofollow sponsored"
-                  target="_blank"
-                  class="font-semibold text-body hover:underline"
-                >
-                  Visit Store
-                </a>
-              </div>
-
-              <div class="text-sm leading-7">
+              <div class="text-sm mt-4">
                 <h3 class="font-bold text-dark">Offer Details:</h3>
                 <div v-html="coupon?.instructions" class="text-body"></div>
               </div>
+
+              <div
+                class="flex flex-wrap items-center justify-center gap-2 border-t border-border mt-3 py-4"
+              >
+                <span class="mr-2 text-sm font-semibold text-dark">
+                  Did it work?
+                </span>
+
+                <button
+                  class="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 font-bold text-green-600 transition hover:bg-green-200"
+                >
+                  <UIcon name="i-lucide-thumbs-up" class="size-5" />
+                  <span>Yes</span>
+                </button>
+
+                <button
+                  class="flex items-center gap-2 rounded-lg bg-red-100 px-3 py-2 font-bold text-red-600 transition hover:bg-red-200"
+                >
+                  <UIcon name="i-lucide-thumbs-down" class="size-5" />
+                  <span>No</span>
+                </button>
+              </div>
+
+              <div class="bg-gray-100 p-4 rounded-2xl max-w-2xl space-y-2">
+                <p class="text-body text-sm font-medium">
+                  Never miss a great
+                  <a
+                    :href="`/click/${coupon.slug}`"
+                    rel="nofollow sponsored"
+                    target="_blank"
+                    class="font-semibold text-primary"
+                  >
+                    {{ coupon?.store?.name }}
+                  </a>
+                  coupon, and so many more!
+                </p>
+
+                <form @submit.prevent="submit" class="relative w-full">
+                  <input
+                    type="email"
+                    v-model="form.email"
+                    placeholder="Email Address"
+                    class="w-full px-4 py-2 pr-32 border border-border rounded outline-none focus:outline-primary"
+                  />
+
+                  <button
+                    type="submit"
+                    class="absolute top-1/2 right-1 -translate-y-1/2 bg-primary hover:bg-primary-hover text-white font-semibold px-4 py-1.5 rounded"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+
+                <p class="text-xs text-body mt-2">
+                  By clicking the Subscribe button, I agree to the
+                  <a href="/terms" class="text-primary hover:underline">
+                    Terms of Use
+                  </a>
+                  and have read the
+                  <a
+                    href="/privacy-policy "
+                    class="text-primary hover:underline"
+                  >
+                    Privacy Statement </a
+                  >.
+                </p>
+              </div>
             </main>
-            <footer
-              class="flex flex-wrap items-center justify-center gap-2 border-t border-border mt-3 py-4"
-            >
-              <span class="mr-2 text-sm font-semibold text-dark">
-                Did it work?
-              </span>
-
-              <button
-                class="flex items-center gap-2 rounded-lg bg-green-100 px-3 py-2 font-bold text-green-600 transition hover:bg-green-200"
-              >
-                <UIcon name="i-lucide-thumbs-up" class="size-5" />
-                <span>Yes</span>
-              </button>
-
-              <button
-                class="flex items-center gap-2 rounded-lg bg-red-100 px-3 py-2 font-bold text-red-600 transition hover:bg-red-200"
-              >
-                <UIcon name="i-lucide-thumbs-down" class="size-5" />
-                <span>No</span>
-              </button>
-            </footer>
           </div>
         </transition>
       </div>

@@ -132,6 +132,7 @@ useSchemaOrg([
         :url="store.canonical_url"
         :image="store.og_image_url"
       />
+
       <section class="bg-white/50 py-6">
         <div class="mx-auto max-w-7xl px-4">
           <div

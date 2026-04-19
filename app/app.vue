@@ -35,7 +35,9 @@ useSchemaOrg([
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
-      <CouponDialog />
+      <ClientOnly>
+        <CouponDialog />
+      </ClientOnly>
     </NuxtLayout>
   </UApp>
 </template>

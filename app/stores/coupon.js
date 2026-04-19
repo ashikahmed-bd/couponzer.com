@@ -143,6 +143,7 @@ export const useCouponStore = defineStore("coupon", {
           id: data.id,
           title: data.title,
           slug: data.slug,
+          description: data.description,
           code: data.code,
           discount_text: data.discount_text,
           affiliate_url: data.affiliate_url,
@@ -155,18 +156,14 @@ export const useCouponStore = defineStore("coupon", {
             website_url: data.stores?.website_url ?? null,
           },
         };
-
         this.dialog = true;
-
-        if (this.coupon.slug) {
-          await navigateTo(
-            `/store/${this.coupon.store.slug}?coupon=${this.coupon.slug}`,
-          );
-        }
-
+        await navigateTo(
+          `/store/${this.coupon.store.slug}?coupon=${this.coupon.slug}`,
+        );
         return data;
       } catch (error) {
         this.errors = error.message;
+        this.dialog = false;
         return null;
       }
     },
@@ -220,6 +217,7 @@ export const useCouponStore = defineStore("coupon", {
         id: coupon.id,
         title: coupon.title,
         slug: coupon.slug,
+        description: coupon.description,
         code: coupon.code,
         discount_text: coupon.discount_text,
         affiliate_url: coupon.affiliate_url,

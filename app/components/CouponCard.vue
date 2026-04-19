@@ -44,7 +44,7 @@ const statusText = computed(() => {
 
     <div class="block p-4">
       <div class="flex w-full items-center justify-between gap-2 mb-2">
-        <NuxtLink :to="`/stores/${store.slug}`" v-if="store?.name">
+        <NuxtLink :to="`/store/${store.slug}`" v-if="store?.name">
           <h3 class="text-base font-semibold text-primary">
             {{ store.name }}
           </h3>
