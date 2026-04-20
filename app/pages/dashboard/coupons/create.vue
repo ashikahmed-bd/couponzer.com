@@ -310,7 +310,7 @@ onMounted(() => {
                 </label>
                 <input
                   v-model="form.canonical_url"
-                  type="url"
+                  type="text"
                   class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
