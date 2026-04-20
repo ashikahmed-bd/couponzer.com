@@ -1,26 +1,76 @@
 <script setup>
-import { onMounted, watch } from "vue";
-
 const route = useRoute();
 const couponStore = useCouponStore();
+const config = useRuntimeConfig();
 
-const redirect = async () => {
-  const coupon = await couponStore.getCouponBySlug(route.params.slug);
+const siteUrl = config.public.siteUrl;
 
-  console.log(coupon);
+const { data, error } = await useAsyncData(`coupon-${route.params.slug}`, () =>
+  couponStore.getCouponBySlug(route.params.slug),
+);
 
-  if (coupon?.slug && coupon?.store?.slug) {
-    await navigateTo(`/store/${coupon.store.slug}?coupon=${coupon.slug}`, {
+if (data.value) {
+  await navigateTo(
+    `/store/${data.value.stores.slug}?coupon=${data.value.slug}`,
+    {
       replace: true,
-    });
-  } else {
-    console.log("Invalid coupon data:", coupon);
-  }
-};
+      redirectCode: 301,
+    },
+  );
+}
 
-onMounted(redirect);
+console.log(data.value);
 
-watch(() => route.params.slug, redirect);
+useSchemaOrg([
+  defineWebPage({
+    name: data.value?.title,
+    url: `${siteUrl}/coupon/${data.value?.slug}`,
+    description: data.value?.description,
+    inLanguage: "en-US",
+  }),
+
+  defineOffer({
+    name: data.value.title || `${data.value.stores?.name} Coupon`,
+    description: data.value?.description,
+    url: `${siteUrl}/coupon/${data.value?.slug}`,
+
+    seller: {
+      "@type": "Organization",
+      name: data.value.stores?.name,
+      url: `${siteUrl}/store/${data.value.stores?.slug}`,
+    },
+
+    price: "0",
+    priceCurrency: "USD",
+
+    availability: "https://schema.org/InStock",
+    category: "Coupon",
+
+    couponCode: data.value.code,
+    validThrough: data.value.expires_at,
+  }),
+
+  defineBreadcrumb({
+    itemListElement: [
+      {
+        name: "Home",
+        item: `${siteUrl}`,
+      },
+      {
+        name: "Stores",
+        item: `${siteUrl}/stores`,
+      },
+      {
+        name: data.value.stores?.name,
+        item: `${siteUrl}/store/${data.value.stores?.slug}`,
+      },
+      {
+        name: "Coupon",
+        item: `${siteUrl}/coupon/${data.value.slug}`,
+      },
+    ],
+  }),
+]);
 </script>
 
 <template>

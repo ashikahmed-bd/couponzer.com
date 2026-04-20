@@ -17,6 +17,12 @@ export default defineNuxtConfig({
     ],
   },
 
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://www.couponzer.com',
+    },
+  },
+
   modules: [
     '@nuxt/ui',
     '@nuxt/image',

@@ -1,7 +1,8 @@
 <script setup>
 const categoryStore = useCategoryStore();
 const route = useRoute();
-const siteUrl = "https://www.couponzer.com";
+const config = useRuntimeConfig();
+const siteUrl = config.public.siteUrl;
 
 const { data, pending, error } = await useAsyncData(
   `category-${route.params.slug}`,

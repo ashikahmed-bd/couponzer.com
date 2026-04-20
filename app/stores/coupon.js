@@ -135,9 +135,14 @@ export const useCouponStore = defineStore("coupon", {
           .from("coupons")
           .select(`*, stores(*)`)
           .eq("slug", slug)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
+
+        if (!data) {
+          console.log("Coupon not found:", slug);
+          return null;
+        }
 
         this.coupon = {
           id: data.id,
@@ -157,9 +162,9 @@ export const useCouponStore = defineStore("coupon", {
           },
         };
         this.dialog = true;
-        await navigateTo(
-          `/store/${this.coupon.store.slug}?coupon=${this.coupon.slug}`,
-        );
+        // await navigateTo(
+        //   `/store/${this.coupon.store.slug}?coupon=${this.coupon.slug}`,
+        // );
         return data;
       } catch (error) {
         this.errors = error.message;
