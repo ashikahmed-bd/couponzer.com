@@ -17,7 +17,7 @@ export const useMerchantStore = defineStore("merchant", {
         const { data, error } = await supabase
           .from("stores")
           .select("*")
-          .order("created_at", { ascending: false });
+          .order("name", { ascending: true });
 
         if (error) {
           throw error;

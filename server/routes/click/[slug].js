@@ -36,19 +36,13 @@ export default defineEventHandler(async (event) => {
     event.node.req.socket.remoteAddress ||
     null;
 
-  supabase
-    .from("clicks")
-    .insert({
-      coupon_id: coupon.id,
-      referer,
-      user_agent: userAgent,
-      ip_address: ip,
-      clicked_at: new Date().toISOString(),
-    })
-    .then(() => {})
-    .catch((err) => {
-      console.error("Click log failed:", err);
-    });
+  await supabase.from("clicks").insert({
+    coupon_id: coupon.id,
+    referrer: referer ?? null,
+    user_agent: userAgent ?? null,
+    ip_address: ip ?? null,
+    clicked_at: new Date().toISOString(),
+  });
 
   return sendRedirect(event, coupon.affiliate_url, 302);
 });

@@ -16,20 +16,24 @@ export const useCouponStore = defineStore("coupon", {
   getters: {},
 
   actions: {
-    async all() {
+    async all(page = 1, limit = 10) {
       const supabase = useSupabaseClient();
 
       try {
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+
         const { data, error } = await supabase
           .from("coupons")
-          .select("*")
-          .order("created_at", { ascending: false });
+          .select(`*,clicks(count)`)
+          .order("created_at", { ascending: false })
+          .range(from, to);
 
-        if (error) {
-          throw error;
-        }
+        if (error) throw error;
 
         this.coupons = data;
+        this.total = count;
+
         return data;
       } catch (error) {
         this.errors = error.message;
@@ -52,6 +56,8 @@ export const useCouponStore = defineStore("coupon", {
         if (error) {
           throw error;
         }
+        toast.success("Coupon added successfully");
+        navigateTo("/dashboard/coupons");
         return data;
       } catch (error) {
         this.errors = error.message;
@@ -98,6 +104,8 @@ export const useCouponStore = defineStore("coupon", {
         if (error) {
           throw error;
         }
+        toast.success("Coupon updated successfully");
+        navigateTo("/dashboard/coupons");
         return data;
       } catch (error) {
         this.errors = error.message;
@@ -139,11 +147,6 @@ export const useCouponStore = defineStore("coupon", {
 
         if (error) throw error;
 
-        if (!data) {
-          console.log("Coupon not found:", slug);
-          return null;
-        }
-
         this.coupon = {
           id: data.id,
           title: data.title,
@@ -162,9 +165,7 @@ export const useCouponStore = defineStore("coupon", {
           },
         };
         this.dialog = true;
-        // await navigateTo(
-        //   `/store/${this.coupon.store.slug}?coupon=${this.coupon.slug}`,
-        // );
+
         return data;
       } catch (error) {
         this.errors = error.message;

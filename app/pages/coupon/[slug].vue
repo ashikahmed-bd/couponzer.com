@@ -19,8 +19,6 @@ if (data.value) {
   );
 }
 
-console.log(data.value);
-
 useSchemaOrg([
   defineWebPage({
     name: data.value?.title,
