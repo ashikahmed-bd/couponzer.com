@@ -121,8 +121,8 @@ export const usePartnerStore = defineStore("partner", {
       try {
         const { data, error } = await supabase
           .from("partners")
-          .select("id, name")
-          .order("name", { ascending: true });
+          .select("*")
+          .order("sort_order", { ascending: true });
 
         if (error) {
           throw error;
