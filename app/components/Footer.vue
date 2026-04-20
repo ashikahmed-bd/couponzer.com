@@ -1,6 +1,8 @@
 <script setup>
 const subscriberStore = useSubscriberStore();
 
+const year = new Date().getFullYear();
+
 const form = reactive({
   email: "",
   name: null,
@@ -13,8 +15,8 @@ const submit = async () => {
 
 <template>
   <footer class="bg-accent-hover text-white">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 py-12">
         <div>
           <p class="text-sm">
             Couponzer is your trusted source for the latest coupons, promo
@@ -139,7 +141,6 @@ const submit = async () => {
             </ul>
           </div>
 
-          <!-- Categories -->
           <div>
             <h3 class="mb-5 text-lg font-bold text-white">Categories</h3>
             <ul class="space-y-3 text-sm text-slate-300">
@@ -160,7 +161,6 @@ const submit = async () => {
           </div>
         </div>
 
-        <!-- Newsletter -->
         <div>
           <h3 class="mb-5 text-lg font-bold text-white">Newsletter</h3>
           <p class="mb-4 text-sm leading-6 text-slate-300">
@@ -191,9 +191,12 @@ const submit = async () => {
         </div>
       </div>
       <div
-        class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between"
+        class="flex flex-col gap-4 border-t border-white/10 text-sm text-slate-400 md:flex-row md:items-center md:justify-between py-3.5"
       >
-        <p>Copyright © 2026 Couponzer. All rights reserved.</p>
+        <p>
+          Copyright © {{ year }} <span class="text-primary">Couponzer </span> .
+          All rights reserved.
+        </p>
 
         <div class="flex flex-wrap items-center gap-4 md:gap-6">
           <NuxtLink to="/help" class="transition hover:text-white"
