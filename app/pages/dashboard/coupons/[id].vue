@@ -51,6 +51,7 @@ watch(
   (value) => {
     if (!form.slug || form.slug === generateSlug(form.slug)) {
       form.slug = generateSlug(value);
+      form.canonical_url = generateSlug(value);
     }
   },
 );
