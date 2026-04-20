@@ -82,6 +82,7 @@ watch(page, () => {
               <th class="px-4 py-3 text-left">Code</th>
               <th class="px-4 py-3 text-left">Discount</th>
               <th class="px-4 py-3 text-left">Link</th>
+              <th class="px-4 py-3 text-left">Featured</th>
               <th class="px-4 py-3 text-left">Clicks</th>
               <th class="px-4 py-3 text-left">Actions</th>
             </tr>
@@ -133,22 +134,38 @@ watch(page, () => {
                 </a>
               </td>
 
+              <td class="px-4 py-3">
+                <span
+                  v-if="coupon.is_featured"
+                  class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full"
+                >
+                  Yes
+                </span>
+                <span
+                  v-else
+                  class="px-2 py-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full"
+                >
+                  No
+                </span>
+              </td>
+
               <td class="px-4 py-3 font-medium text-slate-700">
                 {{ coupon.clicks?.[0]?.count ?? 0 }}
               </td>
 
               <td class="px-4 py-3">
-                <div class="flex gap-2">
+                <div class="flex items-center gap-2">
                   <NuxtLink
                     :to="`/dashboard/coupons/${coupon.id}`"
-                    class="bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1 rounded-lg text-xs font-semibold"
+                    class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition"
                   >
-                    Edit
+                    <UIcon name="i-lucide-square-pen" class="w-4 h-4" />
                   </NuxtLink>
+
                   <button
-                    class="bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1 rounded-lg text-xs font-semibold"
+                    class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 transition"
                   >
-                    Delete
+                    <UIcon name="i-lucide-trash-2" class="w-4 h-4" />
                   </button>
                 </div>
               </td>
