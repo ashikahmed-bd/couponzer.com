@@ -10,18 +10,20 @@ export const useMerchantStore = defineStore("merchant", {
   getters: {},
 
   actions: {
-    async all() {
+    async all(page = 1, limit = 10) {
       const supabase = useSupabaseClient();
 
       try {
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+
         const { data, error } = await supabase
           .from("stores")
           .select("*")
-          .order("name", { ascending: true });
+          .order("id", { ascending: false })
+          .range(from, to);
 
-        if (error) {
-          throw error;
-        }
+        if (error) throw error;
 
         this.stores = data;
         return data;
@@ -46,6 +48,9 @@ export const useMerchantStore = defineStore("merchant", {
         if (error) {
           throw error;
         }
+
+        toast.success("Store added successfully");
+        navigateTo("/dashboard/stores");
         return data;
       } catch (error) {
         this.errors = error.message;
@@ -92,6 +97,9 @@ export const useMerchantStore = defineStore("merchant", {
         if (error) {
           throw error;
         }
+
+        toast.success("Store updated successfully");
+        navigateTo("/dashboard/stores");
         return data;
       } catch (error) {
         this.errors = error.message;
