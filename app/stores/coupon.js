@@ -25,7 +25,7 @@ export const useCouponStore = defineStore("coupon", {
 
         const { data, error } = await supabase
           .from("coupons")
-          .select(`*,clicks(count)`)
+          .select("*")
           .order("created_at", { ascending: false })
           .range(from, to);
 

@@ -150,22 +150,27 @@ watch(page, () => {
               </td>
 
               <td class="px-4 py-3 font-medium text-slate-700">
-                {{ coupon.clicks?.[0]?.count ?? 0 }}
+                {{ coupon.click_count }}
               </td>
 
               <td class="px-4 py-3">
                 <div class="flex items-center gap-2">
+                  <button
+                    class="inline-flex cursor-pointer items-center justify-center w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition"
+                  >
+                    <UIcon name="i-lucide-copy" class="size-4" />
+                  </button>
                   <NuxtLink
                     :to="`/dashboard/coupons/${coupon.id}`"
                     class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition"
                   >
-                    <UIcon name="i-lucide-square-pen" class="w-4 h-4" />
+                    <UIcon name="i-lucide-square-pen" class="size-4" />
                   </NuxtLink>
 
                   <button
                     class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 transition"
                   >
-                    <UIcon name="i-lucide-trash-2" class="w-4 h-4" />
+                    <UIcon name="i-lucide-trash-2" class="size-4" />
                   </button>
                 </div>
               </td>

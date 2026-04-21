@@ -23,15 +23,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/image',
-    '@nuxtjs/supabase',
-    '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt',
-    'nuxt-schema-org',
-    '@nuxtjs/sitemap',
-  ],
+  modules: ['@nuxt/ui', '@nuxt/image', '@nuxtjs/supabase', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', 'nuxt-schema-org', '@nuxtjs/sitemap', 'nuxt-gtag'],
 
 
   site: {
@@ -86,6 +78,12 @@ export default defineNuxtConfig({
 
   supabase: {
     redirect: false
+  },
+
+
+  gtag: {
+    enabled: process.env.NODE_ENV === 'production',
+    id: 'G-F1HZ4JLTRP'
   },
 
 
