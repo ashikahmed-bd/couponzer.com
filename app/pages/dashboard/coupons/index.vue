@@ -27,6 +27,22 @@ onMounted(() => {
 watch(page, () => {
   loadCoupons();
 });
+
+const copyCode = async (coupon) => {
+  const config = useRuntimeConfig();
+
+  try {
+    if (!coupon?.slug) {
+      throw new Error("Coupon code is missing");
+    }
+    const url = `${config.public.siteUrl}/coupon/${coupon.slug}`;
+    await navigator.clipboard.writeText(url);
+
+    toast.success("Coupon link copied successfully!");
+  } catch (error) {
+    console.error("Copy failed:", error);
+  }
+};
 </script>
 
 <template>
@@ -156,6 +172,7 @@ watch(page, () => {
               <td class="px-4 py-3">
                 <div class="flex items-center gap-2">
                   <button
+                    @click="copyCode(coupon)"
                     class="inline-flex cursor-pointer items-center justify-center w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition"
                   >
                     <UIcon name="i-lucide-copy" class="size-4" />
