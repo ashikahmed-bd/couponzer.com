@@ -7,7 +7,7 @@ const props = defineProps({
 });
 
 const shareStore = async () => {
-  const url = props.store?.canonical_url || `/stores/${props.store?.slug}`;
+  const url = `/store/${props.store?.slug}`;
   const title = props.store?.title;
 
   if (navigator?.share) {

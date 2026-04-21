@@ -5,13 +5,14 @@ const config = useRuntimeConfig();
 
 const siteUrl = config.public.siteUrl;
 
-const { data, error } = await useAsyncData(`coupon-${route.params.slug}`, () =>
-  couponStore.getCouponBySlug(route.params.slug),
+const { data: coupon, error } = await useAsyncData(
+  `coupon-${route.params.slug}`,
+  () => couponStore.getCouponBySlug(route.params.slug),
 );
 
-if (data.value) {
+if (coupon.value) {
   await navigateTo(
-    `/store/${data.value.stores.slug}?coupon=${data.value.slug}`,
+    `/store/${coupon.value.stores.slug}?coupon=${coupon.value.slug}`,
     {
       replace: true,
       redirectCode: 301,
@@ -21,21 +22,21 @@ if (data.value) {
 
 useSchemaOrg([
   defineWebPage({
-    name: data.value?.title,
-    url: `${siteUrl}/coupon/${data.value?.slug}`,
-    description: data.value?.description,
+    name: coupon.value?.title,
+    url: `${siteUrl}/coupon/${coupon.value?.slug}`,
+    description: coupon.value?.description,
     inLanguage: "en-US",
   }),
 
   defineOffer({
-    name: data.value.title || `${data.value.stores?.name} Coupon`,
-    description: data.value?.description,
-    url: `${siteUrl}/coupon/${data.value?.slug}`,
+    name: coupon.value.title || `${coupon.value.stores?.name} Coupon`,
+    description: coupon.value?.description,
+    url: `${siteUrl}/coupon/${coupon.value?.slug}`,
 
     seller: {
       "@type": "Organization",
-      name: data.value.stores?.name,
-      url: `${siteUrl}/store/${data.value.stores?.slug}`,
+      name: coupon.value.stores?.name,
+      url: `${siteUrl}/store/${coupon.value.stores?.slug}`,
     },
 
     price: "0",
@@ -44,8 +45,8 @@ useSchemaOrg([
     availability: "https://schema.org/InStock",
     category: "Coupon",
 
-    couponCode: data.value.code,
-    validThrough: data.value.expires_at,
+    couponCode: coupon.value.code,
+    validThrough: coupon.value.expires_at,
   }),
 
   defineBreadcrumb({
@@ -59,12 +60,12 @@ useSchemaOrg([
         item: `${siteUrl}/stores`,
       },
       {
-        name: data.value.stores?.name,
-        item: `${siteUrl}/store/${data.value.stores?.slug}`,
+        name: coupon.value.stores?.name,
+        item: `${siteUrl}/store/${coupon.value.stores?.slug}`,
       },
       {
         name: "Coupon",
-        item: `${siteUrl}/coupon/${data.value.slug}`,
+        item: `${siteUrl}/coupon/${coupon.value.slug}`,
       },
     ],
   }),
@@ -72,7 +73,15 @@ useSchemaOrg([
 </script>
 
 <template>
-  <main class="min-h-screen flex items-center justify-center">
+  <main v-if="coupon">
+    <SeoMeta
+      :title="coupon.meta_title"
+      :description="coupon.meta_description"
+      :keywords="coupon.meta_keywords"
+      :url="coupon.canonical_url"
+      :image="coupon.stores.og_image_url"
+    />
+
     <div class="max-w-7xl mx-auto px-4 py-6">
       <div class="text-center">
         <h1 class="text-xl font-semibold mb-2">Please wait...</h1>

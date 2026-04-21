@@ -21,6 +21,22 @@ const statusText = computed(() => {
   if (props.coupon?.is_verified) return "Verified";
   return "Active";
 });
+
+const shareStore = async () => {
+  const url = `/store/${props.coupon.slug}`;
+  const title = props.coupon.title;
+
+  if (navigator?.share) {
+    try {
+      await navigator.share({ title, url });
+    } catch (e) {}
+    return;
+  }
+
+  if (navigator?.clipboard && url) {
+    await navigator.clipboard.writeText(url);
+  }
+};
 </script>
 
 <template>
@@ -77,24 +93,33 @@ const statusText = computed(() => {
           </p>
         </div>
 
-        <a
-          :href="`/click/${coupon.slug}`"
-          rel="nofollow sponsored"
-          @click="couponStore.openDialog(coupon)"
-          class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
-        >
-          <span
-            class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-bold text-white transition-all duration-300 group-hover:w-[80%]"
+        <div class="flex items-center gap-3.5">
+          <button
+            type="button"
+            @click="shareStore"
+            class="flex h-10 w-10 items-center justify-center rounded border border-border bg-white text-gray-500 transition hover:bg-orange-100 hover:text-orange-600"
           >
-            {{ coupon.code ? "Show Coupon" : "Get Deal" }}
-          </span>
+            <UIcon name="i-lucide-share-2" class="size-5" />
+          </button>
+          <a
+            :href="`/click/${coupon.slug}`"
+            rel="nofollow sponsored"
+            @click="couponStore.openDialog(coupon)"
+            class="group relative flex min-w-52 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-2.5"
+          >
+            <span
+              class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-5 text-sm font-bold text-white transition-all duration-300 group-hover:w-[80%]"
+            >
+              {{ coupon.code ? "Show Coupon" : "Get Deal" }}
+            </span>
 
-          <span
-            class="flex w-full items-center justify-end px-4 text-sm font-semibold tracking-wider text-orange-600"
-          >
-            {{ coupon.code || "No Code Needed" }}
-          </span>
-        </a>
+            <span
+              class="flex w-full items-center justify-end px-4 text-sm font-semibold tracking-wider text-orange-600"
+            >
+              {{ coupon.code || "No Code Needed" }}
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
