@@ -103,7 +103,7 @@ const submit = async () => {
                     <div
                       class="flex w-full items-center justify-center px-6 py-2 text-center text-lg font-semibold tracking-wider text-slate-700"
                     >
-                      No code needed
+                      No code
                     </div>
 
                     <a
@@ -159,20 +159,23 @@ const submit = async () => {
                   coupon, and so many more!
                 </p>
 
-                <form @submit.prevent="submit" class="relative w-full">
-                  <input
-                    type="email"
-                    v-model="form.email"
-                    placeholder="Email Address"
-                    class="w-full px-4 py-2 pr-32 border border-border rounded outline-none focus:outline-primary"
-                  />
+                <form @submit.prevent="submit" class="w-full">
+                  <div class="relative flex items-center">
+                    <input
+                      type="email"
+                      v-model="form.email"
+                      placeholder="Enter your email"
+                      required
+                      class="w-full px-4 py-3 pr-14 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition"
+                    />
 
-                  <button
-                    type="submit"
-                    class="absolute top-1/2 right-1 -translate-y-1/2 bg-primary hover:bg-primary-hover text-white font-semibold px-4 py-1.5 rounded"
-                  >
-                    Subscribe
-                  </button>
+                    <button
+                      type="submit"
+                      class="absolute right-1.5 flex items-center justify-center w-10 h-10 rounded-md bg-primary hover:bg-primary-hover text-white transition active:scale-95"
+                    >
+                      <UIcon name="i-lucide-send" class="w-5 h-5" />
+                    </button>
+                  </div>
                 </form>
 
                 <p class="text-xs text-body mt-2">
