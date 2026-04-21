@@ -14,7 +14,7 @@ const props = defineProps({
   },
   image: {
     type: String,
-    default: "https://www.couponzer.com/og-image.jpg",
+    default: "https://www.couponzer.com/og-image.webp",
   },
   url: {
     type: String,

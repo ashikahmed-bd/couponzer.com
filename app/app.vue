@@ -24,9 +24,11 @@ useSchemaOrg([
     url: "https://www.couponzer.com",
     logo: "https://www.couponzer.com/logo.svg",
     sameAs: [
-      "https://facebook.com/couponzer",
-      "https://twitter.com/couponzer",
-      "https://pinterest.com/couponzer",
+      "https://www.facebook.com/couponzer.official",
+      "https://x.com/couponzer",
+      "https://www.instagram.com/couponzer.official",
+      "https://www.pinterest.com/couponzer",
+      "https://www.linkedin.com/company/couponzer",
     ],
   }),
 ]);

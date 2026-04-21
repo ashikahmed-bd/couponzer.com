@@ -68,7 +68,7 @@ const submit = async () => {
             <main class="max-w-2xl mx-auto md:px-10">
               <div class="text-center">
                 <div class="py-4">
-                  <h1 class="text-xl font-semibold text-accent truncate">
+                  <h1 class="text-xl font-semibold text-accent">
                     {{ coupon?.title }}
                   </h1>
                   <span class="text-sm font-normal line-clamp-2">

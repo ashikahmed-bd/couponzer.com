@@ -29,7 +29,7 @@ const submit = async () => {
             aria-label="Social media links"
           >
             <a
-              href="https://www.facebook.com/couponzer"
+              href="https://www.facebook.com/couponzer.official"
               target="_blank"
               rel="noopener noreferrer nofollow"
               aria-label="Visit Couponzer on Facebook"
@@ -40,7 +40,7 @@ const submit = async () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                class="h-5 w-5"
+                class="size-5"
               >
                 <path
                   d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22c4.78-.75 8.44-4.91 8.44-9.93z"
@@ -60,7 +60,7 @@ const submit = async () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                class="h-4 w-4"
+                class="size-5"
               >
                 <path
                   d="M18.9 2H21l-6.56 7.5L22 22h-5.97l-4.68-6.11L6 22H3.9l7.02-8.02L2 2h6.12l4.23 5.54L18.9 2Zm-1.05 18h1.1L7.52 3.9H6.34L17.85 20Z"
@@ -69,7 +69,7 @@ const submit = async () => {
             </a>
 
             <a
-              href="https://www.instagram.com/couponzer"
+              href="https://www.instagram.com/couponzer.official"
               target="_blank"
               rel="noopener noreferrer nofollow"
               aria-label="Visit Couponzer on Instagram"
@@ -80,10 +80,29 @@ const submit = async () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                class="h-5 w-5"
+                class="size-5"
               >
                 <path
                   d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5c3.18 0 5.75-2.57 5.75-5.75v-8.5C22 4.57 19.43 2 16.25 2h-8.5Zm0 2h8.5C18.55 4 20 5.45 20 7.75v8.5c0 2.3-1.45 3.75-3.75 3.75h-8.5C5.45 20 4 18.55 4 16.25v-8.5C4 5.45 5.45 4 7.75 4Zm9.5 1.75a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.pinterest.com/couponzer"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              aria-label="Visit Pinterest on Pinterest"
+              title="Couponzer Pinterest Profile"
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition duration-300 hover:-translate-y-0.5 hover:border-pink-500/40 hover:bg-pink-500 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                class="size-5"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0"
                 />
               </svg>
             </a>
