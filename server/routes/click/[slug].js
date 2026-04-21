@@ -44,5 +44,9 @@ export default defineEventHandler(async (event) => {
     clicked_at: new Date().toISOString(),
   });
 
+  await supabase.rpc("increment_coupon_clicks", {
+    coupon_id: coupon.id,
+  });
+
   return sendRedirect(event, coupon.affiliate_url ?? coupon.landing_url, 302);
 });

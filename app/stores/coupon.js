@@ -205,7 +205,7 @@ export const useCouponStore = defineStore("coupon", {
           .from("coupons")
           .select(`*,stores(*)`)
           .eq("is_featured", true)
-          .order("created_at", { ascending: false })
+          .order("click_count", { ascending: false })
           .limit(12);
 
         if (error) {
