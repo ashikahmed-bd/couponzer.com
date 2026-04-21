@@ -15,22 +15,23 @@ const couponStore = useCouponStore();
 const { stores } = storeToRefs(merchantStore);
 
 const form = reactive({
-  store_id: "",
+  tore_id: null,
   title: "",
   slug: "",
-  description: "",
-  code: "",
-  affiliate_url: "",
-  discount_text: "",
+  description: null,
+  code: null,
+  affiliate_url: null,
+  landing_url: null,
+  discount_text: null,
   type: "deal",
-  starts_at: "",
-  expires_at: "",
-  instructions: "",
-  meta_title: "",
-  meta_description: "",
-  meta_keywords: "",
-  canonical_url: "",
-  og_image_url: "",
+  starts_at: null,
+  expires_at: null,
+  instructions: null,
+  meta_title: null,
+  meta_description: null,
+  meta_keywords: null,
+  canonical_url: null,
+  og_image_url: null,
   is_featured: false,
   is_verified: false,
   is_exclusive: false,
@@ -66,6 +67,7 @@ const loadCoupon = async () => {
     description: response.description,
     code: response.code,
     affiliate_url: response.affiliate_url,
+    landing_url: response.landing_url,
     discount_text: response.discount_text,
     type: response.type,
     starts_at: response.starts_at ? response.starts_at.split("T")[0] : "",
@@ -235,6 +237,22 @@ onMounted(() => {
                   placeholder="https://example.com/affiliate-link"
                   class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-slate-700 mb-1">
+                  Landing URL
+                </label>
+                <input
+                  v-model="form.landing_url"
+                  type="url"
+                  placeholder="https://example.com/affiliate-link"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+                <p class="text-xs text-slate-500 mt-1">
+                  Enter the destination link where users can activate this deal
+                  (affiliate or offer page).
+                </p>
               </div>
 
               <div class="md:col-span-2">

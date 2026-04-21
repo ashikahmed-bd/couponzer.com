@@ -44,5 +44,5 @@ export default defineEventHandler(async (event) => {
     clicked_at: new Date().toISOString(),
   });
 
-  return sendRedirect(event, coupon.affiliate_url, 302);
+  return sendRedirect(event, coupon.affiliate_url ?? coupon.landing_url, 302);
 });

@@ -125,7 +125,7 @@ watch(page, () => {
 
               <td class="px-4 py-3">
                 <a
-                  :href="coupon.affiliate_url"
+                  :href="coupon.affiliate_url ?? coupon.landing_url"
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs font-medium transition"

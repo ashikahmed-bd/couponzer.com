@@ -155,6 +155,7 @@ export const useCouponStore = defineStore("coupon", {
           code: data.code,
           discount_text: data.discount_text,
           affiliate_url: data.affiliate_url,
+          landing_url: data.landing_url,
           instructions: data.instructions,
           store: {
             id: data.stores?.id ?? data.store_id,
@@ -227,6 +228,7 @@ export const useCouponStore = defineStore("coupon", {
         code: coupon.code,
         discount_text: coupon.discount_text,
         affiliate_url: coupon.affiliate_url,
+        landing_url: coupon.landing_url,
         instructions: coupon.instructions,
         store: {
           id: coupon.stores?.id ?? coupon.store_id,

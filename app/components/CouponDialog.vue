@@ -65,7 +65,7 @@ const submit = async () => {
               </div>
             </div>
 
-            <main class="max-w-2xl mx-auto px-10">
+            <main class="max-w-2xl mx-auto md:px-10">
               <div class="text-center">
                 <div class="py-4">
                   <h1 class="text-xl font-semibold text-accent truncate">
@@ -76,23 +76,46 @@ const submit = async () => {
                   </span>
                 </div>
 
-                <div
-                  class="flex max-w-md mx-auto overflow-hidden rounded-full border border-dashed border-primary bg-primary/10"
-                >
-                  <input
-                    type="text"
-                    :value="coupon?.code"
-                    readonly
-                    class="w-full bg-transparent px-6 py-2 text-center text-lg font-semibold tracking-wider text-slate-700 outline-none"
-                  />
-
-                  <button
-                    class="min-w-32 rounded-full bg-orange-500 px-4 py-2 text-base font-bold text-white transition hover:bg-orange-600"
-                    @click="copyCode"
+                <template v-if="coupon?.code">
+                  <div
+                    class="flex max-w-md mx-auto overflow-hidden rounded-full border border-dashed border-primary bg-primary/10"
                   >
-                    {{ copied ? "Copied" : "Copy" }}
-                  </button>
-                </div>
+                    <input
+                      type="text"
+                      :value="coupon?.code"
+                      readonly
+                      class="w-full bg-transparent px-6 py-2 text-center text-lg font-semibold tracking-wider text-slate-700 outline-none"
+                    />
+
+                    <button
+                      class="min-w-32 rounded-full bg-orange-500 px-4 py-2 text-base font-bold text-white transition hover:bg-orange-600"
+                      @click="copyCode"
+                    >
+                      {{ copied ? "Copied" : "Copy" }}
+                    </button>
+                  </div>
+                </template>
+
+                <template v-else>
+                  <div
+                    class="flex max-w-md mx-auto overflow-hidden rounded-full border border-dashed border-primary bg-primary/10"
+                  >
+                    <div
+                      class="flex w-full items-center justify-center px-6 py-2 text-center text-lg font-semibold tracking-wider text-slate-700"
+                    >
+                      No code needed
+                    </div>
+
+                    <a
+                      :href="coupon?.affiliate_url ?? coupon?.landing_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="min-w-32 rounded-full bg-primary px-4 py-2 text-base font-bold text-white text-center transition hover:bg-primary-hover"
+                    >
+                      Get Deal
+                    </a>
+                  </div>
+                </template>
               </div>
 
               <div class="text-sm mt-4">

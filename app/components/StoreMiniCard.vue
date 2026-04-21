@@ -58,7 +58,7 @@ const ratingText = computed(() => {
           </div>
           <span
             v-if="store.offer_text"
-            class="rounded-2xl bg-orange-50 px-3.5 py-1 text-sm font-semibold text-primary"
+            class="rounded-2xl bg-orange-50 px-3.5 py-1 text-sm font-semibold text-primary truncate"
           >
             {{ store.offer_text }}
           </span>
@@ -74,7 +74,7 @@ const ratingText = computed(() => {
       <div class="mt-2 flex flex-wrap items-center gap-2">
         <span
           v-if="store.cashback_text"
-          class="rounded-2xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-600"
+          class="rounded-2xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-600 truncate"
         >
           {{ store.cashback_text }}
         </span>

@@ -14,22 +14,23 @@ const couponStore = useCouponStore();
 const { stores } = storeToRefs(merchantStore);
 
 const form = reactive({
-  store_id: "",
+  store_id: null,
   title: "",
   slug: "",
-  description: "",
-  code: "",
-  affiliate_url: "",
-  discount_text: "",
+  description: null,
+  code: null,
+  affiliate_url: null,
+  landing_url: null,
+  discount_text: null,
   type: "deal",
-  starts_at: "",
-  expires_at: "",
-  instructions: "",
-  meta_title: "",
-  meta_description: "",
-  meta_keywords: "",
-  canonical_url: "",
-  og_image_url: "",
+  starts_at: null,
+  expires_at: null,
+  instructions: null,
+  meta_title: null,
+  meta_description: null,
+  meta_keywords: null,
+  canonical_url: null,
+  og_image_url: null,
   is_featured: false,
   is_verified: false,
   is_exclusive: false,
@@ -210,6 +211,22 @@ onMounted(() => {
 
               <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
+                  Landing URL
+                </label>
+                <input
+                  v-model="form.landing_url"
+                  type="url"
+                  placeholder="https://example.com/affiliate-link"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+                <p class="text-xs text-slate-500 mt-1">
+                  Enter the destination link where users can activate this deal
+                  (affiliate or offer page).
+                </p>
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-slate-700 mb-1">
                   Description
                 </label>
                 <textarea
@@ -226,40 +243,10 @@ onMounted(() => {
                 </label>
                 <textarea
                   v-model="form.instructions"
-                  rows="4"
+                  rows="6"
                   placeholder="How to use this coupon..."
                   class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 ></textarea>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h2 class="text-base font-semibold text-slate-900 mb-4">
-              Schedule
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1">
-                  Starts At
-                </label>
-                <input
-                  v-model="form.starts_at"
-                  type="date"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1">
-                  Expires At
-                </label>
-                <input
-                  v-model="form.expires_at"
-                  type="date"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
               </div>
             </div>
           </div>
@@ -287,7 +274,6 @@ onMounted(() => {
                 </label>
                 <textarea
                   v-model="form.meta_description"
-                  rows="3"
                   class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 ></textarea>
               </div>
@@ -298,7 +284,6 @@ onMounted(() => {
                 </label>
                 <textarea
                   v-model="form.meta_keywords"
-                  rows="2"
                   placeholder="coupon, discount, deal"
                   class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 ></textarea>
@@ -381,6 +366,36 @@ onMounted(() => {
                   class="h-4 w-4"
                 />
               </label>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-base font-semibold text-slate-900 mb-4">
+              Schedule
+            </h2>
+
+            <div class="grid grid-cols-1 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">
+                  Starts At
+                </label>
+                <input
+                  v-model="form.starts_at"
+                  type="date"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">
+                  Expires At
+                </label>
+                <input
+                  v-model="form.expires_at"
+                  type="date"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
             </div>
           </div>
 
