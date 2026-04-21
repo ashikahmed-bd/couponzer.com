@@ -115,7 +115,7 @@ onMounted(() => {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
-                  Coupon Title <span class="text-red-500">*</span>
+                  Title <span class="text-red-500">*</span>
                 </label>
                 <input
                   v-model="form.title"
@@ -396,13 +396,7 @@ onMounted(() => {
             </ul>
           </div>
 
-          <button
-            type="submit"
-            :disabled="couponStore.loading"
-            class="w-full inline-flex items-center justify-center bg-primary hover:bg-primary-hover disabled:opacity-60 text-white px-4 py-3 rounded-xl text-sm font-semibold transition"
-          >
-            {{ couponStore.loading ? "Saving..." : "Create Coupon" }}
-          </button>
+          <BaseButton :loading="couponStore.loading">Create Coupon</BaseButton>
         </div>
       </div>
     </form>

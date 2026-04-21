@@ -37,21 +37,21 @@ const form = reactive({
   is_active: true,
 });
 
-const generateSlug = (text) => {
-  return text
-    ?.toLowerCase()
+const generateSlug = (text = "") =>
+  text
+    .toLowerCase()
     .trim()
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
-};
 
 watch(
   () => form.title,
   (value) => {
-    if (!form.slug || form.slug === generateSlug(form.slug)) {
-      form.slug = generateSlug(value);
-      form.canonical_url = generateSlug(value);
+    if (!form.slug) {
+      const slug = generateSlug(value);
+      form.slug = slug;
+      form.canonical_url = slug;
     }
   },
 );
@@ -253,6 +253,7 @@ onMounted(() => {
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Instructions
                 </label>
+
                 <textarea
                   v-model="form.instructions"
                   rows="4"
