@@ -71,7 +71,9 @@ const ratingText = computed(() => {
         {{ store.summary }}
       </p>
 
-      <div class="mt-2 flex flex-wrap items-center gap-2">
+      <div
+        class="flex flex-wrap items-center gap-2 border-b border-border py-2"
+      >
         <span
           v-if="store.cashback_text"
           class="rounded-2xl bg-emerald-50 px-3.5 py-2 text-sm font-semibold text-emerald-600 truncate"
@@ -80,19 +82,10 @@ const ratingText = computed(() => {
         </span>
       </div>
 
-      <div
-        class="flex items-center justify-between gap-2.5 border-t border-border mt-2 pt-2"
-      >
-        <div class="flex items-center gap-4 text-sm text-gray-600">
-          <span v-if="ratingText" class="flex items-center gap-1.5">
-            <UIcon name="i-lucide-star" class="size-4 text-yellow-500" />
-            {{ ratingText }}
-          </span>
-
-          <span v-if="store.votes" class="flex items-center gap-1.5">
-            <UIcon name="i-lucide-thumbs-up" class="size-4" />
-            {{ store.votes }}
-          </span>
+      <div class="flex items-center justify-between gap-2.5 pt-2">
+        <div v-if="ratingText" class="flex items-center gap-1.5">
+          <UIcon name="i-lucide-star" class="size-4 text-yellow-500" />
+          <span>{{ ratingText }}</span>
         </div>
 
         <div class="flex items-center gap-2">
