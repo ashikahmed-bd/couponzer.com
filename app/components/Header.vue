@@ -14,13 +14,13 @@ const navItems = [
   <header
     class="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur"
   >
-    <div class="mx-auto max-w-7xl px-4">
-      <div class="flex h-16 items-center justify-between lg:h-20">
+    <div class="mx-auto max-w-7xl px-4 py-2">
+      <div class="flex h-16 items-center justify-between">
         <a href="/" class="shrink-0">
           <NuxtImg
             src="/logo.svg"
             alt="logo"
-            class="h-10 w-auto object-contain lg:h-12"
+            class="h-16 w-auto object-contain"
           />
         </a>
 

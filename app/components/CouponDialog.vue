@@ -118,9 +118,29 @@ const submit = async () => {
                 </template>
               </div>
 
-              <div class="text-sm mt-4">
-                <h3 class="font-bold text-dark">Offer Details:</h3>
-                <div v-html="coupon?.instructions" class="text-body"></div>
+              <div class="mt-4 text-sm">
+                <UCollapsible
+                  class="w-full rounded-lg border border-border bg-white"
+                >
+                  <UButton
+                    label="Offer Details"
+                    color="neutral"
+                    variant="ghost"
+                    trailing-icon="i-lucide-chevron-down"
+                    class="w-full justify-between px-4 py-3"
+                  />
+
+                  <template #content>
+                    <div
+                      v-if="coupon?.instructions"
+                      v-html="coupon.instructions"
+                      class="px-4 pb-4 text-body leading-6"
+                    />
+                    <div v-else class="px-4 pb-4 text-muted">
+                      No offer details available.
+                    </div>
+                  </template>
+                </UCollapsible>
               </div>
 
               <div
