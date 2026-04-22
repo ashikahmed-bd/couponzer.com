@@ -144,6 +144,13 @@ watch(page, () => {
 
               <td class="px-4 py-3">
                 <div class="flex items-center gap-2">
+                  <a
+                    :href="`/store/${store.slug}`"
+                    target="_blank"
+                    class="inline-flex cursor-pointer items-center justify-center w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition"
+                  >
+                    <UIcon name="i-lucide-eye" class="size-4" />
+                  </a>
                   <NuxtLink
                     :to="`/dashboard/stores/${store.id}`"
                     class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition"

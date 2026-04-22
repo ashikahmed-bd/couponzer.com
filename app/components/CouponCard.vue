@@ -23,7 +23,7 @@ const statusText = computed(() => {
 });
 
 const shareStore = async () => {
-  const url = `/store/${props.coupon.slug}`;
+  const url = `/coupon/${props.coupon.slug}`;
   const title = props.coupon.title;
 
   if (navigator?.share) {

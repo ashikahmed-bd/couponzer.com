@@ -164,7 +164,6 @@ export const useCouponStore = defineStore("coupon", {
             website_url: data.stores?.website_url ?? null,
           },
         };
-        this.dialog = true;
 
         return data;
       } catch (error) {

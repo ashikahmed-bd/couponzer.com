@@ -77,7 +77,7 @@ const loadStore = async () => {
     summary: response.summary,
     description: response.description,
     meta_title: response.meta_title,
-    meta_description: response.description,
+    meta_description: response.meta_description,
     meta_keywords: response.meta_keywords,
     canonical_url: response.canonical_url,
     og_image_url: response.og_image_url,
