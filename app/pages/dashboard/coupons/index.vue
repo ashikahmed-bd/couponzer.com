@@ -33,8 +33,9 @@ const copyCode = async (coupon) => {
 
   try {
     if (!coupon?.slug) {
-      throw new Error("Coupon code is missing");
+      throw new Error("Coupon slug is missing");
     }
+
     const url = `${config.public.siteUrl}/coupon/${coupon.slug}`;
     await navigator.clipboard.writeText(url);
 
@@ -73,18 +74,19 @@ const copyCode = async (coupon) => {
           class="w-full md:w-72 px-4 py-2 border border-border rounded text-sm focus:outline-none"
         />
 
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           <select class="px-3 py-2 border border-border rounded text-sm">
-            <option>All Types</option>
-            <option>Code</option>
-            <option>Deal</option>
+            <option value="">All Types</option>
+            <option value="code">Code</option>
+            <option value="deal">Deal</option>
           </select>
 
           <select class="px-3 py-2 border border-border rounded text-sm">
-            <option>Status</option>
-            <option>Featured</option>
-            <option>Verified</option>
-            <option>Exclusive</option>
+            <option value="">Status</option>
+            <option value="featured">Featured</option>
+            <option value="verified">Verified</option>
+            <option value="exclusive">Exclusive</option>
+            <option value="active">Active</option>
           </select>
         </div>
       </div>
@@ -95,8 +97,8 @@ const copyCode = async (coupon) => {
             <tr>
               <th class="px-4 py-3 text-left">ID</th>
               <th class="px-4 py-3 text-left">Title</th>
+              <th class="px-4 py-3 text-left">Store</th>
               <th class="px-4 py-3 text-left">Code</th>
-              <th class="px-4 py-3 text-left">Discount</th>
               <th class="px-4 py-3 text-left">Link</th>
               <th class="px-4 py-3 text-left">Featured</th>
               <th class="px-4 py-3 text-left">Clicks</th>
@@ -126,6 +128,10 @@ const copyCode = async (coupon) => {
               </td>
 
               <td class="px-4 py-3">
+                {{ coupon.stores?.name }}
+              </td>
+
+              <td class="px-4 py-3">
                 <span
                   v-if="coupon.code"
                   class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-semibold"
@@ -133,10 +139,6 @@ const copyCode = async (coupon) => {
                   {{ coupon.code }}
                 </span>
                 <span v-else class="text-slate-400 text-xs"> No Code </span>
-              </td>
-
-              <td class="px-4 py-3">
-                {{ coupon.discount_text ?? "-" }}
               </td>
 
               <td class="px-4 py-3">

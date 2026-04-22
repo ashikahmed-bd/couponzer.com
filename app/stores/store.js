@@ -10,6 +10,25 @@ export const useMerchantStore = defineStore("merchant", {
   getters: {},
 
   actions: {
+    async search() {
+      const supabase = useSupabaseClient();
+
+      try {
+        const { data, error } = await supabase
+          .from("stores")
+          .select("*")
+          .order("name", { ascending: true });
+
+        if (error) throw error;
+
+        this.stores = data;
+        return data;
+      } catch (error) {
+        this.errors = error.message;
+        return null;
+      }
+    },
+
     async all(page = 1, limit = 10) {
       const supabase = useSupabaseClient();
 

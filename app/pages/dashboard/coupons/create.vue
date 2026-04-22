@@ -57,7 +57,7 @@ watch(
 );
 
 const loadStores = async () => {
-  await merchantStore.all();
+  await merchantStore.search();
 };
 
 const formatDate = (date) => {
@@ -146,7 +146,7 @@ onMounted(() => {
                   v-model="form.store_id"
                   class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <option value="" disabled>Select Store</option>
+                  <option :value="null" disabled>Select Store</option>
                   <option
                     v-for="store in stores"
                     :key="store.id"

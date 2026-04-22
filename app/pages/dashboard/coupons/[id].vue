@@ -86,7 +86,7 @@ const loadCoupon = async () => {
 };
 
 const loadStores = async () => {
-  await merchantStore.all();
+  await merchantStore.search();
 };
 
 const formatDate = (date) => {

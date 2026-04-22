@@ -25,14 +25,13 @@ export const useCouponStore = defineStore("coupon", {
 
         const { data, error } = await supabase
           .from("coupons")
-          .select("*")
+          .select(`*, stores(name, slug, logo_url)`)
           .order("created_at", { ascending: false })
           .range(from, to);
 
         if (error) throw error;
 
         this.coupons = data;
-        this.total = count;
 
         return data;
       } catch (error) {
