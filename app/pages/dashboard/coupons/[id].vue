@@ -15,7 +15,7 @@ const couponStore = useCouponStore();
 const { stores } = storeToRefs(merchantStore);
 
 const form = reactive({
-  tore_id: null,
+  store_id: null,
   title: "",
   slug: "",
   description: null,

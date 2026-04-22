@@ -1,19 +1,14 @@
 User-agent: *
 Allow: /
 
-# Block sensitive routes
+# Private / non-public areas
 Disallow: /login
 Disallow: /dashboard
-Disallow: /dashboard/*
+Disallow: /dashboard/
 Disallow: /admin
 Disallow: /api
-Disallow: /*?
-Disallow: /*?/
 
-# Block query parameters (avoid duplicate content)
-Disallow: /*?*
-
-# Block system/internal files
+# Internal build / system paths
 Disallow: /_nuxt/
 Disallow: /server/
 Disallow: /node_modules/
