@@ -138,13 +138,24 @@ export const useCouponStore = defineStore("coupon", {
       const supabase = useSupabaseClient();
 
       try {
-        const { data, error } = await supabase
+        const { data: coupon, error } = await supabase
           .from("coupons")
           .select(`*, stores(*)`)
           .eq("slug", slug)
           .maybeSingle();
 
         if (error) throw error;
+        if (!coupon) throw new Error("Coupon not found");
+
+        // get same store coupons
+        const { data: coupons } = await supabase
+          .from("coupons")
+          .select("*")
+          .eq("store_id", coupon.store_id)
+          .eq("is_active", true)
+          .neq("id", coupon.id)
+          .order("is_featured", { ascending: false })
+          .order("updated_at", { ascending: false });
 
         this.coupon = {
           id: data.id,
@@ -165,6 +176,7 @@ export const useCouponStore = defineStore("coupon", {
           },
         };
 
+        this.coupons = coupons || [];
         return data;
       } catch (error) {
         this.errors = error.message;

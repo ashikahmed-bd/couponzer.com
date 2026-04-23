@@ -31,7 +31,6 @@ const form = reactive({
   meta_description: null,
   meta_keywords: null,
   canonical_url: null,
-  og_image_url: null,
   is_featured: false,
   is_verified: false,
   is_exclusive: false,
@@ -49,11 +48,9 @@ const generateSlug = (text = "") =>
 watch(
   () => form.title,
   (value) => {
-    if (!form.slug) {
-      const slug = generateSlug(value);
-      form.slug = slug;
-      form.canonical_url = slug;
-    }
+    const newSlug = generateSlug(value);
+    form.slug = newSlug;
+    form.canonical_url = newSlug ? `/coupon/${newSlug}` : "";
   },
 );
 
@@ -77,7 +74,6 @@ const loadCoupon = async () => {
     meta_description: response.meta_description,
     meta_keywords: response.meta_keywords,
     canonical_url: response.canonical_url,
-    og_image_url: response.og_image_url,
     is_featured: !!response.is_featured,
     is_verified: !!response.is_verified,
     is_exclusive: !!response.is_exclusive,
@@ -352,24 +348,13 @@ onMounted(() => {
                 ></textarea>
               </div>
 
-              <div>
+              <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Canonical URL
                 </label>
                 <input
                   v-model="form.canonical_url"
                   type="text"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-
-              <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1">
-                  OG Image URL
-                </label>
-                <input
-                  v-model="form.og_image_url"
-                  type="url"
                   class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
