@@ -14,7 +14,7 @@ const couponStore = useCouponStore();
 const { coupons, total } = storeToRefs(couponStore);
 
 const page = ref(1);
-const limit = ref(5);
+const limit = ref(10);
 
 const loadCoupons = async () => {
   await couponStore.all(page.value, limit.value);
