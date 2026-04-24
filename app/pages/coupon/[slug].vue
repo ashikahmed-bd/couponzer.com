@@ -1,6 +1,7 @@
 <script setup>
 const route = useRoute();
 const supabase = useSupabaseClient();
+const couponStore = useCouponStore();
 
 // get single coupon
 const { data: coupon } = await useAsyncData(
@@ -91,84 +92,76 @@ const { data: coupons } = await useAsyncData(
 </script>
 
 <template>
-  <main class="min-h-screen bg-slate-50">
+  <main>
+    <SeoMeta
+      :title="coupon.meta_title"
+      :description="coupon.meta_description"
+      :keywords="coupon.meta_keywords"
+    />
     <section class="max-w-7xl mx-auto px-4 py-10">
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
-        <!-- Left -->
         <div class="lg:col-span-8 space-y-8">
-          <!-- Single Coupon -->
-          <div class="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
-            <div class="mb-4 flex flex-wrap gap-2">
-              <span
-                class="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700 ring-1 ring-emerald-200"
-              >
-                Verified
-              </span>
-              <span
-                class="inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-sm font-medium text-amber-700 ring-1 ring-amber-200"
-              >
-                Featured
-              </span>
-              <span
-                class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700"
-              >
-                Deal
-              </span>
-            </div>
-
-            <h1
-              class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl"
-            >
-              Contabo Cloud VPS Hosting - Get Up to 20% Off
+          <div class="rounded-3xl bg-white p-5 md:p-8">
+            <h1 class="line-clamp-2 text-3xl font-bold text-dark md:text-4xl">
+              {{ coupon.title }}
             </h1>
 
             <p
-              class="mt-4 max-w-3xl text-base leading-8 text-slate-600 md:text-lg"
+              v-if="coupon.description"
+              class="mt-3 line-clamp-4 max-w-3xl text-base leading-8 text-bodu md:text-lg"
             >
-              Save up to 20% on Contabo Cloud VPS hosting. Affordable, powerful
-              and reliable servers for developers, startups and growing
-              projects.
+              {{ coupon.description }}
             </p>
 
-            <div class="mt-6 grid gap-4 md:grid-cols-[1fr_auto]">
-              <div class="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200">
-                <p
-                  class="text-sm font-medium uppercase tracking-wide text-slate-500"
-                >
-                  Discount
-                </p>
-                <h2 class="mt-2 text-3xl font-extrabold text-slate-900">
-                  Up to 20% OFF
+            <div class="mt-6 grid items-stretch gap-4 md:grid-cols-[1fr_auto]">
+              <div
+                class="flex items-center justify-center rounded-2xl bg-slate-50 text-center"
+              >
+                <h2 class="text-3xl font-extrabold uppercase text-slate-900">
+                  {{ coupon.discount_text }}
                 </h2>
-                <p class="mt-3 text-sm text-slate-600">
-                  Discount will be applied automatically at checkout
-                </p>
               </div>
 
               <a
-                href="#"
-                class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-6 py-4 text-sm font-semibold text-white transition hover:bg-slate-800"
+                :href="`/click/${coupon.slug}`"
+                rel="nofollow sponsored"
+                @click="couponStore.openDialog(coupon)"
+                class="group relative flex w-full min-w-0 items-center justify-between overflow-hidden rounded-full border border-dashed border-orange-400 bg-orange-50 py-3 md:min-w-[240px]"
               >
-                Get Deal
+                <span
+                  class="absolute left-0 top-0 z-10 flex h-full w-[85%] items-center justify-center rounded-full bg-orange-500 px-4 text-sm font-bold text-white transition-all duration-300 group-hover:w-[90%] sm:px-5"
+                >
+                  {{ coupon.code ? "Show Coupon" : "Get Deal" }}
+                </span>
+
+                <span
+                  class="flex w-full items-center justify-end truncate px-4 text-xs font-semibold tracking-wide text-orange-600 sm:text-sm"
+                >
+                  {{ coupon.code || "No Code Needed" }}
+                </span>
               </a>
             </div>
 
             <div
-              class="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-500"
+              v-if="coupon.is_verified"
+              class="mt-5 flex flex-wrap items-center gap-2"
             >
-              <div class="flex items-center gap-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-                <span>Contabo</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <span>🔥</span>
-                <span>4 used today</span>
-              </div>
-              <div>Updated: Apr 21, 2026</div>
+              <span
+                v-if="coupon.is_verified"
+                class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200"
+              >
+                Verified
+              </span>
+
+              <span
+                v-if="coupon.is_exclusive"
+                class="rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700 ring-1 ring-violet-200"
+              >
+                Exclusive
+              </span>
             </div>
           </div>
 
-          <!-- More Coupons -->
           <div class="rounded-3xl bg-white p-6">
             <div class="mb-6">
               <h2 class="text-2xl font-bold text-slate-900">
@@ -180,7 +173,7 @@ const { data: coupons } = await useAsyncData(
             </div>
 
             <div class="space-y-4">
-              <CouponListCard
+              <CouponMiniCard
                 v-for="coupon in coupons"
                 :key="coupon.id"
                 :coupon="coupon"
@@ -191,51 +184,89 @@ const { data: coupons } = await useAsyncData(
 
         <aside class="lg:col-span-4">
           <div class="sticky top-24 space-y-6">
-            <div class="rounded-3xl bg-white p-6">
+            <div
+              class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100"
+            >
               <div class="flex items-center gap-4">
                 <div
-                  class="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 text-xl font-bold text-slate-700"
+                  class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-slate-100"
                 >
-                  C
+                  <img
+                    v-if="coupon.stores?.logo_url"
+                    :src="coupon.stores.logo_url"
+                    :alt="coupon.stores?.name"
+                    class="h-full w-full object-contain p-2"
+                  />
+
+                  <span
+                    v-else
+                    class="text-xl font-bold uppercase text-slate-700"
+                  >
+                    {{ coupon.stores?.name?.charAt(0) }}
+                  </span>
                 </div>
 
-                <div>
-                  <h2 class="text-xl font-bold text-slate-900">Contabo</h2>
-                  <p class="text-sm text-slate-500">Trusted hosting provider</p>
+                <div class="min-w-0">
+                  <h2 class="truncate text-xl font-bold text-dark">
+                    {{ coupon.stores?.name }}
+                  </h2>
+                  <p class="mt-1 text-sm text-body line-clamp-1">
+                    {{ coupon.stores?.title }}
+                  </p>
                 </div>
               </div>
 
-              <div class="flex items-center gap-4">
-                <span class="text-slate-500">Best Offer</span>
-                <span class="text-right font-medium">Up to 20% OFF</span>
+              <div class="mt-6 rounded-2xl bg-slate-50 p-4">
+                <div class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-slate-500"> Offer </span>
+                  <span class="text-right text-sm font-semibold text-slate-900">
+                    {{ coupon.stores?.offer_text ?? "Available" }}
+                  </span>
+                </div>
+
+                <div class="mt-3 flex items-center justify-between gap-4">
+                  <span class="text-sm text-slate-500"> Cashback </span>
+                  <span
+                    class="text-right text-sm font-semibold text-orange-600"
+                  >
+                    {{ coupon.stores?.cashback_text ?? "No cashback" }}
+                  </span>
+                </div>
               </div>
 
-              <div class="mt-6 grid grid-cols-2 gap-3">
+              <div class="mt-4 grid grid-cols-2 gap-3">
                 <div
                   class="rounded-2xl bg-slate-50 p-4 text-center ring-1 ring-slate-200"
                 >
                   <p class="text-sm text-slate-500">Rating</p>
-                  <p class="mt-1 font-semibold text-slate-900">4.5/5</p>
+                  <p class="mt-1 font-semibold text-slate-900">
+                    {{ coupon.stores?.rating }}/5
+                  </p>
                 </div>
 
                 <div
                   class="rounded-2xl bg-slate-50 p-4 text-center ring-1 ring-slate-200"
                 >
                   <p class="text-sm text-slate-500">Votes</p>
-                  <p class="mt-1 font-semibold text-slate-900">70</p>
+                  <p class="mt-1 font-semibold text-slate-900">
+                    {{ coupon.stores?.votes }}
+                  </p>
                 </div>
               </div>
 
-              <p class="mt-6 text-sm leading-7 text-slate-600">
-                Contabo offers affordable VPS, dedicated servers and cloud
-                hosting solutions with strong performance and global coverage.
+              <p
+                v-if="coupon.stores?.summary"
+                class="mt-6 line-clamp-4 text-sm leading-7 text-body"
+              >
+                {{ coupon.stores.summary }}
               </p>
 
-              <button
-                class="mt-6 inline-flex w-full items-center justify-center rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+              <NuxtLink
+                :to="`/store/${coupon.stores.slug}`"
+                class="mt-6 inline-flex w-full items-center justify-center rounded bg-dark px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
               >
                 Visit Store
-              </button>
+              </NuxtLink>
             </div>
           </div>
         </aside>
