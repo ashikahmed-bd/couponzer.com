@@ -72,7 +72,7 @@ watch(search, (value) => {
 
           <div v-if="showDropdown"
             class="absolute top-full mt-2 w-full overflow-hidden rounded border border-border bg-white z-50">
-            <a v-for="item in results" :key="item.id" :href="`/stores/${item.slug}`"
+            <a v-for="item in results" :key="item.id" :href="`/store/${item.slug}`"
               class="flex items-center justify-between gap-3 px-4 py-3 transition hover:bg-slate-50"
               @click="showDropdown = false">
               <div class="flex flex-col leading-tight">
@@ -141,7 +141,7 @@ watch(search, (value) => {
 
         <div v-if="showDropdown"
           class="absolute top-full mt-2 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl z-50">
-          <a v-for="item in results" :key="item.id" :href="`/stores/${item.slug}`"
+          <a v-for="item in results" :key="item.id" :href="`/store/${item.slug}`"
             class="flex items-center justify-between gap-3 px-4 py-3 hover:bg-slate-50">
             <div class="flex flex-col">
               <p class="text-sm font-medium">{{ item.name }}</p>
