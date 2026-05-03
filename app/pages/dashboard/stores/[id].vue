@@ -40,25 +40,6 @@ const form = reactive({
   status: "active",
 });
 
-const generateSlug = (text) => {
-  return (
-    text
-      ?.toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-") || ""
-  );
-};
-
-watch(
-  () => form.name,
-  (value) => {
-    const newSlug = generateSlug(value);
-    form.slug = newSlug;
-    form.canonical_url = newSlug ? `/store/${newSlug}` : "";
-  },
-);
 
 const loadStore = async () => {
   const response = await merchantStore.show(route.params.id);
@@ -106,30 +87,21 @@ onMounted(() => {
 
 <template>
   <div class="bg-white p-4 md:p-6 rounded-2xl">
-    <div
-      class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6"
-    >
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
       <div>
         <h1 class="text-2xl font-bold text-slate-900">Add Store</h1>
         <p class="text-sm text-slate-500">Create a new store or merchant</p>
       </div>
 
-      <NuxtLink
-        to="/dashboard/stores"
-        class="inline-flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-semibold transition"
-      >
+      <NuxtLink to="/dashboard/stores"
+        class="inline-flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-semibold transition">
         Back to Stores
       </NuxtLink>
     </div>
 
-    <form
-      @submit.prevent="submit"
-      class="bg-white border border-slate-200 rounded-2xl overflow-hidden"
-    >
+    <form @submit.prevent="submit" class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
       <div class="grid grid-cols-1 xl:grid-cols-3">
-        <div
-          class="xl:col-span-2 p-5 md:p-6 border-b xl:border-b-0 xl:border-r border-slate-200 space-y-6"
-        >
+        <div class="xl:col-span-2 p-5 md:p-6 border-b xl:border-b-0 xl:border-r border-slate-200 space-y-6">
           <div>
             <h2 class="text-base font-semibold text-slate-900 mb-4">
               Store Information
@@ -140,64 +112,42 @@ onMounted(() => {
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Name <span class="text-red-500">*</span>
                 </label>
-                <input
-                  v-model="form.name"
-                  type="text"
-                  placeholder="e.g. Amazon"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.name" type="text" placeholder="e.g. Amazon"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Title
                 </label>
-                <input
-                  v-model="form.title"
-                  type="text"
-                  placeholder="e.g. Amazon Coupons & Deals"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.title" type="text" placeholder="e.g. Amazon Coupons & Deals"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div class="block">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Slug
                 </label>
-                <input
-                  v-model="form.slug"
-                  type="text"
-                  placeholder="e.g. amazon"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.slug" type="text" placeholder="e.g. amazon"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Logo URL
                 </label>
-                <input
-                  v-model="form.logo_url"
-                  type="url"
-                  placeholder="https://example.com/logo.png"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.logo_url" type="url" placeholder="https://example.com/logo.png"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Category
                 </label>
-                <select
-                  v-model="form.category_id"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary"
-                >
+                <select v-model="form.category_id"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary">
                   <option :value="null" disabled>Select category</option>
-                  <option
-                    v-for="category in categories"
-                    :key="category.id"
-                    :value="category.id"
-                  >
+                  <option v-for="category in categories" :key="category.id" :value="category.id">
                     {{ category.name }}
                   </option>
                 </select>
@@ -207,60 +157,40 @@ onMounted(() => {
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Background Color
                 </label>
-                <input
-                  v-model="form.background"
-                  type="text"
-                  placeholder="Enter hex color (e.g. #f5f5f5)"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.background" type="text" placeholder="Enter hex color (e.g. #f5f5f5)"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div class="block">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Offer Text
                 </label>
-                <input
-                  v-model="form.offer_text"
-                  type="text"
-                  placeholder="e.g. Up to 50% Off"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.offer_text" type="text" placeholder="e.g. Up to 50% Off"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div class="block">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Cashback Text
                 </label>
-                <input
-                  v-model="form.cashback_text"
-                  type="text"
-                  placeholder="e.g. Up to 10% cashback"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.cashback_text" type="text" placeholder="e.g. Up to 10% cashback"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div class="block">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Website URL
                 </label>
-                <input
-                  v-model="form.website_url"
-                  type="url"
-                  placeholder="https://example.com"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.website_url" type="url" placeholder="https://example.com"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div class="block">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Affiliate URL
                 </label>
-                <input
-                  v-model="form.affiliate_url"
-                  type="url"
-                  placeholder="https://example.com/affiliate-link"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.affiliate_url" type="url" placeholder="https://example.com/affiliate-link"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
             </div>
           </div>
@@ -275,58 +205,40 @@ onMounted(() => {
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Meta Title
                 </label>
-                <input
-                  v-model="form.meta_title"
-                  type="text"
-                  placeholder="Enter SEO title"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.meta_title" type="text" placeholder="Enter SEO title"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Meta Description
                 </label>
-                <textarea
-                  v-model="form.meta_description"
-                  placeholder="Enter SEO description"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                ></textarea>
+                <textarea v-model="form.meta_description" placeholder="Enter SEO description"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
               </div>
 
               <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Meta Keywords
                 </label>
-                <textarea
-                  v-model="form.meta_keywords"
-                  placeholder="store, coupons, deals"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                ></textarea>
+                <textarea v-model="form.meta_keywords" placeholder="store, coupons, deals"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Canonical URL
                 </label>
-                <input
-                  v-model="form.canonical_url"
-                  type="text"
-                  placeholder="/stores/store-slug"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.canonical_url" type="text" placeholder="/stores/store-slug"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   OG Image URL
                 </label>
-                <input
-                  v-model="form.og_image_url"
-                  type="url"
-                  placeholder="https://example.com/og-image.jpg"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.og_image_url" type="url" placeholder="https://example.com/og-image.jpg"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
             </div>
           </div>
@@ -340,25 +252,15 @@ onMounted(() => {
 
             <div class="space-y-3">
               <label
-                class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3"
-              >
+                class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
                 <span class="text-sm font-medium text-slate-700">Featured</span>
-                <input
-                  v-model="form.is_featured"
-                  type="checkbox"
-                  class="h-4 w-4"
-                />
+                <input v-model="form.is_featured" type="checkbox" class="h-4 w-4" />
               </label>
 
               <label
-                class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3"
-              >
+                class="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
                 <span class="text-sm font-medium text-slate-700">Verified</span>
-                <input
-                  v-model="form.is_verified"
-                  type="checkbox"
-                  class="h-4 w-4"
-                />
+                <input v-model="form.is_verified" type="checkbox" class="h-4 w-4" />
               </label>
             </div>
           </div>
@@ -373,41 +275,24 @@ onMounted(() => {
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Rating
                 </label>
-                <input
-                  v-model="form.rating"
-                  type="number"
-                  step="0.1"
-                  min="0"
-                  max="5"
-                  placeholder="e.g. 4.5"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.rating" type="number" step="0.1" min="0" max="5" placeholder="e.g. 4.5"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Score
                 </label>
-                <input
-                  v-model="form.score"
-                  type="number"
-                  min="0"
-                  placeholder="e.g. 90"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.score" type="number" min="0" placeholder="e.g. 90"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
 
               <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">
                   Votes
                 </label>
-                <input
-                  v-model="form.votes"
-                  type="number"
-                  min="0"
-                  placeholder="e.g. 0"
-                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+                <input v-model="form.votes" type="number" min="0" placeholder="e.g. 0"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
             </div>
           </div>
@@ -416,10 +301,8 @@ onMounted(() => {
             <label class="block text-sm font-medium text-slate-700 mb-1">
               Status
             </label>
-            <select
-              v-model="form.status"
-              class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary"
-            >
+            <select v-model="form.status"
+              class="w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary">
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
             </select>
@@ -448,20 +331,12 @@ onMounted(() => {
           <label class="block text-sm font-medium text-slate-700 mb-1">
             Summary
           </label>
-          <textarea
-            v-model="form.summary"
-            rows="3"
-            placeholder="Short summary about the store..."
-            class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          ></textarea>
+          <textarea v-model="form.summary" rows="4" placeholder="Short summary about the store..."
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
         </div>
 
         <div class="block">
-          <MarkdownEditor
-            label="Description"
-            v-model="form.description"
-            placeholder="Write store details..."
-          />
+          <MarkdownEditor label="Description" v-model="form.description" placeholder="Write store details..." />
         </div>
       </div>
     </form>

@@ -31,31 +31,22 @@ watch(page, () => {
 
 <template>
   <div class="bg-white p-4 rounded-2xl">
-    <div
-      class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6"
-    >
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
       <div>
         <h1 class="text-2xl font-bold text-dark">All Stores</h1>
         <p class="text-sm text-body">Manage all stores and merchants</p>
       </div>
 
-      <NuxtLink
-        to="/dashboard/stores/create"
-        class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded text-sm font-semibold"
-      >
+      <NuxtLink to="/dashboard/stores/create"
+        class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded text-sm font-semibold">
         Add Store
       </NuxtLink>
     </div>
 
     <div class="bg-white rounded-2xl border border-border">
-      <div
-        class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4"
-      >
-        <input
-          type="text"
-          placeholder="Search stores..."
-          class="w-full md:w-72 px-4 py-2 border border-border rounded text-sm focus:outline-none"
-        />
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4">
+        <input type="text" placeholder="Search stores..."
+          class="w-full md:w-72 px-4 py-2 border border-border rounded text-sm focus:outline-none" />
       </div>
 
       <div class="overflow-x-auto">
@@ -74,26 +65,18 @@ watch(page, () => {
           </thead>
 
           <tbody class="divide-y">
-            <tr
-              v-for="store in stores"
-              :key="store.id"
-              class="hover:bg-slate-50"
-            >
+            <tr v-for="store in stores" :key="store.id" class="hover:bg-slate-50">
               <td class="px-4 py-3 font-medium text-slate-700">
                 #{{ store.id }}
               </td>
 
               <td class="px-4 py-3">
-                <NuxtImg
-                  :src="store.logo_url"
-                  :alt="store.name"
-                  class="h-8 w-auto"
-                />
+                <NuxtImg :src="store.logo_url" :alt="store.name" class="h-8 w-auto" />
               </td>
               <td class="px-4 py-3">
                 <div class="flex flex-col">
                   <span class="font-semibold text-slate-800 max-w-3xs truncate">
-                    {{ store.name }}
+                    {{ store.name }} ({{ store.coupons?.[0]?.count ?? 0 }})
                   </span>
                   <span class="text-xs text-slate-500">
                     {{ store.slug }}
@@ -102,38 +85,25 @@ watch(page, () => {
               </td>
 
               <td class="px-4 py-3 text-slate-600">
-                <a
-                  :href="store.website_url"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  class="text-blue-600 text-xs font-medium"
-                >
+                <a :href="store.website_url" target="_blank" rel="nofollow noopener noreferrer"
+                  class="text-blue-600 text-xs font-medium">
                   {{ store.website_url }}
                 </a>
               </td>
 
               <td class="px-4 py-3">
-                <a
-                  :href="store.affiliate_url"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs font-medium transition"
-                >
+                <a :href="store.affiliate_url" target="_blank" rel="nofollow noopener noreferrer"
+                  class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-3 py-1.5 rounded text-xs font-medium transition">
                   Visit
                 </a>
               </td>
 
               <td class="px-4 py-3">
-                <span
-                  v-if="store.is_featured"
-                  class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full"
-                >
+                <span v-if="store.is_featured"
+                  class="px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">
                   Yes
                 </span>
-                <span
-                  v-else
-                  class="px-2 py-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full"
-                >
+                <span v-else class="px-2 py-1 text-xs font-semibold text-gray-700 bg-gray-100 rounded-full">
                   No
                 </span>
               </td>
@@ -144,23 +114,17 @@ watch(page, () => {
 
               <td class="px-4 py-3">
                 <div class="flex items-center gap-2">
-                  <a
-                    :href="`/store/${store.slug}`"
-                    target="_blank"
-                    class="inline-flex cursor-pointer items-center justify-center w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition"
-                  >
+                  <a :href="`/store/${store.slug}`" target="_blank"
+                    class="inline-flex cursor-pointer items-center justify-center w-9 h-9 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-700 transition">
                     <UIcon name="i-lucide-eye" class="size-4" />
                   </a>
-                  <NuxtLink
-                    :to="`/dashboard/stores/${store.id}`"
-                    class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition"
-                  >
+                  <NuxtLink :to="`/dashboard/stores/${store.id}`"
+                    class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 transition">
                     <UIcon name="i-lucide-square-pen" class="size-4" />
                   </NuxtLink>
 
                   <button
-                    class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 transition"
-                  >
+                    class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 transition">
                     <UIcon name="i-lucide-trash-2" class="size-4" />
                   </button>
                 </div>
@@ -176,21 +140,14 @@ watch(page, () => {
         </table>
 
         <div class="flex justify-between items-center px-6 py-4">
-          <button
-            @click="page--"
-            :disabled="page === 1"
-            class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-          >
+          <button @click="page--" :disabled="page === 1" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">
             Prev
           </button>
 
           <span>Page {{ page }}</span>
 
-          <button
-            @click="page++"
-            :disabled="page * limit >= total"
-            class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-          >
+          <button @click="page++" :disabled="page * limit >= total"
+            class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">
             Next
           </button>
         </div>

@@ -38,7 +38,7 @@ export const useMerchantStore = defineStore("merchant", {
 
         const { data, error } = await supabase
           .from("stores")
-          .select("*")
+          .select(`*,coupons:coupons(count)`)
           .order("id", { ascending: false })
           .range(from, to);
 
