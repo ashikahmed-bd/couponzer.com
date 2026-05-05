@@ -52,12 +52,10 @@ watch(search, (value) => {
   <header class="sticky top-0 z-50 border-b border-border bg-white/90 backdrop-blur">
     <div class="mx-auto max-w-7xl px-4 py-2">
       <div class="flex h-16 items-center justify-between gap-3">
-
         <a href="/" class="shrink-0">
           <NuxtImg src="/logo.svg" alt="logo" class="h-16 w-auto object-contain" />
         </a>
 
-        <!-- DESKTOP SEARCH -->
         <div class="relative hidden flex-1 max-w-xs lg:block">
           <form class="relative" @submit.prevent>
             <input v-model="search" type="search" placeholder="Search stores..."
@@ -162,22 +160,36 @@ watch(search, (value) => {
         </div>
       </div>
 
-      <!-- MOBILE MENU -->
+      <!-- Mobile Menu -->
       <transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0 -translate-y-2"
         enter-to-class="opacity-100 translate-y-0" leave-active-class="transition duration-150 ease-in"
         leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 -translate-y-2">
         <div v-if="mobileMenuOpen" class="border-t border-slate-200 py-4 lg:hidden">
           <nav class="flex flex-col gap-2">
             <NuxtLink v-for="item in navItems" :key="item.to" :to="item.to"
-              class="rounded-xl px-4 py-3 text-sm font-medium" :class="route.path === item.to
+              class="rounded-xl px-4 py-3 text-sm font-medium transition" :class="route.path === item.to
                 ? 'bg-primary/10 text-primary'
-                : 'text-slate-700 hover:bg-slate-100'" @click="mobileMenuOpen = false">
+                : 'text-slate-700 hover:bg-slate-100 hover:text-primary'
+                " @click="mobileMenuOpen = false">
               {{ item.label }}
             </NuxtLink>
           </nav>
+
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <NuxtLink to="/auth/login"
+              class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+              @click="mobileMenuOpen = false">
+              Sign in
+            </NuxtLink>
+
+            <NuxtLink to="/auth/register"
+              class="inline-flex items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-medium text-white transition hover:bg-primary-hover"
+              @click="mobileMenuOpen = false">
+              Sign up
+            </NuxtLink>
+          </div>
         </div>
       </transition>
-
     </div>
   </header>
 </template>
