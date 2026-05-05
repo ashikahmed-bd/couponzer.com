@@ -48,7 +48,7 @@ export default defineNuxtConfig({
           { loc: '/privacy', lastmod: new Date().toISOString() },
           { loc: '/terms', lastmod: new Date().toISOString() },
           { loc: '/disclaimer', lastmod: new Date().toISOString() },
-          ],
+        ],
       },
 
       coupons: {
@@ -110,14 +110,28 @@ export default defineNuxtConfig({
           name: "impact-site-verification",
           content: "309a0a67-94a1-41f4-a931-92fa91fa66e1",
         },
+        {
+          name: "facebook-domain-verification",
+          content: "0byhmj701kycphgfeawkom2jizohqj",
+        },
+        {
+          name: "msvalidate.01",
+          content: "A06B65CE2805E678CF3A5199A17AA9C1",
+        },
+
+        {
+          name: "yandex-verification",
+          content: "8219cde1654b446c",
+        },
+
       ],
       bodyAttrs: {
         class: 'antialiased text-base font-body text-dark overflow-x-hidden',
       },
-      
+
     },
   },
 
 
-  
+
 })

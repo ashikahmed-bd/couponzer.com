@@ -92,86 +92,52 @@ useSchemaOrg([
     <template v-if="pending"> </template>
     <template v-if="error"> </template>
     <template v-else>
-      <SeoMeta
-        :title="store.meta_title"
-        :description="store.meta_description"
-        :keywords="store.meta_keywords"
-        :url="store.canonical_url"
-        :image="store.og_image_url"
-      />
+      <SeoMeta :title="store.meta_title" :description="store.meta_description" :keywords="store.meta_keywords"
+        :url="store.canonical_url" :image="store.og_image_url" />
 
       <section class="bg-white/50 py-6">
         <div class="mx-auto max-w-7xl px-4">
-          <div
-            class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left"
-          >
-            <div
-              class="mx-auto max-w-xs flex shrink-0 items-center justify-center rounded-2xl p-10"
-              :style="{
-                backgroundColor: store.background,
-              }"
-            >
-              <NuxtImg
-                :src="store.logo_url ?? '/stores/default.png'"
-                :alt="store.name"
-                class="h-20 md:h-32 w-auto object-contain"
-              />
+          <div class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left">
+            <div class="mx-auto max-w-xs flex shrink-0 items-center justify-center rounded-2xl p-10" :style="{
+              backgroundColor: store.background,
+            }">
+              <NuxtImg :src="store.logo_url ?? '/stores/default.png'" :alt="store.name"
+                class="h-20 md:h-32 w-auto object-contain" />
             </div>
 
             <div class="min-w-0 flex-1">
-              <div
-                class="flex flex-wrap items-center justify-center gap-2 md:justify-start mb-3"
-              >
-                <span
-                  v-if="store.is_verified"
-                  class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200"
-                >
+              <div class="flex flex-wrap items-center justify-center gap-2 md:justify-start mb-3">
+                <span v-if="store.is_verified"
+                  class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
                   <UIcon name="i-lucide-badge-check" class="size-3.5" />
                   Verified Store
                 </span>
 
-                <span
-                  v-if="store.offer_text"
-                  class="inline-flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700 ring-1 ring-rose-200"
-                >
+                <span v-if="store.offer_text"
+                  class="inline-flex items-center gap-1 rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700 ring-1 ring-rose-200">
                   <UIcon name="i-lucide-ticket-percent" class="size-3.5" />
                   {{ store.offer_text }}
                 </span>
 
-                <span
-                  v-if="store.cashback_text"
-                  class="inline-flex items-center gap-1 rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700 ring-1 ring-violet-200"
-                >
+                <span v-if="store.cashback_text"
+                  class="inline-flex items-center gap-1 rounded-full bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700 ring-1 ring-violet-200">
                   <UIcon name="i-lucide-wallet" class="size-3.5" />
                   {{ store.cashback_text }}
                 </span>
               </div>
-              <h1
-                class="text-2xl font-extrabold tracking-tight text-accent md:text-3xl"
-              >
+              <h1 class="text-2xl font-extrabold tracking-tight text-accent md:text-3xl">
                 {{ store.title }}
               </h1>
 
               <div
-                class="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-sm md:justify-start md:text-base"
-              >
+                class="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 text-sm md:justify-start md:text-base">
                 <div class="flex items-center gap-1">
                   <template v-for="i in 5" :key="i">
-                    <UIcon
-                      v-if="i <= Math.floor(store.rating)"
-                      name="i-lucide-star"
-                      class="size-4 fill-yellow-500 text-yellow-400"
-                    />
-                    <UIcon
-                      v-else-if="i - store.rating < 1"
-                      name="i-lucide-star-half"
-                      class="size-4 fill-yellow-400 text-yellow-400"
-                    />
-                    <UIcon
-                      v-else
-                      name="i-lucide-star"
-                      class="size-4 text-gray-300"
-                    />
+                    <UIcon v-if="i <= Math.floor(store.rating)" name="i-lucide-star"
+                      class="size-4 fill-yellow-500 text-yellow-400" />
+                    <UIcon v-else-if="i - store.rating < 1" name="i-lucide-star-half"
+                      class="size-4 fill-yellow-400 text-yellow-400" />
+                    <UIcon v-else name="i-lucide-star" class="size-4 text-gray-300" />
                   </template>
 
                   <span class="ml-2 text-sm font-semibold text-gray-700">
@@ -183,21 +149,14 @@ useSchemaOrg([
                   <UIcon name="i-lucide-thumbs-up" class="size-4" />
                   <span>{{ store.votes }} votes</span>
                 </div>
-                <a
-                  :href="store.affiliate_url ?? store.website_url"
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-sm font-medium text-primary transition hover:text-primary-hover"
-                >
+                <a :href="store.affiliate_url ?? store.website_url" target="_blank" rel="nofollow noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-sm font-medium text-primary transition hover:text-primary-hover">
                   Visit Website
                   <UIcon name="i-lucide-arrow-up-right" class="size-4" />
                 </a>
               </div>
 
-              <p
-                v-if="store.summary"
-                class="mt-2 max-w-3xl text-sm leading-6 text-body"
-              >
+              <p v-if="store.summary" class="mt-2 max-w-3xl text-sm leading-6 text-body">
                 {{ store.summary }}
               </p>
             </div>
@@ -217,63 +176,37 @@ useSchemaOrg([
               </div>
 
               <div class="space-y-4">
-                <CouponListCard
-                  v-for="coupon in coupons"
-                  :key="coupon.id"
-                  :coupon="coupon"
-                  :store="store"
-                />
+                <CouponListCard v-for="coupon in coupons" :key="coupon.id" :coupon="coupon" :store="store" />
               </div>
             </div>
 
-            <MarkdownPreview
-              :content="store.description"
-              class="markdown px-5 rounded-2xl py-6"
-            />
+            <MarkdownPreview :content="store.description" class="markdown px-5 rounded-2xl py-6" />
           </div>
 
           <aside class="w-full">
             <div class="sticky top-24 space-y-6">
               <div class="space-y-4">
-                <div
-                  class="overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300"
-                >
-                  <div
-                    class="flex items-center justify-between border-b border-border px-4 py-3"
-                  >
+                <div class="overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300">
+                  <div class="flex items-center justify-between border-b border-border px-4 py-3">
                     <span
-                      class="inline-flex items-center rounded-full bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-600 ring-1 ring-orange-200"
-                    >
+                      class="inline-flex items-center rounded-full bg-orange-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-600 ring-1 ring-orange-200">
                       Sponsored
                     </span>
 
-                    <span class="text-xs font-medium text-gray-400"
-                      >Advertisement</span
-                    >
+                    <span class="text-xs font-medium text-gray-400">Advertisement</span>
                   </div>
 
-                  <a
-                    :href="`/redirect/${square?.slug}`"
-                    target="_blank"
-                    rel="sponsored nofollow noopener"
-                    class="group block p-4"
-                  >
-                    <div
-                      class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
-                    >
-                      <NuxtImg
-                        :src="square?.image_url"
-                        :alt="square?.alt_text ?? square?.title"
-                        class="h-auto w-full transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                        format="webp"
-                      />
+                  <a :href="`/redirect/${square?.slug}`" target="_blank" rel="sponsored nofollow noopener"
+                    class="group block p-4">
+                    <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
+                      <NuxtImg :src="square?.image_url" :alt="square?.alt_text ?? square?.title"
+                        class="h-auto w-full transition-transform duration-300 group-hover:scale-105" loading="lazy"
+                        format="webp" />
                     </div>
 
                     <div class="pt-4">
                       <h3
-                        class="line-clamp-2 text-lg font-bold leading-6 text-dark transition-colors duration-300 group-hover:text-primary"
-                      >
+                        class="line-clamp-2 text-lg font-bold leading-6 text-dark transition-colors duration-300 group-hover:text-primary">
                         {{ square?.title }}
                       </h3>
 
@@ -283,8 +216,7 @@ useSchemaOrg([
 
                       <div class="mt-4">
                         <span
-                          class="inline-flex items-center justify-center rounded bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:bg-primary-hover"
-                        >
+                          class="inline-flex items-center justify-center rounded bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 group-hover:bg-primary-hover">
                           Explore Offer
                         </span>
                       </div>
@@ -297,19 +229,10 @@ useSchemaOrg([
                 <h3 class="mb-4 text-lg font-bold text-dark">Similar Stores</h3>
 
                 <div class="space-y-3">
-                  <NuxtLink
-                    v-for="item in related"
-                    :key="item.id"
-                    :to="`/stores/${item.slug}`"
-                    class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-gray-50"
-                  >
-                    <div
-                      class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100"
-                    >
-                      <NuxtImg
-                        :src="item.logo_url || '/stores/default.png'"
-                        class="h-8 w-auto object-contain"
-                      />
+                  <NuxtLink v-for="item in related" :key="item.id" :to="`/store/${item.slug}`"
+                    class="flex items-center gap-3 rounded-xl p-2 transition hover:bg-gray-50">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100">
+                      <NuxtImg :src="item.logo_url" class="h-8 w-auto object-contain" />
                     </div>
 
                     <div class="min-w-0">
@@ -324,21 +247,11 @@ useSchemaOrg([
                 </div>
               </div>
 
-              <a
-                :href="`/redirect/${rectangle?.slug}`"
-                target="_blank"
-                rel="sponsored nofollow noopener"
-              >
-                <div
-                  class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gray-50"
-                >
-                  <NuxtImg
-                    :src="rectangle?.image_url"
-                    :alt="rectangle?.alt_text ?? rectangle?.title"
-                    class="w-full h-auto transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                    format="webp"
-                  />
+              <a :href="`/redirect/${rectangle?.slug}`" target="_blank" rel="sponsored nofollow noopener">
+                <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gray-50">
+                  <NuxtImg :src="rectangle?.image_url" :alt="rectangle?.alt_text ?? rectangle?.title"
+                    class="w-full h-auto transition-transform duration-300 group-hover:scale-105" loading="lazy"
+                    format="webp" />
                 </div>
               </a>
             </div>
